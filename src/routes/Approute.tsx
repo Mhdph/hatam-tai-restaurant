@@ -10,7 +10,17 @@ import {
   Complate,
   AddNewAddres,
   Login,
+  Food,
+  LastOrder,
+  Panel,
+  PanelCategory,
 } from "../pages";
+
+export const DashboardRoutes = [
+  { path: "/favouriteList", component: <LastOrder /> },
+  { path: "/provider", component: <PanelCategory /> },
+  { path: "/todayList", component: <Food /> },
+];
 
 function AppRoutes() {
   return (
@@ -25,6 +35,7 @@ function AppRoutes() {
         <Route path="/complate" element={<Complate />} />
         <Route path="/addaddress" element={<AddNewAddres />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/panel/*" element={<Panel />} />
       </Routes>
     </Suspense>
   );
