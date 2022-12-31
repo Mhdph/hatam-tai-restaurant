@@ -1,11 +1,12 @@
 import React from "react";
 
 interface Input {
-  changeText?: () => void;
+  changeText?: (event: any) => void;
   placeText: string;
+  name?: string;
 }
 
-function Input({ changeText, placeText }: Input) {
+function Input({ changeText, placeText, name }: Input) {
   return (
     <div className="w-full px-2">
       <input
@@ -13,6 +14,7 @@ function Input({ changeText, placeText }: Input) {
         type="text"
         placeholder={placeText}
         onChange={changeText}
+        name={name}
       />
     </div>
   );
