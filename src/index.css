@@ -1,0 +1,228 @@
+@import url("https://v1.fontapi.ir/css/IranNastaliq");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,100&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background: linear-gradient(
+    167.64deg,
+    #c4962a -2.6%,
+    #a2864d 57.25%,
+    #cdab6b 98.09%
+  );
+  font-family: "Shabnam", sans-serif;
+}
+.language_choose {
+  background: linear-gradient(
+    255.78deg,
+    #ffd700 -18.61%,
+    rgba(196, 150, 42, 0.64) 35.36%,
+    rgba(205, 171, 107, 0.62) 93.77%
+  );
+  box-shadow: 3px 5px 5px rgba(59, 45, 13, 0.68);
+  border-radius: 16px;
+  height: 87px;
+}
+.category {
+  background: linear-gradient(
+    255.78deg,
+    #ffd700 -18.61%,
+    rgba(196, 150, 42, 0.64) 35.36%,
+    rgba(205, 171, 107, 0.62) 93.77%
+  );
+  box-shadow: 4px 4px 5px rgba(59, 45, 13, 0.25);
+  border-radius: 20px;
+}
+.card {
+  background: linear-gradient(
+    180deg,
+    rgba(123, 86, 0, 0.17) 0%,
+    rgba(255, 215, 0, 0.24) 100%
+  );
+
+  /* card stork */
+  border: 1px solid rgba(205, 171, 107, 0.3);
+
+  /* card effect */
+  box-shadow: 4px 4px 7px rgba(59, 45, 13, 0.25);
+  backdrop-filter: blur(1.5px);
+
+  /* Note: backdrop-filter has minimal browser support */
+  border-radius: 20px;
+}
+.card-food {
+  background: linear-gradient(
+    180deg,
+    rgba(123, 86, 0, 0.17) 0%,
+    rgba(255, 215, 0, 0.24) 100%
+  );
+
+  /* card stork */
+  border: 1px solid rgba(205, 171, 107, 0.3);
+
+  /* card effect */
+  box-shadow: 4px 4px 7px rgba(59, 45, 13, 0.25);
+  backdrop-filter: blur(1.5px);
+
+  /* Note: backdrop-filter has minimal browser support */
+  border-radius: 20px;
+}
+.add-button {
+  background: linear-gradient(
+    255.78deg,
+    #ffd700 -18.61%,
+    rgba(196, 150, 42, 0.64) 35.36%,
+    rgba(205, 171, 107, 0.62) 93.77%
+  );
+  box-shadow: 4px 4px 7px rgba(59, 45, 13, 0.25);
+  border-radius: 8px;
+}
+.topping {
+  background: linear-gradient(
+    255.78deg,
+    #ffd700 -18.61%,
+    rgba(196, 150, 42, 0.64) 35.36%,
+    rgba(205, 171, 107, 0.62) 93.77%
+  );
+  box-shadow: 4px 4px 7px rgba(59, 45, 13, 0.25);
+  backdrop-filter: blur(1.5px);
+  border-radius: 20px;
+}
+.input_custom {
+  background: rgba(157, 120, 34, 0.6);
+  border-radius: 20px;
+}
+
+input,
+textarea {
+  background: rgba(157, 120, 34, 0.6);
+  box-shadow: 4px 4px 7px rgba(59, 45, 13, 0.25);
+}
+
+.button_complate {
+  background: #9d7822;
+  border: 1px solid rgba(205, 171, 107, 0.3);
+  box-shadow: 4px 4px 7px rgba(59, 45, 13, 0.25);
+  backdrop-filter: blur(1.5px);
+  border-radius: 20px;
+}
+.payment {
+  background: linear-gradient(
+    255.78deg,
+    #ffd700 -18.61%,
+    rgba(196, 150, 42, 0.64) 35.36%,
+    rgba(205, 171, 107, 0.62) 93.77%
+  );
+  box-shadow: 4px 4px 7px rgba(59, 45, 13, 0.25);
+  border-radius: 20px;
+}
+input[type="checkbox"] {
+  accent-color: black;
+}
+
+input[type="checkbox"]::before {
+  accent-color: black;
+  background-color: #9d7822;
+}
+
+.container {
+  display: block;
+  position: relative;
+  padding-right: 10px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 22px;
+  width: auto;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 14px;
+  width: 14px;
+  background-color: transparent;
+  border: 2px #9d7822 solid;
+}
+
+/* On mouse-over, add a grey background color */
+.container:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+.container input:checked ~ .checkmark {
+  background-color: #9d7822;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.container .checkmark:after {
+  left: 6px;
+  top: 3px;
+  width: 5px;
+  height: 8px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  -webkit-transform: rotate(35deg);
+  -ms-transform: rotate(35deg);
+  transform: rotate(35deg);
+}
+.subtotal {
+  background: rgba(157, 120, 34, 0.6);
+  box-shadow: 4px 4px 7px rgba(59, 45, 13, 0.25);
+  border-radius: 20px;
+}
+.input_default {
+  background: rgba(157, 120, 34, 0.6);
+  border-radius: 20px;
+  color: rgba(78, 60, 17);
+  text-shadow: 4px 4px 10px rgba(59, 45, 13, 0.25);
+}
+.input_default::placeholder {
+  color: rgba(78, 60, 17, 0.6);
+  font-weight: 600;
+  font-size: 16px;
+}
+.address_button {
+  background: linear-gradient(
+    255.78deg,
+    #ffd700 -18.61%,
+    rgba(196, 150, 42, 0.64) 35.36%,
+    rgba(205, 171, 107, 0.62) 93.77%
+  );
+
+  /* card effect */
+  box-shadow: 4px 4px 7px rgba(59, 45, 13, 0.25);
+  backdrop-filter: blur(1.5px);
+
+  /* Note: backdrop-filter has minimal browser support */
+  border-radius: 8px;
+}
