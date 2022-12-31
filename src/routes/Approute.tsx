@@ -15,11 +15,12 @@ import {
   Panel,
   PanelCategory,
 } from "../pages";
+import ProtectedRoute from "./ProtectedRoute";
 
 export const DashboardRoutes = [
-  { path: "/favouriteList", component: <LastOrder /> },
-  { path: "/provider", component: <PanelCategory /> },
-  { path: "/todayList", component: <Food /> },
+  { path: "/lastorder", component: <LastOrder /> },
+  { path: "/panelcategory", component: <PanelCategory /> },
+  { path: "/food", component: <Food /> },
 ];
 
 function AppRoutes() {
