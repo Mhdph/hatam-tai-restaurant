@@ -14,12 +14,16 @@ function PanelSideBar() {
         <PanelSvg />
       </div>
       <ul className=" py-6">
-        <PanelTab Icon={TagIcon} name="category" address="/categpry" />
-        <PanelTab Icon={CakeIcon} name="food" address="/food" />
+        <PanelTab
+          Icon={TagIcon}
+          name="category"
+          address="/panel/panelcategory"
+        />
+        <PanelTab Icon={CakeIcon} name="food" address="/panel/food" />
         <PanelTab
           Icon={ArrowTrendingUpIcon}
           name="last order"
-          address="/categpry"
+          address="/panel/lastorder"
         />
       </ul>
     </div>

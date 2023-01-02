@@ -47,7 +47,7 @@ function Category() {
   return (
     <div className="font-iran flex flex-col h-full">
       <Arrowback />
-      <div className="flex items-center my-12 justify-between px-2">
+      <div className="flex items-center my-12 justify-between px-2 md:px-8">
         <img src={hatam} className="mr-2" alt="" />
         <img src={hatamphoto} alt="" />
         <img src={hatamarabic} alt="" />
@@ -64,7 +64,7 @@ function Category() {
               <img
                 src={categorykashi}
                 alt=""
-                className="h-16 -z-10 relative -mb-20 bottom-16 left-28"
+                className="h-16 -z-10 relative -mb-20 bottom-16 left-28 md:left-[310px]"
               />
             </div>
           </Link>

@@ -10,16 +10,18 @@ import OrderFeeTotal from "../components/OrderFeeTotal";
 
 function OrderSummery() {
   return (
-    <div className="p-4 h-screen font-roboto">
+    <div className=" h-screen font-roboto">
       <Arrowback />
       <Header title="Order Summary" />
-      <Order />
-      <hr className=" border-opacity-30 border-[0.1px] my-4 border-[#4e3c114d]" />
-      <OrderFee />
-      <hr className=" border-opacity-30 border-[0.1px] my-4 border-[#4e3c114d]" />
-      <OrderFeeTotal />
-      <div className="mt-40 mb-10">
-        <Button title="continue" addres="/delivery" />
+      <div className="p-4 md:px-8">
+        <Order />
+        <hr className=" border-opacity-30 border-[0.1px] my-4 border-[#4e3c114d]" />
+        <OrderFee />
+        <hr className=" border-opacity-30 border-[0.1px] my-4 border-[#4e3c114d]" />
+        <OrderFeeTotal />
+        <div className="mt-40 mb-10">
+          <Button title="continue" addres="/delivery" />
+        </div>
       </div>
       <img src={Kashi} className="-z-10 absolute bottom-32" alt="" />
       <Footer />

@@ -1,4 +1,4 @@
-import React from "react";
+import { useNavigate } from "react-router-dom";
 import { Kashi } from "../assets";
 import Arrowback from "../components/Arrowback";
 import Button from "../components/Button";
@@ -6,6 +6,7 @@ import Footer from "../components/Footer";
 import Header from "../components/Header";
 
 function Delivery() {
+  const navigate = useNavigate();
   return (
     <div className="font-roboto">
       <Arrowback />
@@ -22,6 +23,7 @@ function Delivery() {
           address
         </p>
         <textarea
+          onClick={() => navigate("/addaddress")}
           name=""
           id=""
           className="rounded-[20px] outline-none w-full py-10 "
