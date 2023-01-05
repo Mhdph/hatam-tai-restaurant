@@ -1,95 +1,73 @@
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/20/solid";
+import { useQuery } from "react-query";
+import { getAllOrderFn } from "../../config";
+import { OrderD } from "../../types";
 
 const LastOrder = () => {
+  const { isLoading, data, error } = useQuery({
+    queryKey: ["category"],
+    queryFn: getAllOrderFn,
+  });
+
+  if (isLoading) return <p>Loading</p>;
+
   return (
     <div className="overflow-x-auto p-4">
       <div className="fixed w-full overflow-x-auto shadow-md sm:rounded-lg md:relative">
         <table className="w-full text-left text-sm text-gray-500">
-          <caption className="bg-white p-5 text-left text-lg font-semibold text-gray-900 ">
-            Our products
-            <p className="mt-1 text-sm font-normal text-gray-500">
-              Browse a list of Flowbite products designed to help you work and
-              play, stay organized, get answers, keep in touch, grow your
-              business, and more.
-            </p>
-          </caption>
           <thead className="bg-gray-50 text-xs font-bold capitalize text-[#78909c]">
             <tr>
               <th scope="col" className="py-3 px-6">
-                Product name
+                Product
               </th>
               <th scope="col" className="py-3 px-6">
-                Color
+                Address
               </th>
               <th scope="col" className="py-3 px-6">
-                Category
+                Phone Number
               </th>
               <th scope="col" className="py-3 px-6">
-                Price
+                Payment Method
               </th>
               <th scope="col" className="py-3 px-6">
-                <span className="sr-only">Edit</span>
+                <span>Status</span>
               </th>
             </tr>
           </thead>
           <tbody>
-            <tr className="border-b bg-white">
-              <th
-                scope="row"
-                className="whitespace-nowrap py-4 px-6 font-medium text-gray-900"
-              >
-                Apple MacBook Pro 17"
-              </th>
-              <td className="py-4 px-6">Sliver</td>
-              <td className="py-4 px-6">Laptop</td>
-              <td className="py-4 px-6">$2999</td>
-              <td className="py-4 px-6 text-right">
-                <a
-                  href="#"
-                  className="font-medium text-blue-600 hover:underline "
-                >
-                  Edit
-                </a>
-              </td>
-            </tr>
-            <tr className="border-b bg-white">
-              <th
-                scope="row"
-                className="whitespace-nowrap py-4 px-6 font-medium text-gray-900"
-              >
-                Microsoft Surface Pro
-              </th>
-              <td className="py-4 px-6">White</td>
-              <td className="py-4 px-6">Laptop PC</td>
-              <td className="py-4 px-6">$1999</td>
-              <td className="py-4 px-6 text-right">
-                <a
-                  href="#"
-                  className="font-medium text-blue-600 hover:underline "
-                >
-                  Edit
-                </a>
-              </td>
-            </tr>
-            <tr className="bg-white ">
-              <th
-                scope="row"
-                className="whitespace-nowrap py-4 px-6 font-medium text-gray-900 "
-              >
-                Magic Mouse 2
-              </th>
-              <td className="py-4 px-6">Black</td>
-              <td className="py-4 px-6">Accessories</td>
-              <td className="py-4 px-6">$99</td>
-              <td className="py-4 px-6 text-right">
-                <a
-                  href="#"
-                  className="font-medium text-blue-600 hover:underline"
-                >
-                  Edit
-                </a>
-              </td>
-            </tr>
+            {data.map((item: OrderD) => (
+              <tr className="border-b bg-white">
+                <td key={item._id} className="py-4 px-6">
+                  {item.products?.map((item) => (
+                    <div>
+                      <div className="flex">
+                        <p>productname</p> :<p>{item.productname}</p>
+                      </div>
+                      <div className="flex">
+                        <p>produt quantiry</p> :<p>{item.quantity}</p>
+                      </div>
+                      {item.topping?.length > 0 ? (
+                        <div>
+                          product toppings:
+                          <p>
+                            {item.topping?.map((item) => (
+                              <div>
+                                <p>{item.name}</p>
+                                <p>{item.price}</p>
+                              </div>
+                            ))}
+                          </p>
+                        </div>
+                      ) : null}
+                    </div>
+                  ))}
+                </td>
+                <td className="py-4 px-6">{item.address?.apartmant}</td>
+                <td className="py-4 px-6">{item.phoneNumber}</td>
+                <td className="py-4 px-6">{item.cashMethod}</td>
+                <td className="py-4 px-6">{item.status}</td>
+              </tr>
+            ))}
           </tbody>
         </table>
         <div className="flex items-center justify-between border-t border-gray-200 bg-white px-4 py-3 sm:px-6">

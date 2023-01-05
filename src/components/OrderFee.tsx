@@ -7,7 +7,7 @@ function OrderFee() {
         <p className="text-base text-[#F9EFBC] font-normal capitalize">
           subtotal
         </p>
-        <p className="text-base text-[#F9EFBC] font-normal"> AED 78.50</p>
+        <p className="text-base text-[#F9EFBC] font-normal"> AED 2000</p>
       </div>
       <div className="flex justify-between">
         <p className="text-base text-[#4E3C11] font-normal capitalize">

@@ -14,13 +14,13 @@ function Complate() {
         your order is on it’s way
       </p>
       <div className="px-6 mt-4 ">
-        <div className="payment py-12 px-2">
-          <p className="text-main-color capitalize font-bold text-2xl text-center ">
+        <div className="payment py-12 px-16">
+          <p className="text-main-color capitalize  font-bold text-2xl text-center ">
             thanks for choosing hatim al tai
           </p>
         </div>
       </div>
-      <div className="px-6 mt-52 md:mt-[500px]">
+      <div className="px-6 mt-80 md:mt-[500px]">
         <Footer />
       </div>
     </div>

@@ -4,6 +4,7 @@ import Arrowback from "../components/Arrowback";
 import Button from "../components/Button";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
+import Input from "../components/Input";
 
 function Delivery() {
   const navigate = useNavigate();
@@ -12,13 +13,15 @@ function Delivery() {
       <Arrowback />
       <Header title="Delivery" />
       <div className="px-4">
-        <p className="text-base ml-2 mb-2 font-semibold capitalize text-[#4E3C11] ">
+        <p className="text-base ml-2 mb-2 font-semibold capitalize text-[#4E3C11]  ">
           phone number
         </p>
-        <input
-          type="text"
-          className="py-1.5 rounded-[20px] outline-none w-3/4"
-        />
+        <div className="px-2">
+          <input
+            type="text"
+            className="py-1.5 rounded-[20px] outline-none w-3/4 px-3"
+          />
+        </div>
         <p className="text-base mt-4 mb-2 ml-2 font-semibold capitalize text-[#4E3C11] ">
           address
         </p>
@@ -31,12 +34,14 @@ function Delivery() {
         <p className="text-2xl ml-2 mb-2 mt-20 font-semibold capitalize text-[#4E3C11] ">
           special request
         </p>
-        <textarea
-          name=""
-          id=""
-          className="rounded-[20px] w-full py-10 outline-none placeholder:text-main-color placeholder:text-center "
-          // placeholder="if you have a food allergy or a request for driver"
-        ></textarea>
+        <div className="px-2">
+          <textarea
+            name=""
+            id=""
+            className="rounded-[20px] w-full py-10 outline-none placeholder:text-main-color placeholder:text-center "
+            // placeholder="if you have a food allergy or a request for driver"
+          ></textarea>
+        </div>
         <div className="my-12">
           <Button title="next" addres="/payment" />
         </div>
