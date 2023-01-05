@@ -1,51 +1,21 @@
+import { useQuery } from "react-query";
 import { Link } from "react-router-dom";
 import { hatam, hatamphoto, hatamarabic, categorykashi } from "../assets";
 import Arrowback from "../components/Arrowback";
 import Footer from "../components/Footer";
-
-const category = [
-  {
-    id: "1",
-    name: "Breakfast",
-  },
-  {
-    id: "2",
-
-    name: "Starter",
-  },
-  {
-    id: "3",
-    name: "Raw Grill",
-  },
-  {
-    id: "4",
-    name: "Sandwich",
-  },
-  {
-    id: "5",
-    name: "Main Course",
-  },
-  {
-    id: "6",
-    name: "Persian Stew",
-  },
-  {
-    id: "7",
-    name: "Drink",
-  },
-  {
-    id: "8",
-    name: "Desert",
-  },
-  {
-    id: "9",
-    name: "Montly New Item",
-  },
-];
+import { getAllCategoryFn } from "../config";
+import { CategoryD } from "../types";
 
 function Category() {
+  const { isLoading, data, error } = useQuery({
+    queryKey: ["today"],
+    queryFn: getAllCategoryFn,
+  });
+
+  if (isLoading) return <p>Loading</p>;
+
   return (
-    <div className="font-iran flex flex-col h-full">
+    <div className="font-iran flex flex-col h-screen">
       <Arrowback />
       <div className="flex items-center my-12 justify-between px-2 md:px-8">
         <img src={hatam} className="mr-2" alt="" />
@@ -53,8 +23,8 @@ function Category() {
         <img src={hatamarabic} alt="" />
       </div>
       <div className="flex flex-col gap-8">
-        {category.map((item) => (
-          <Link to={`/main/${item.id}`}>
+        {data.map((item: CategoryD) => (
+          <Link key={item.id} to={`/main/${item.name}`}>
             <div className="px-10 z-10">
               <div className="flex items-center justify-center category h-16">
                 <p className="font-semibold font-roboto cursor-pointer text-2xl text-[#3B2D0D]">
