@@ -1,55 +1,24 @@
-import React, { useState } from "react";
+import React from "react";
+import { useQuery } from "react-query";
+import { useParams } from "react-router-dom";
 import logo from "../assets/circle logo.png";
-import ommlet from "../assets/ommlet.png";
-import Footer from "../components/Common/Footer";
 import Kashi from "../assets/kashi.png";
 import Arrowback from "../components/Common/Arrowback";
 import Bucket from "../components/Common/Bucket";
-import { useParams } from "react-router-dom";
-import { useQuery } from "react-query";
+import Footer from "../components/Common/Footer";
+import Loading from "../components/Coustom/Loading";
+import Food from "../components/Food/Food";
 import { getAllFoodFn } from "../config";
 import { FoodD } from "../types";
-import { useDispatch, useSelector } from "react-redux";
-import Food from "../components/Food/Food";
 
 function Main() {
   const [first, setfirst] = React.useState(false);
   const { id } = useParams();
-  const { isLoading, data, error } = useQuery(
-    "query-tutorial-by-id",
-    async () => {
-      return await getAllFoodFn(id);
-    }
-  );
+  const { isLoading, data, error } = useQuery("get all food", async () => {
+    return await getAllFoodFn(id);
+  });
 
-  if (isLoading) return <p>Loading</p>;
-  console.log(data);
-
-  // const cartItems = useSelector((state: any) => state.cartReducer.value);
-
-  // const [totalProducts, setTotalProducts] = useState(0);
-
-  // const [totalPrice, setTotalPrice] = useState(0);
-
-  // React.useEffect(() => {
-  //   setTotalPrice(
-  //     cartItems.reduce(
-  //       (total: number, item: FoodD) =>
-  //         total + Number(item.quantity) * Number(item.price),
-  //       0
-  //     )
-  //   );
-  //   setTotalProducts(
-  //     cartItems.reduce(
-  //       (total: number, item: FoodD) => total + Number(item.quantity),
-  //       0
-  //     )
-  //   );
-  // }, [cartItems]);
-
-  // console.log(totalProducts);
-  // console.log(totalPrice);
-  // console.log(cartItems);
+  if (isLoading) return <Loading />;
 
   return (
     <div className={`${first ? "blur-xs" : ""} h-full font-roboto`}>

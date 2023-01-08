@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { FoodD } from "../types";
+import { FoodD } from "../../types";
 
 function Bucket() {
   const cartItems = useSelector((state: any) => state.cartReducer.value);

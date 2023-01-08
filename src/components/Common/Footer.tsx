@@ -1,21 +1,25 @@
-import React from "react";
-import { whatsapp, instagram, hell, call } from "../assets";
+import { whatsapp, instagram, hell, call } from "../../assets";
 
 function Footer({ fixed }: any) {
   return (
     <div
-      className={`${
-        fixed ? "fixed" : ""
-      } w-full px-6   bottom-0 overflow-hidden`}
+      className={`${fixed ? "fixed" : ""} w-full px-6 bottom-0 overflow-hidden`}
     >
       <div className="flex my-4 items-center justify-around  px-5 language_choose">
-        <img src={whatsapp} alt="" />
-        <img src={instagram} alt="" />
-        <img src={hell} alt="" />
-        <img src={call} alt="" />
+        <a href="whatsapp://send?abid=phonenumber&text=Hello">
+          <img src={whatsapp} alt="whatsapp" />
+        </a>
+        <a href="instagram://user?username=hatimaltai">
+          <img src={instagram} alt="instagram" />
+        </a>
+        <a href="https://www.tiktok.com/@hatimaltai.ae">
+          <img src={hell} alt="tiktok" />
+        </a>
+        <a href="tel:+97126220095">
+          <img src={call} alt="call" />
+        </a>
       </div>
     </div>
   );
 }
-
 export default Footer;
