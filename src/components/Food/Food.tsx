@@ -1,8 +1,8 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
-import { addItem } from "../app/CardSlice";
-import { FoodD } from "../types";
+import { addItem } from "../../app/CardSlice";
+import { FoodD } from "../../types";
 
 function Food(props: any) {
   const { image, name, desc, price, id } = props.product;

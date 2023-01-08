@@ -1,5 +1,5 @@
 import React from "react";
-import Arrowback from "../components/Arrowback";
+import Arrowback from "../components/Common/Arrowback";
 import Button from "../components/Button";
 import Header from "../components/Header";
 import Input from "../components/Input";

@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
-import Loading from "../components/Loading";
+import Loading from "../components/Coustom/Loading";
 import {
   Main,
   Category,

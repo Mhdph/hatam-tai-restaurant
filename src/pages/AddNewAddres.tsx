@@ -1,7 +1,7 @@
 import React from "react";
 import { Kashi } from "../assets";
 import Apartmant from "../components/Tabs/Apartmant";
-import Arrowback from "../components/Arrowback";
+import Arrowback from "../components/Common/Arrowback";
 import Header from "../components/Header";
 import Input from "../components/Input";
 import { Tabs } from "../components/Tabs/Index";

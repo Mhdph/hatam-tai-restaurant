@@ -1,7 +1,7 @@
 import { useQuery } from "react-query";
 import { Link } from "react-router-dom";
 import { hatam, hatamphoto, hatamarabic, categorykashi } from "../assets";
-import Arrowback from "../components/Arrowback";
+import Arrowback from "../components/Common/Arrowback";
 import Footer from "../components/Footer";
 import { getAllCategoryFn } from "../config";
 import { CategoryD } from "../types";

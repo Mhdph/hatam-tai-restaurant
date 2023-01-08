@@ -1,12 +1,12 @@
 import React from "react";
 import { Kashi } from "../assets";
-import Arrowback from "../components/Arrowback";
+import Arrowback from "../components/Common/Arrowback";
 import Button from "../components/Button";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import Order from "../components/Order";
 import OrderFee from "../components/OrderFee";
-import OrderFeeTotal from "../components/OrderFeeTotal";
+import OrderFeeTotal from "../components/Order/OrderFeeTotal";
 
 function OrderSummery() {
   return (

@@ -1,7 +1,7 @@
 import React from "react";
-import { ommlet, Kashi } from "../assets";
-import Footer from "./Footer";
-import Header from "./Header";
+import { ommlet, Kashi } from "../../assets";
+import Footer from "../Common/Footer";
+import Header from "../Common/Header";
 
 function CardDesc() {
   return (

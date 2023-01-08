@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { arrow } from "../assets";
+import { arrow } from "../../assets";
 
 function Arrowback() {
   const navigate = useNavigate();

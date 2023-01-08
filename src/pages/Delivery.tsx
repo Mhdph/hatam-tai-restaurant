@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Kashi } from "../assets";
-import Arrowback from "../components/Arrowback";
+import Arrowback from "../components/Common/Arrowback";
 import Button from "../components/Button";
 import Footer from "../components/Footer";
 import Header from "../components/Header";

@@ -1,16 +1,16 @@
 import React, { useState } from "react";
 import logo from "../assets/circle logo.png";
 import ommlet from "../assets/ommlet.png";
-import Footer from "../components/Footer";
+import Footer from "../components/Common/Footer";
 import Kashi from "../assets/kashi.png";
-import Arrowback from "../components/Arrowback";
-import Bucket from "../components/Bucket";
+import Arrowback from "../components/Common/Arrowback";
+import Bucket from "../components/Common/Bucket";
 import { useParams } from "react-router-dom";
 import { useQuery } from "react-query";
 import { getAllFoodFn } from "../config";
 import { FoodD } from "../types";
 import { useDispatch, useSelector } from "react-redux";
-import Food from "../components/Food";
+import Food from "../components/Food/Food";
 
 function Main() {
   const [first, setfirst] = React.useState(false);

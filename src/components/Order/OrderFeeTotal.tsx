@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { FoodD } from "../types";
+import { FoodD } from "../../types";
 
 function OrderFeeTotal() {
   const cartItems = useSelector((state: any) => state.cartReducer.value);
