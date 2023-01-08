@@ -1,8 +1,6 @@
-import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { updateItem } from "../app/CardSlice";
-import { Minus, Plus } from "../assets";
-import { FoodD } from "../types";
+import { Minus, Plus } from "../../assets";
+import { FoodD } from "../../types";
 
 function Order() {
   const cartItems = useSelector((state: any) => state.cartReducer.value);

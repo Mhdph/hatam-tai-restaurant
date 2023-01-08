@@ -2,15 +2,10 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import { addItem } from "../../app/CardSlice";
-import { FoodD } from "../../types";
-
+import { ommlet } from "../../assets";
 function Food(props: any) {
   const { image, name, desc, price, id } = props.product;
   const dispatch = useDispatch();
-
-  const handleAddToCart = () => {
-    dispatch(addItem({ ...props.product }));
-  };
 
   const check = () => {
     if (name === undefined) {
@@ -35,7 +30,6 @@ function Food(props: any) {
         price,
       };
       if (dispatch(addItem(newItem))) {
-        toast.success("Food added");
       } else {
         alert("Fail");
       }
@@ -44,21 +38,21 @@ function Food(props: any) {
 
   return (
     <div className="pt-6 px-6">
-      <div className="card-food z-10 flex justify-between items-center">
-        <div className="p-2">
-          <img src={image} className="rounded-3xl w-20 h-20" alt="" />
-        </div>
-        <div className="flex-col">
-          <p className="font-bold text-2xl text-main-color capitalize">
-            {name}
-          </p>
-          <p className="text-base font-medium text-main-color capitalize">
-            {desc}
-          </p>
+      <div className="card-food z-10 justify-between flex items-center">
+        <div className="p-2 flex items-center">
+          <img src={ommlet} className="rounded-3xl h-28 w-28" alt="" />
+          <div className="flex-col ml-4">
+            <p className="font-bold text-2xl text-main-color capitalize">
+              {name}
+            </p>
+            <p className="text-base font-medium text-secondary-color capitalize">
+              {desc}
+            </p>
+          </div>
         </div>
         <div className="flex-col pr-2 md:px-2 justify-around">
-          <p className="font-normal mb-4 text-base text-main-color uppercase">
-            {price}
+          <p className="font-normal mb-4 text-base text-secondary-color uppercase">
+            AED {price}
           </p>
           <button
             onClick={() => addToCart()}
