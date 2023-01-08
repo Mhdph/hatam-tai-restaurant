@@ -1,5 +1,5 @@
 import React from "react";
-import Input from "../Input";
+import Input from "../Coustom/Input";
 import { DataProps } from "./Index";
 
 function House({ data, setData }: DataProps) {

@@ -2,12 +2,12 @@ import React from "react";
 import { Kashi } from "../assets";
 import Apartmant from "../components/Tabs/Apartmant";
 import Arrowback from "../components/Common/Arrowback";
-import Header from "../components/Header";
-import Input from "../components/Input";
+import Header from "../components/Common/Header";
+import Input from "../components/Coustom/Input";
 import { Tabs } from "../components/Tabs/Index";
 import { useDispatch } from "react-redux";
 import { AddressSlice } from "../app/addressSlice";
-import AddressButton from "../components/AddressButton";
+import AddressButton from "../components/Coustom/AddressButton";
 
 function AddNewAddres() {
   const dispatch = useDispatch();
@@ -47,7 +47,7 @@ function AddNewAddres() {
           changeText={changeInput}
         />
         <Input placeText="last name" name="lastname" changeText={changeInput} />
-        <p className="text-sm font-semibold text-main-color capitalize">
+        <p className="text-sm ml-2 font-semibold text-main-color capitalize">
           address details
         </p>
         <Input placeText="abu dhabi" />

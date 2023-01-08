@@ -10,7 +10,7 @@ function Arrowback() {
       onClick={() => navigate(-1)}
       src={arrow}
       alt="arroback"
-      className="h-5 w-5 mt-16 md:ml-8 cursor-pointer ml-6"
+      className="h-5 w-5 mt-12 md:ml-8 cursor-pointer ml-6"
     />
   );
 }
