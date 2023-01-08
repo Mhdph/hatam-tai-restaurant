@@ -5,6 +5,8 @@ const items = <any>[];
 
 const initialState = {
   value: items,
+  deliveryFee: 12.0,
+  quantity: 0,
 };
 
 export const cartItemsSlice = createSlice({
@@ -12,6 +14,7 @@ export const cartItemsSlice = createSlice({
   initialState,
   reducers: {
     addItem: (state, action) => {
+      state.quantity += 1;
       const newItem = action.payload;
       const duplicate = state.value.filter(
         (e: FoodD) =>

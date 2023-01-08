@@ -10,7 +10,7 @@ function Welcome() {
           <Link to="/category">
             <div className="flex items-center justify-center w-40 language_choose">
               <p className="font-semibold font-roboto cursor-pointer text-2xl text-[#3B2D0D]">
-                Englisgh
+                English
               </p>
             </div>
           </Link>

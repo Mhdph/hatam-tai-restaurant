@@ -7,6 +7,12 @@ import OrderFee from "../components/OrderFee";
 import OrderFeeTotal from "../components/OrderFeeTotal";
 
 function Payment() {
+  const [cashMethod, setCashMethod] = React.useState("");
+
+  const updateCash = (e: any) => {
+    setCashMethod(e.target.value);
+  };
+
   return (
     <div className="font-roboto h-screen px-6">
       <Arrowback />
@@ -18,7 +24,11 @@ function Payment() {
         <div className="payment mb-4 pl-4 px-2 py-4 flex items-center ">
           <div className="flex items-center gap-3">
             <label className="container">
-              <input type="checkbox" />
+              <input
+                name="default-radio"
+                value="cash on delivery"
+                type="checkbox"
+              />
               <span className="checkmark"></span>
             </label>
             <p className="text-secondary-color text-base capitalize font-semibold">
@@ -29,7 +39,11 @@ function Payment() {
         <div className="payment mb-4 pl-4 px-2 py-4 flex items-center ">
           <div className="flex items-center gap-3">
             <label className="container">
-              <input type="checkbox" />
+              <input
+                name="default-radio"
+                value="card on delivery"
+                type="checkbox"
+              />
               <span className="checkmark"></span>
             </label>
             <p className="text-secondary-color text-base capitalize font-semibold">
@@ -40,7 +54,11 @@ function Payment() {
         <div className="payment mb-4 pl-4 px-2 py-4 flex items-center ">
           <div className="flex items-center gap-3">
             <label className="container">
-              <input type="checkbox" />
+              <input
+                name="default-radio"
+                value="other option of payment"
+                type="checkbox"
+              />
               <span className="checkmark"></span>
             </label>
             <div className="flex w-full flex-col">

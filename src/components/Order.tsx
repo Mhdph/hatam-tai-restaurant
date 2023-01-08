@@ -1,10 +1,33 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { updateItem } from "../app/CardSlice";
 import { Minus, Plus } from "../assets";
 import { FoodD } from "../types";
 
 function Order() {
   const cartItems = useSelector((state: any) => state.cartReducer.value);
+  const dispatch = useDispatch();
+
+  // const [quantity, setQuantity] = React.useState(props.item.quantity);
+
+  // React.useEffect(() => {
+  //   setItem(props.item);
+  //   setQuantity(props.item.quantity);
+  // }, [props.item]);
+
+  // const updateQuantity = (opt) => {
+  //   if (opt === "+") {
+  //     dispatch(updateItem({ ...item, quantity: quantity + 1 }));
+  //   }
+  //   if (opt === "-") {
+  //     dispatch(
+  //       updateItem({
+  //         ...item,
+  //         quantity: quantity - 1 === 0 ? 1 : quantity - 1,
+  //       })
+  //     );
+  //   }
+  // };
 
   return (
     <div className="flex flex-col justify-center w-full gap-2">
@@ -20,7 +43,7 @@ function Order() {
           </div>
           <div className="flex gap-2 items-center">
             <img className="cursor-pointer" src={Minus} />
-            <p className="font-bold text-xl text-main-color">1</p>{" "}
+            <p className="font-bold text-xl text-main-color">1</p>
             <img className="cursor-pointer" src={Plus} alt="" />
           </div>
           <div>
