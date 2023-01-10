@@ -13,6 +13,7 @@ body {
     #cdab6b 98.09%
   );
   font-family: "Shabnam", sans-serif;
+  direction: rtl;
 }
 .language_choose {
   background: linear-gradient(

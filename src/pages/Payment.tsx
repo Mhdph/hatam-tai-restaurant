@@ -1,9 +1,9 @@
 import React from "react";
 import Arrowback from "../components/Common/Arrowback";
-import Button from "../components/Button";
-import Footer from "../components/Footer";
-import Header from "../components/Header";
-import OrderFee from "../components/OrderFee";
+import Button from "../components/Coustom/Button";
+import Footer from "../components/Common/Footer";
+import Header from "../components/Common/Header";
+import OrderFee from "../components/Order/OrderFee";
 import OrderFeeTotal from "../components/Order/OrderFeeTotal";
 
 function Payment() {
@@ -14,10 +14,10 @@ function Payment() {
   };
 
   return (
-    <div className="font-roboto h-screen px-6">
+    <div className="font-roboto h-screen">
       <Arrowback />
       <Header title="payment method" />
-      <div className="">
+      <div className="px-6">
         <p className="text-secondary-color pl-2 mb-4 font-semibold text-[20px] capitalize">
           select your payment method
         </p>
@@ -71,16 +71,16 @@ function Payment() {
             </div>
           </div>
         </div>
+        <div className="my-8 py-3 subtotal">
+          <OrderFee />
+          <hr className=" border-opacity-30 border-[0.1px] my-4 border-[#4e3c114d]" />
+          <OrderFeeTotal />
+        </div>
+        <div className="mt-12 mb-6">
+          <Button title="place order" addres="/complate" />
+        </div>
+        <Footer />
       </div>
-      <div className="my-8 py-3 subtotal">
-        <OrderFee />
-        <hr className=" border-opacity-30 border-[0.1px] my-4 border-[#4e3c114d]" />
-        <OrderFeeTotal />
-      </div>
-      <div className="mt-12 mb-6">
-        <Button title="place order" addres="/complate" />
-      </div>
-      <Footer />
     </div>
   );
 }

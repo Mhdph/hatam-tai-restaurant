@@ -35,6 +35,13 @@ export interface OrderD {
   ];
   address: {
     apartmant: string;
+    distruct: string;
+    street: string;
+    building: string;
+    floor: string;
+    office: string;
+    additional: string;
+    house: string;
   };
   status: string;
   phoneNumber: number;

@@ -24,6 +24,9 @@ const LastOrder = () => {
                 Address
               </th>
               <th scope="col" className="py-3 px-6">
+                Additional
+              </th>
+              <th scope="col" className="py-3 px-6">
                 Phone Number
               </th>
               <th scope="col" className="py-3 px-6">
@@ -39,12 +42,12 @@ const LastOrder = () => {
               <tr className="border-b bg-white">
                 <td key={item._id} className="py-4 px-6">
                   {item.products?.map((item) => (
-                    <div>
+                    <div className="flex items-center capitalize gap-2">
                       <div className="flex">
-                        <p>productname</p> :<p>{item.productname}</p>
+                        <p>name</p> :<p>{item.productname}</p>
                       </div>
                       <div className="flex">
-                        <p>produt quantiry</p> :<p>{item.quantity}</p>
+                        <p>quantiry</p> :<p>{item.quantity}</p>
                       </div>
                       {item.topping?.length > 0 ? (
                         <div>
@@ -62,7 +65,27 @@ const LastOrder = () => {
                     </div>
                   ))}
                 </td>
-                <td className="py-4 px-6">{item.address?.apartmant}</td>
+                <td className="py-4 px-6">
+                  <div className="flex items-center">
+                    <div className="flex items-center gap-1">
+                      <p>Hi</p>:<p>{item.address?.apartmant}</p>
+                    </div>
+                    <div className="flex items-center gap-1">
+                      <p>Hi</p>:<p>{item.address?.apartmant}</p>
+                    </div>{" "}
+                    <div className="flex items-center gap-1">
+                      <p>Hi</p>:<p>{item.address?.apartmant}</p>
+                    </div>{" "}
+                    <div className="flex items-center gap-1">
+                      <p>Hi</p>:<p>{item.address?.apartmant}</p>
+                    </div>
+                  </div>
+                  {item.address?.building},{item.address?.distruct},
+                  {item.address?.floor},{item.address?.street},
+                  {item.address?.house},{item.address?.office},
+                  {item.address?.street},
+                </td>
+                <td className="py-4 px-6">{item.address?.additional}</td>
                 <td className="py-4 px-6">{item.phoneNumber}</td>
                 <td className="py-4 px-6">{item.cashMethod}</td>
                 <td className="py-4 px-6">{item.status}</td>

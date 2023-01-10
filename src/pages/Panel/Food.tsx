@@ -1,30 +1,22 @@
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/20/solid";
 import React from "react";
 import { useQuery } from "react-query";
+import Loading from "../../components/Coustom/Loading";
 import { getAllFoodWoFFn } from "../../config";
 import { FoodD } from "../../types";
 import AddFood from "./Modal/AddFood";
 
 function Food() {
-  const [showModalFood, setShowModalFood] = React.useState(false);
+  const [open, setOpen] = React.useState(false);
   const { isLoading, data, error } = useQuery({
     queryKey: ["foodall"],
     queryFn: getAllFoodWoFFn,
   });
 
-  if (isLoading) return <p>loading...</p>;
+  if (isLoading) return <Loading />;
   return (
-    <div className="overflow-x-auto p-4">
-      <button
-        onClick={() => {
-          setShowModalFood(true);
-        }}
-        type="button"
-        className="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
-      >
-        Add Food
-      </button>
-      <AddFood showModal={showModalFood} setShowModal={setShowModalFood} />
+    <div className="overflow-x-auto p-4 capitalize">
+      <AddFood open={open} setOpen={setOpen} />
       <div className="fixed w-full overflow-x-auto shadow-md sm:rounded-lg md:relative">
         <table className="w-full text-left text-sm text-gray-500">
           <thead className="bg-gray-50 text-xs font-bold capitalize text-[#78909c]">
@@ -63,8 +55,8 @@ function Food() {
                 <td className="py-4 px-6">{item.price}</td>
                 <td className="py-4 px-6">
                   {item.toppings.map((item) => (
-                    <div className="flex items-center gap-2">
-                      <div className="flex items-center">
+                    <div className="flex capitalize items-center mb-1 gap-2">
+                      <div className="flex items-center ">
                         <p>name</p>:{item.name}
                       </div>
                       <div className="flex items-center">

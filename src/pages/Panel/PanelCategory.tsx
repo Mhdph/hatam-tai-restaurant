@@ -11,22 +11,13 @@ function PanelCategory() {
     queryKey: ["category"],
     queryFn: getAllCategoryFn,
   });
-  const [showModal, setShowModal] = React.useState(false);
+  const [open, setOpen] = React.useState(false);
 
   if (isLoading) return <p>Loading</p>;
 
   return (
     <div className="overflow-x-auto p-4">
-      <button
-        onClick={() => {
-          setShowModal(true);
-        }}
-        type="button"
-        className="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
-      >
-        Add Category
-      </button>
-      <AddCategory showModal={showModal} setShowModal={setShowModal} />
+      <AddCategory open={open} setOpen={setOpen} />
       <div className="fixed w-full overflow-x-auto shadow-md sm:rounded-lg md:relative">
         <table className="w-full text-left text-sm text-gray-500">
           <thead className="bg-gray-50 text-xs font-bold capitalize text-[#78909c]">
