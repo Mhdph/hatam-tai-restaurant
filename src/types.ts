@@ -1,5 +1,8 @@
 export interface CategoryD {
-  name: string;
+  name: {
+    en: string;
+    ar: string;
+  };
   id: string;
 }
 

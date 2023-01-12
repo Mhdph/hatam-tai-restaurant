@@ -1,4 +1,5 @@
 import { useQuery } from "react-query";
+import clsx from "clsx";
 import { Link } from "react-router-dom";
 import { hatam, hatamphoto, hatamarabic, categorykashi } from "../assets";
 import Arrowback from "../components/Common/Arrowback";
@@ -8,6 +9,7 @@ import { getAllCategoryFn } from "../config";
 import { CategoryD } from "../types";
 
 function Category() {
+  const language = localStorage.getItem("language");
   const { isLoading, data, error } = useQuery({
     queryKey: ["today"],
     queryFn: getAllCategoryFn,
@@ -16,7 +18,7 @@ function Category() {
   if (isLoading) return <Loading />;
 
   return (
-    <div className="font-iran flex flex-col h-screen">
+    <div className="font-iran flex flex-col h-full">
       <Arrowback />
       <div className="flex items-center my-10 justify-between px-6 md:px-8">
         <img src={hatam} className="mr-2" alt="" />
@@ -25,11 +27,16 @@ function Category() {
       </div>
       <div className="flex flex-col gap-8">
         {data.map((item: CategoryD) => (
-          <Link key={item.id} to={`/main/${item.name}`}>
+          <Link key={item.id} to={`/main/${item.name.en}`}>
             <div className="px-20 z-10">
               <div className="flex items-center justify-center category h-16">
-                <p className="font-semibold font-roboto capitalize cursor-pointer text-2xl text-main-color">
-                  {item.name}
+                <p
+                  className={clsx(
+                    language === "EN" ? "font-roboto" : "font-iran",
+                    "font-semibold capitalize cursor-pointer text-2xl text-main-color"
+                  )}
+                >
+                  {language === "EN" ? item.name.en : item.name.ar}
                 </p>
               </div>
               <img

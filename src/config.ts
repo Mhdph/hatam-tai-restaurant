@@ -1,8 +1,8 @@
 import axios from "axios";
-export const baseUrl = "http://localhost:5000/api";
+export const baseUrl = "http://hammtimm.ir/api";
 
 export const api = axios.create({
-  baseURL: "http://localhost:5000/api",
+  baseURL: "http://hammtimm.ir/api",
 });
 
 export const getAllCategoryFn = async () => {
