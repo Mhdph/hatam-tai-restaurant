@@ -9,6 +9,7 @@ module.exports = withMT({
       fontFamily: {
         iran: ["Iran Nastaliq"],
         roboto: ["Roboto"],
+        bernardo: ["Brando Arabic"],
       },
       colors: {
         "main-color": "#3B2D0D",

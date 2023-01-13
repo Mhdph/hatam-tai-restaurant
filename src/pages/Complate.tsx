@@ -1,8 +1,10 @@
+import clsx from "clsx";
 import { hatam, hatamarabic, hatamphoto } from "../assets";
-import Footer from "../components/Footer";
-import Input from "../components/Input";
+import Footer from "../components/Common/Footer";
+import { translate } from "../i18n";
 
 function Complate() {
+  const language = localStorage.getItem("language");
   return (
     <div className="font-roboto w-full  h-screen">
       <div className="flex items-center my-12 justify-around">
@@ -10,13 +12,23 @@ function Complate() {
         <img src={hatamphoto} alt="" />
         <img src={hatamarabic} alt="" />
       </div>
-      <p className="font-semibold text-[20px] text-center capitalize text-secondary-color">
-        your order is on it’s way
+      <p
+        className={clsx(
+          language === "EN" ? "font-roboto" : "font-bernardo",
+          "font-semibold  text-[20px] text-center capitalize text-secondary-color"
+        )}
+      >
+        {translate("your order is on it’s way", language)}
       </p>
       <div className="px-6 mt-4 ">
         <div className="payment py-12 px-16">
-          <p className="text-main-color capitalize  font-bold text-2xl text-center ">
-            thanks for choosing hatim al tai
+          <p
+            className={clsx(
+              language === "EN" ? "font-roboto" : "font-iran",
+              "text-main-color capitalize  font-bold text-2xl text-center"
+            )}
+          >
+            {translate("thanks for choosing hatim al tai", language)}
           </p>
         </div>
       </div>

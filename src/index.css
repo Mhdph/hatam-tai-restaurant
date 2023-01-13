@@ -18,8 +18,6 @@ body {
     #a2864d 57.25%,
     #cdab6b 98.09%
   );
-  font-family: "Shabnam", sans-serif;
-  /* direction: rtl; */
 }
 .language_choose {
   background: linear-gradient(
@@ -233,6 +231,32 @@ input[type="checkbox"]::before {
   /* Note: backdrop-filter has minimal browser support */
   border-radius: 8px;
 }
-.arrow_direction {
+.left_direction {
   direction: ltr;
+}
+.right_direction {
+  direction: rtl;
+}
+
+@font-face {
+  font-family: "Brando Arabic";
+  src: url("./fonts/BrandoArabicRegular.woff2") format("woff2"),
+    url("./fonts/BrandoArabicRegular.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+.mahdi {
+  font-family: "Brando Arabic";
+}
+
+layer base {
+  @font-face {
+    font-family: "Brando Arabic";
+    src: url("./fonts/BrandoArabicRegular.woff2") format("woff2"),
+      url("./fonts/BrandoArabicRegular.woff") format("woff");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
 }

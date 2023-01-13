@@ -26,7 +26,7 @@ function OrderFee() {
       className={clsx(
         language === "EN"
           ? "left_direction font-roboto"
-          : "right_direction font-iran",
+          : "right_direction font-bernardo",
         "flex flex-col gap-4 px-4 font-roboto"
       )}
     >
@@ -34,13 +34,15 @@ function OrderFee() {
         <p className="text-base text-[#F9EFBC] font-normal capitalize">
           {translate("subtotal", language)}
         </p>
-        <p className="text-base text-[#F9EFBC] font-normal">AED {totalPrice}</p>
+        <p className="text-base text-[#F9EFBC] font-roboto font-normal">
+          AED {totalPrice}
+        </p>
       </div>
       <div className="flex justify-between">
         <p className="text-base text-[#4E3C11] font-normal capitalize">
           {translate("delivery fee", language)}
         </p>
-        <p className="text-base text-[#4E3C11] font-normal">
+        <p className="text-base font-roboto text-[#4E3C11] font-normal">
           AED {deliveryFee}
         </p>
       </div>

@@ -23,7 +23,7 @@ function Payment() {
         className={clsx(
           language === "EN"
             ? "left_direction font-roboto"
-            : "right_direction font-iran",
+            : "right_direction font-bernardo",
           "px-6"
         )}
       >

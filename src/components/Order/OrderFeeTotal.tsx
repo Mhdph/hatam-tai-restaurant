@@ -25,14 +25,14 @@ function OrderFeeTotal() {
       className={clsx(
         language === "EN"
           ? "left_direction font-roboto"
-          : "right_direction font-iran",
+          : "right_direction font-bernardo",
         "flex justify-between px-4"
       )}
     >
       <p className="text-base text-main-color font-bold capitalize">
         {translate("total", language)}{" "}
       </p>
-      <p className="text-base text-main-color font-normal">
+      <p className="text-base font-roboto text-main-color font-normal">
         AED {totalPrice + deliveryFee}
       </p>
     </div>

@@ -17,7 +17,7 @@ function Bucket() {
     );
   }, [cartItems]);
   return (
-    <div className="px-6 fixed bottom-0 w-full mb-4 mt-2">
+    <div className="px-6 fixed bottom-0 w-full mb-28  mt-2">
       <Link to="/ordersummery" className="w-full font-roboto  cursor-pointer">
         <div className="bg-[#9D7822] h-10 flex justify-between items-center py-2 rounded-[20px]">
           <div className="flex gap-2 items-center">
