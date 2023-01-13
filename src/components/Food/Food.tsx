@@ -40,8 +40,8 @@ function Food(props: any) {
     <div className="pt-6 px-6">
       <div className="card-food z-10 justify-between flex items-center">
         <div className="p-2 flex items-center">
-          <img src={ommlet} className="rounded-3xl h-28 w-28" alt="" />
-          <div className="flex-col ml-4">
+          <img src={image} className="rounded-3xl h-28 w-28" alt="" />
+          <div className="flex-col mx-4">
             <p className="font-bold text-2xl text-main-color capitalize">
               {name}
             </p>
@@ -50,7 +50,7 @@ function Food(props: any) {
             </p>
           </div>
         </div>
-        <div className="flex-col pr-2 md:px-2 justify-around">
+        <div className="flex-col px-2 md:px-2 justify-around">
           <p className="font-normal mb-4 text-base text-secondary-color uppercase">
             AED {price}
           </p>

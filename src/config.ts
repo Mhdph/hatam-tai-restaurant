@@ -11,7 +11,7 @@ export const getAllCategoryFn = async () => {
 };
 
 export const getAllFoodFn = async (id: any) => {
-  const response = await api.get(`/food?category/${id}`);
+  const response = await api.get(`/food?category=${id}`);
   return response.data;
 };
 

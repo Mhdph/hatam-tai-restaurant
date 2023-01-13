@@ -1,5 +1,6 @@
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/20/solid";
 import React from "react";
+import { MapContainer, Marker, TileLayer } from "react-leaflet";
 import { useQuery } from "react-query";
 import Loading from "../../components/Coustom/Loading";
 import { getAllFoodWoFFn } from "../../config";
@@ -8,16 +9,16 @@ import AddFood from "./Modal/AddFood";
 
 function Food() {
   const [open, setOpen] = React.useState(false);
-  const { isLoading, data, error } = useQuery({
-    queryKey: ["foodall"],
-    queryFn: getAllFoodWoFFn,
-  });
+  // const { isLoading, data, error } = useQuery({
+  //   queryKey: ["foodall"],
+  //   queryFn: getAllFoodWoFFn,
+  // });
 
-  if (isLoading) return <Loading />;
+  // if (isLoading) return <Loading />;
   return (
     <div className="overflow-x-auto p-4 capitalize">
       <AddFood open={open} setOpen={setOpen} />
-      <div className="fixed w-full overflow-x-auto shadow-md sm:rounded-lg md:relative">
+      {/* <div className="fixed w-full overflow-x-auto shadow-md sm:rounded-lg md:relative">
         <table className="w-full text-left text-sm text-gray-500">
           <thead className="bg-gray-50 text-xs font-bold capitalize text-[#78909c]">
             <tr>
@@ -187,7 +188,7 @@ function Food() {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }

@@ -20,9 +20,10 @@ function Main() {
   });
 
   if (isLoading) return <Loading />;
+  console.log(data);
 
   return (
-    <div className="h-full font-roboto">
+    <div className="h-screen font-roboto">
       <Arrowback />
       <div className="flex justify-between px-6 md:px-8 items-center">
         <p className="font-bold text-3xl capitalize  text-main-color">{id}</p>
@@ -35,7 +36,7 @@ function Main() {
       </div>
       <img src={Kashi} className="-z-10 absolute bottom-20" alt="" />
       {quantity > 0 ? <Bucket /> : null}
-      <Footer />
+      <Footer fixed />
     </div>
   );
 }

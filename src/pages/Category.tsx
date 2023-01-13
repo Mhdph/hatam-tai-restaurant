@@ -16,6 +16,7 @@ function Category() {
   });
 
   if (isLoading) return <Loading />;
+  console.log(data);
 
   return (
     <div className="font-iran flex flex-col h-full">
