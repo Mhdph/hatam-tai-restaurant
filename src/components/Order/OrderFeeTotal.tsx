@@ -1,5 +1,7 @@
+import clsx from "clsx";
 import React from "react";
 import { useSelector } from "react-redux";
+import { translate } from "../../i18n";
 import { FoodD } from "../../types";
 
 function OrderFeeTotal() {
@@ -8,7 +10,7 @@ function OrderFeeTotal() {
     (state: any) => state.cartReducer.deliveryFee
   );
   const [totalPrice, setTotalPrice] = React.useState(0);
-
+  const language = localStorage.getItem("language");
   React.useEffect(() => {
     setTotalPrice(
       cartItems.reduce(
@@ -19,8 +21,17 @@ function OrderFeeTotal() {
   }, [cartItems]);
 
   return (
-    <div className="flex justify-between px-4">
-      <p className="text-base text-main-color font-bold capitalize">total </p>
+    <div
+      className={clsx(
+        language === "EN"
+          ? "left_direction font-roboto"
+          : "right_direction font-iran",
+        "flex justify-between px-4"
+      )}
+    >
+      <p className="text-base text-main-color font-bold capitalize">
+        {translate("total", language)}{" "}
+      </p>
       <p className="text-base text-main-color font-normal">
         AED {totalPrice + deliveryFee}
       </p>

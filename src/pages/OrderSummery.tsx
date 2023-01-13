@@ -7,12 +7,15 @@ import Header from "../components/Common/Header";
 import Order from "../components/Order/Order";
 import OrderFee from "../components/Order/OrderFee";
 import OrderFeeTotal from "../components/Order/OrderFeeTotal";
+import { translate } from "../i18n";
 
 function OrderSummery() {
+  const language = localStorage.getItem("language");
+
   return (
     <div className=" h-screen font-roboto">
       <Arrowback />
-      <Header title="Order Summary" />
+      <Header title={translate("Order Summary", language)} />
       <div className="p-4 md:px-8">
         <Order />
         <hr className=" border-opacity-30 border-[0.1px] my-4 border-secondary-color" />
@@ -20,7 +23,7 @@ function OrderSummery() {
         <hr className=" border-opacity-30 border-[0.1px] my-4 border-secondary-color" />
         <OrderFeeTotal />
         <div className="mt-40 mb-10">
-          <Button title="continue" addres="/delivery" />
+          <Button title={translate("continue", language)} addres="/delivery" />
         </div>
       </div>
       <img src={Kashi} className="-z-10 absolute bottom-32" alt="" />

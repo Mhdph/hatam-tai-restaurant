@@ -3,5 +3,10 @@
   "address": "address",
   "special request": "special request",
   "Delivery": "Delivery",
-  "next": "next"
+  "next": "next",
+  "Order Summary": "Order Summary",
+  "subtotal": "subtotal",
+  "delivery fee": "delivery fee",
+  "total": "total",
+  "continue": "continue"
 }

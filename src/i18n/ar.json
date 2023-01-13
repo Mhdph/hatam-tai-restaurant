@@ -3,5 +3,10 @@
   "address": "عنوان التوصيل",
   "special request": "طلبات خاص",
   "Delivery": "التوصيل",
-  "next": "التالي"
+  "next": "التالي",
+  "Order Summary": "تفاصيل الطلب",
+  "subtotal": "المجموع",
+  "delivery fee": "رسوم التوصيل",
+  "total": "المبلغ الإجمالي",
+  "continue": "استمر"
 }

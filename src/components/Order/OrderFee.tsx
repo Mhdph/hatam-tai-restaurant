@@ -1,13 +1,15 @@
+import clsx from "clsx";
 import React from "react";
 import { useSelector } from "react-redux";
-import { FoodD } from "../types";
+import { translate } from "../../i18n";
+import { FoodD } from "../../types";
 
 function OrderFee() {
   const cartItems = useSelector((state: any) => state.cartReducer.value);
   const deliveryFee = useSelector(
     (state: any) => state.cartReducer.deliveryFee
   );
-
+  const language = localStorage.getItem("language");
   const [totalPrice, setTotalPrice] = React.useState(0);
 
   React.useEffect(() => {
@@ -20,16 +22,23 @@ function OrderFee() {
   }, [cartItems]);
 
   return (
-    <div className="flex flex-col gap-4 px-4 font-roboto">
+    <div
+      className={clsx(
+        language === "EN"
+          ? "left_direction font-roboto"
+          : "right_direction font-iran",
+        "flex flex-col gap-4 px-4 font-roboto"
+      )}
+    >
       <div className="flex justify-between">
         <p className="text-base text-[#F9EFBC] font-normal capitalize">
-          subtotal
+          {translate("subtotal", language)}
         </p>
         <p className="text-base text-[#F9EFBC] font-normal">AED {totalPrice}</p>
       </div>
       <div className="flex justify-between">
         <p className="text-base text-[#4E3C11] font-normal capitalize">
-          delivery fee
+          {translate("delivery fee", language)}
         </p>
         <p className="text-base text-[#4E3C11] font-normal">
           AED {deliveryFee}
