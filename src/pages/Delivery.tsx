@@ -7,6 +7,8 @@ import Footer from "../components/Common/Footer";
 import Header from "../components/Common/Header";
 import React from "react";
 import { NumberSlice } from "../app/addNumberSlice";
+import { translate } from "../i18n";
+import clsx from "clsx";
 
 function Delivery() {
   const dispatch = useDispatch();
@@ -15,6 +17,7 @@ function Delivery() {
     SpecialRequest: "",
   });
   const navigate = useNavigate();
+  const language = localStorage.getItem("language");
 
   const handleSubmitForm = (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
@@ -28,12 +31,19 @@ function Delivery() {
   };
 
   return (
-    <div className="font-roboto">
+    <div>
       <Arrowback />
-      <Header title="Delivery" />
-      <div className="px-4">
+      <Header title={translate("Delivery", language)} />
+      <div
+        className={clsx(
+          language === "EN"
+            ? "left_direction font-roboto"
+            : "right_direction font-iran",
+          "px-4 mt-2"
+        )}
+      >
         <p className="text-base ml-2 mb-2 font-semibold capitalize text-secondary-color">
-          phone number
+          {translate("phone number", language)}
         </p>
         <div>
           <input
@@ -43,7 +53,7 @@ function Delivery() {
           />
         </div>
         <p className="text-base mt-4 mb-2 ml-2 font-semibold capitalize text-secondary-color">
-          address
+          {translate("address", language)}
         </p>
         <textarea
           onClick={() => navigate("/addaddress")}
@@ -52,7 +62,7 @@ function Delivery() {
           className="rounded-[20px] outline-none w-full py-10 "
         ></textarea>
         <p className="text-2xl ml-2 mb-2 mt-20 font-semibold capitalize text-secondary-color">
-          special request
+          {translate("special request", language)}
         </p>
         <div className="px-2">
           <textarea
@@ -63,7 +73,7 @@ function Delivery() {
           ></textarea>
         </div>
         <div className="my-12">
-          <Button title="next" addres="/payment" />
+          <Button title={translate("next", language)} addres="/payment" />
         </div>
       </div>
       <img src={Kashi} className="-z-10 absolute bottom-20" alt="" />
