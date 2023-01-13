@@ -8,5 +8,12 @@
   "subtotal": "subtotal",
   "delivery fee": "delivery fee",
   "total": "total",
-  "continue": "continue"
+  "continue": "continue",
+  "select your payment method": "select your payment method",
+  "cash on delivery": "cash on delivery",
+  "card on delivery": "card on delivery",
+  "other option of payment": "other option of payment",
+  "Please contact us on whats app": "Please contact us on whats app",
+  "place order": "place order",
+  "payment method": "payment method"
 }

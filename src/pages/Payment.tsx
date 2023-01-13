@@ -5,23 +5,32 @@ import Footer from "../components/Common/Footer";
 import Header from "../components/Common/Header";
 import OrderFee from "../components/Order/OrderFee";
 import OrderFeeTotal from "../components/Order/OrderFeeTotal";
+import { translate } from "../i18n";
+import clsx from "clsx";
 
 function Payment() {
   const [cashMethod, setCashMethod] = React.useState("");
-
+  const language = localStorage.getItem("language");
   const updateCash = (e: any) => {
     setCashMethod(e.target.value);
   };
 
   return (
-    <div className="font-roboto h-screen">
+    <div className="h-screen">
       <Arrowback />
-      <Header title="payment method" />
-      <div className="px-6">
+      <Header title={translate("payment method", language)} />
+      <div
+        className={clsx(
+          language === "EN"
+            ? "left_direction font-roboto"
+            : "right_direction font-iran",
+          "px-6"
+        )}
+      >
         <p className="text-secondary-color pl-2 mb-4 font-semibold text-[20px] capitalize">
-          select your payment method
+          {translate("select your payment method", language)}
         </p>
-        <div className="payment mb-4 pl-4 px-2 py-4 flex items-center ">
+        <div className="payment mb-4 px-4 py-4 flex items-center ">
           <div className="flex items-center gap-3">
             <label className="container">
               <input
@@ -32,11 +41,11 @@ function Payment() {
               <span className="checkmark"></span>
             </label>
             <p className="text-secondary-color text-base capitalize font-semibold">
-              cash on delivery
+              {translate("cash on delivery", language)}
             </p>
           </div>
         </div>
-        <div className="payment mb-4 pl-4 px-2 py-4 flex items-center ">
+        <div className="payment mb-4 px-4 py-4 flex items-center ">
           <div className="flex items-center gap-3">
             <label className="container">
               <input
@@ -47,11 +56,11 @@ function Payment() {
               <span className="checkmark"></span>
             </label>
             <p className="text-secondary-color text-base capitalize font-semibold">
-              card on delivery
+              {translate("card on delivery", language)}
             </p>
           </div>
         </div>
-        <div className="payment mb-4 pl-4 px-2 py-4 flex items-center ">
+        <div className="payment mb-4 px-4 py-4 flex items-center ">
           <div className="flex items-center gap-3">
             <label className="container">
               <input
@@ -63,10 +72,11 @@ function Payment() {
             </label>
             <div className="flex w-full flex-col">
               <p className="text-secondary-color text-base capitalize font-semibold">
-                other option of payment
+                {translate("other option of payment", language)}
               </p>
               <p className="text-[#E7D5AA] capitalize text-xs font-semibold">
-                Please contact us on whats app (026220095)
+                {translate("Please contact us on whats app", language)}
+                (026220095)
               </p>
             </div>
           </div>
@@ -77,7 +87,10 @@ function Payment() {
           <OrderFeeTotal />
         </div>
         <div className="mt-12 mb-6">
-          <Button title="place order" addres="/complate" />
+          <Button
+            title={translate("place order", language)}
+            addres="/complate"
+          />
         </div>
         <Footer />
       </div>

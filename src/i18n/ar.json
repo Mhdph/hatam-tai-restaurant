@@ -8,5 +8,12 @@
   "subtotal": "المجموع",
   "delivery fee": "رسوم التوصيل",
   "total": "المبلغ الإجمالي",
-  "continue": "استمر"
+  "continue": "استمر",
+  "select your payment method": "إختر طريقه الدفع",
+  "cash on delivery": "ادفع نقدا عند بيك‌اب",
+  "card on delivery": "لدفع بالبطاقة عند بيك‌اب",
+  "other option of payment": "خيار آخر الدفع",
+  "Please contact us on whats app": "يرجي الإتصال بنا علي الواتس اب",
+  "place order": "تنفیذ الطلب",
+  "payment method": "طريقه الدفع"
 }
