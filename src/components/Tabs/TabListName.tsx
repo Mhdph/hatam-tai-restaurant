@@ -16,7 +16,7 @@ function TabListName({
   TabName,
 }: TabListNameProps) {
   return (
-    <li className="-mb-px mr-2 last:mr-0 flex-auto text-center cursor-pointer">
+    <li className="-mb-px mr-2  flex-auto text-center cursor-pointer">
       <a
         className={
           "text-sm font-semibold capitalize text-main-color px-5 py-3 shadow-lg rounded block" +

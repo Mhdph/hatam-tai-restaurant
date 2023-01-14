@@ -8,9 +8,12 @@ import { Tabs } from "../components/Tabs/Index";
 import { useDispatch } from "react-redux";
 import { AddressSlice } from "../app/addressSlice";
 import AddressButton from "../components/Coustom/AddressButton";
+import { translate } from "../i18n";
+import clsx from "clsx";
 
 function AddNewAddres() {
   const dispatch = useDispatch();
+  const language = localStorage.getItem("language");
   const [data, setData] = React.useState({
     firstname: "",
     lastname: "",
@@ -37,25 +40,42 @@ function AddNewAddres() {
   };
 
   return (
-    <div className="h-full font-roboto">
+    <div className="h-full">
       <Arrowback />
-      <Header title="Add New Address" />
-      <div className="flex flex-col gap-3 px-4">
-        <Input
-          placeText="First Name"
-          name="firstname"
-          changeText={changeInput}
-        />
-        <Input placeText="last name" name="lastname" changeText={changeInput} />
-        <p className="text-sm ml-2 font-semibold text-main-color capitalize">
-          address details
-        </p>
-        <Input placeText="abu dhabi" />
-        <Input placeText="district" name="distruct" changeText={changeInput} />
-        <Tabs setData={setData} data={data} />
+      <Header title={translate("Add New Address", language)} />
+      <div
+        className={clsx(
+          language === "EN"
+            ? "left_direction font-roboto"
+            : "right_direction font-bernardo",
+          ""
+        )}
+      >
+        <div className="flex flex-col gap-3 px-4">
+          <Input
+            placeText={translate("First Name", language)}
+            name="firstname"
+            changeText={changeInput}
+          />
+          <Input
+            placeText={translate("last name", language)}
+            name="lastname"
+            changeText={changeInput}
+          />
+          <p className="text-sm ml-2 font-semibold text-main-color capitalize">
+            {translate("address details", language)}
+          </p>
+          <Input placeText={translate("abu dhabi", language)} />
+          <Input
+            placeText={translate("district", language)}
+            name="distruct"
+            changeText={changeInput}
+          />
+          <Tabs setData={setData} data={data} />
+        </div>
+        <AddressButton submitForm={handleSubmitForm} />
+        <img src={Kashi} className="-z-10 absolute bottom-20" alt="" />
       </div>
-      <AddressButton submitForm={handleSubmitForm} />
-      <img src={Kashi} className="-z-10 absolute bottom-20" alt="" />
     </div>
   );
 }

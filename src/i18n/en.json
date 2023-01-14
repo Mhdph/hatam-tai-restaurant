@@ -17,5 +17,21 @@
   "place order": "place order",
   "payment method": "payment method",
   "your order is on it’s way": "your order is on it’s way",
-  "thanks for choosing hatim al tai": "thanks for choosing hatim al tai"
+  "thanks for choosing hatim al tai": "thanks for choosing hatim al tai",
+  "Add New Address": "Add New Address",
+  "district": "district",
+  "First Name": "First Name",
+  "last name": "last name",
+  "address details": "address details",
+  "abu dhabi": "abu dhabi",
+  "Apartment": "Apartment",
+  "House": "House",
+  "Office": "Office",
+  "street": "street",
+  "building": "building",
+  "floor": "floor",
+  "apartment no.": "apartment no.",
+  "additional directions (optional)": "additional directions (optional)",
+  "save address": "save address",
+  "view map": "view map"
 }

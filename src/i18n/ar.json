@@ -17,5 +17,21 @@
   "place order": "تنفیذ الطلب",
   "payment method": "طريقه الدفع",
   "your order is on it’s way": "طلبكم في الطريق",
-  "thanks for choosing hatim al tai": "شكرًا لاختياركم حاتم الطائي"
+  "thanks for choosing hatim al tai": "شكرًا لاختياركم حاتم الطائي",
+  "Add New Address": "إضافة عنوان جديد",
+  "district": "منطقة",
+  "First Name": "الاسم الأول",
+  "last name": "الاسم الاخر",
+  "address details": "عنوان التوصيل",
+  "abu dhabi": "ابوظبی",
+  "Apartment": "شقة",
+  "House": "منزل",
+  "Office": "مکتب",
+  "street": "الشارع",
+  "building": "البنایة",
+  "floor": "الطابق",
+  "apartment no.": "رقم الشقة",
+  "additional directions (optional)": "ارشادات إضافیة(اختیارِی)",
+  "save address": "حفظ العنوان",
+  "view map": "عرض الخریطه"
 }
