@@ -5,8 +5,9 @@ import { addItem } from "../../app/CardSlice";
 import { ommlet } from "../../assets";
 function Food(props: any) {
   const { image, name, desc, price, id } = props.product;
+  const PF = "http://hammtimm.ir/images/";
   const dispatch = useDispatch();
-
+  const language = localStorage.getItem("language");
   const check = () => {
     if (name === undefined) {
       alert("Vui lòng chọn màu sắc!");
@@ -40,13 +41,13 @@ function Food(props: any) {
     <div className="pt-6 px-6">
       <div className="card-food z-10 justify-between flex items-center">
         <div className="p-2 flex items-center">
-          <img src={image} className="rounded-3xl h-28 w-28" alt="" />
+          <img src={PF + image} className="rounded-3xl h-28 w-28" alt="" />
           <div className="flex-col mx-4">
             <p className="font-bold text-2xl text-main-color capitalize">
-              {name}
+              {name.ar}
             </p>
-            <p className="text-base font-medium text-secondary-color capitalize">
-              {desc}
+            <p className="text-sm font-medium text-secondary-color capitalize">
+              {desc.en}
             </p>
           </div>
         </div>

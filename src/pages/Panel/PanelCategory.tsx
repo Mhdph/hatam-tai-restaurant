@@ -1,10 +1,15 @@
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/20/solid";
+import { Button } from "@material-tailwind/react";
+import axios from "axios";
 import React from "react";
-import { useQuery } from "react-query";
-import { getAllCategoryFn } from "../../config";
+import { useMutation, useQuery, useQueryClient } from "react-query";
+import { toast } from "react-toastify";
+import Loading from "../../components/Coustom/Loading";
+import { deleteCategoryFn, getAllCategoryFn } from "../../config";
 import { CategoryD } from "../../types";
 import AddCategory from "./Modal/AddCategory";
 import AddFood from "./Modal/AddFood";
+export const EditCategory = React.lazy(() => import("./Modal/EditCategory"));
 
 function PanelCategory() {
   const { isLoading, data, error } = useQuery({
@@ -12,40 +17,82 @@ function PanelCategory() {
     queryFn: getAllCategoryFn,
   });
   const [open, setOpen] = React.useState(false);
+  const [editopen, setEditOpen] = React.useState(false);
+  const queryClient = useQueryClient();
+  const [id, setId] = React.useState("");
+  const handleEditOpen = (event: any) => {
+    setId(event?.target.id);
+    setEditOpen(!editopen);
+  };
+  const { mutate: deleteCategory } = useMutation(
+    (Id: string) => deleteCategoryFn(Id),
+    {
+      onSuccess(data) {
+        queryClient.invalidateQueries("identitykey");
+        toast.success("Identity deleted successfully");
+      },
+      onError: (error: any) => {
+        toast.error(`Something went wrong: ${error.response.data.message}`);
+      },
+    }
+  );
 
-  if (isLoading) return <p>Loading</p>;
+  const onDeleteHandler = (Id: string) => {
+    deleteCategory(Id);
+  };
+  if (isLoading) return <Loading />;
 
   return (
     <div className="overflow-x-auto p-4">
       <AddCategory open={open} setOpen={setOpen} />
+
+      <EditCategory
+        editopen={editopen}
+        setEditOpen={setEditOpen}
+        handleEditOpen={handleEditOpen}
+        id={id}
+      />
+
       <div className="fixed w-full overflow-x-auto shadow-md sm:rounded-lg md:relative">
         <table className="w-full text-left text-sm text-gray-500">
-          <thead className="bg-gray-50 text-xs font-bold capitalize text-[#78909c]">
+          <thead className="bg-gray-50 text-base font-bold capitalize text-[#78909c]">
             <tr>
               <th scope="col" className="py-3 px-6">
                 Category name
               </th>
               <th scope="col" className="py-3 px-6">
-                Delete
+                Category Arabic name
               </th>
               <th scope="col" className="py-3 px-6">
                 Edit
+              </th>
+              <th scope="col" className="py-3 px-6">
+                Delete
               </th>
             </tr>
           </thead>
           <tbody>
             {data.map((item: CategoryD) => (
               <tr className="border-b bg-white">
-                <td key={item.id} className="py-4 px-6">
-                  {item.name}
+                <td key={item._id} className="py-4 px-6">
+                  {item.name.en}
                 </td>
-                <td className="py-4 px-6">Edit</td>
-                <td className="py-4 px-6">Delete</td>
+                <td className="py-4 px-6">{item.name.ar}</td>
+                <td className="py-4 px-6">
+                  <Button id={item._id} onClick={handleEditOpen} color="blue">
+                    Edit
+                  </Button>
+                </td>
+                <td className="py-4 px-6">
+                  <Button onClick={() => onDeleteHandler(item._id)} color="red">
+                    Delete
+                  </Button>
+                </td>
               </tr>
             ))}
           </tbody>
         </table>
-        <div className="flex items-center justify-between border-t border-gray-200 bg-white px-4 py-3 sm:px-6">
+        {/* <div className="flex items-center justify-between border-t border-gray-200 bg-white px-4 py-3 sm:px-6">
           <div className="flex flex-1 justify-between sm:hidden">
             <a
               href="#"
@@ -145,7 +192,7 @@ function PanelCategory() {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );

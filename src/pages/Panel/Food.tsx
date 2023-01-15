@@ -1,6 +1,5 @@
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/20/solid";
 import React from "react";
-import { MapContainer, Marker, TileLayer } from "react-leaflet";
 import { useQuery } from "react-query";
 import Loading from "../../components/Coustom/Loading";
 import { getAllFoodWoFFn } from "../../config";
@@ -9,16 +8,16 @@ import AddFood from "./Modal/AddFood";
 
 function Food() {
   const [open, setOpen] = React.useState(false);
-  // const { isLoading, data, error } = useQuery({
-  //   queryKey: ["foodall"],
-  //   queryFn: getAllFoodWoFFn,
-  // });
+  const { isLoading, data, error } = useQuery({
+    queryKey: ["foodall"],
+    queryFn: getAllFoodWoFFn,
+  });
 
-  // if (isLoading) return <Loading />;
+  if (isLoading) return <Loading />;
   return (
     <div className="overflow-x-auto p-4 capitalize">
       <AddFood open={open} setOpen={setOpen} />
-      {/* <div className="fixed w-full overflow-x-auto shadow-md sm:rounded-lg md:relative">
+      <div className="fixed w-full overflow-x-auto shadow-md sm:rounded-lg md:relative">
         <table className="w-full text-left text-sm text-gray-500">
           <thead className="bg-gray-50 text-xs font-bold capitalize text-[#78909c]">
             <tr>
@@ -49,10 +48,10 @@ function Food() {
             {data.map((item: FoodD) => (
               <tr className="border-b bg-white">
                 <td key={item._id} className="py-4 px-6">
-                  {item.name}
+                  {item.name.en}
                 </td>
                 <td className="py-4 px-6">{item.category}</td>
-                <td className="py-4 px-6">{item.desc}</td>
+                <td className="py-4 px-6">{item.desc.en}</td>
                 <td className="py-4 px-6">{item.price}</td>
                 <td className="py-4 px-6">
                   {item.toppings.map((item) => (
@@ -87,7 +86,7 @@ function Food() {
             ))}
           </tbody>
         </table>
-        <div className="flex items-center justify-between border-t border-gray-200 bg-white px-4 py-3 sm:px-6">
+        {/* <div className="flex items-center justify-between border-t border-gray-200 bg-white px-4 py-3 sm:px-6">
           <div className="flex flex-1 justify-between sm:hidden">
             <a
               href="#"
@@ -187,8 +186,8 @@ function Food() {
               </div>
             </div>
           </div>
-        </div>
-      </div> */}
+        </div> */}
+      </div>
     </div>
   );
 }

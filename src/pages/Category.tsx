@@ -16,7 +16,6 @@ function Category() {
   });
 
   if (isLoading) return <Loading />;
-  console.log(data);
 
   return (
     <div className="font-iran flex flex-col h-full">
@@ -43,7 +42,7 @@ function Category() {
               <img
                 src={categorykashi}
                 alt=""
-                className="h-16 -z-10 relative -mb-20 bottom-16 left-20 md:left-[310px]"
+                className="h-16 -z-10 relative -mb-20 bottom-16 left-12 2xs:left-20 md:left-[310px]"
               />
             </div>
           </Link>

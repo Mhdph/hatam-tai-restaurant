@@ -1,61 +1,48 @@
-import { Fragment, useState } from "react";
 import {
   Button,
   Dialog,
-  DialogHeader,
   DialogBody,
   DialogFooter,
+  DialogHeader,
   Input,
 } from "@material-tailwind/react";
-import { useQuery, useQueryClient } from "react-query";
-import { baseUrl, getAllCategoryFn } from "../../../config";
 import axios from "axios";
+import React, { Fragment, useState } from "react";
+import { useQuery, useQueryClient } from "react-query";
 import { toast } from "react-toastify";
+import { baseUrl, getAllCategoryFn } from "../../../config";
 
-function AddCategory({ open, setOpen }: any) {
-  const handleOpen = () => setOpen(!open);
-
+function EditCategory({ editopen, setEditOpen, handleEditOpen, id }: any) {
   const [name, setName] = useState("");
   const [arname, setArName] = useState("");
-
   const queryClient = useQueryClient();
-
-  const { isLoading, data, error } = useQuery({
+  const refetch = useQuery({
     queryKey: ["category"],
     queryFn: getAllCategoryFn,
   });
   const CreateCategoryFn = async (e: React.SyntheticEvent) => {
     e.preventDefault();
     try {
-      await axios.post(`${baseUrl}/category/`, {
+      await axios.put(`${baseUrl}/category/${id}`, {
         name: {
-          en: name,
-          ar: arname,
+          en: name !== "" ? name : null,
+          ar: arname !== "" ? arname : null,
         },
       });
-      toast.success("Category Created successfully", {
+      toast.success("Category Updated successfully", {
         autoClose: 2000,
       });
       queryClient.invalidateQueries("category");
-      setOpen(false);
+      setEditOpen(false);
     } catch (err) {
-      setOpen(false);
+      setEditOpen(false);
       toast.error("Something is wrong");
     }
   };
-
   return (
     <Fragment>
-      <Button
-        className="mb-2"
-        onClick={handleOpen}
-        variant="filled"
-        color="green"
-      >
-        Add Category
-      </Button>
-      <Dialog open={open} size="sm" handler={handleOpen}>
-        <DialogHeader>Add new category</DialogHeader>
+      <Dialog open={editopen} size="sm" handler={handleEditOpen}>
+        <DialogHeader>Edit category</DialogHeader>
         <DialogBody divider>
           <div className="mb-3">
             <Input
@@ -72,12 +59,17 @@ function AddCategory({ open, setOpen }: any) {
           <Button
             variant="text"
             color="red"
-            onClick={handleOpen}
+            onClick={handleEditOpen}
             className="mr-1"
           >
             <span>Cancel</span>
           </Button>
-          <Button variant="gradient" color="green" onClick={CreateCategoryFn}>
+          <Button
+            disabled={name === "" || arname === "" ? true : false}
+            variant="gradient"
+            color="green"
+            onClick={CreateCategoryFn}
+          >
             <span>Add</span>
           </Button>
         </DialogFooter>
@@ -86,4 +78,4 @@ function AddCategory({ open, setOpen }: any) {
   );
 }
 
-export default AddCategory;
+export default React.memo(EditCategory);

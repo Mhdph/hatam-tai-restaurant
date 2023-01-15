@@ -3,17 +3,23 @@ export interface CategoryD {
     en: string;
     ar: string;
   };
-  id: string;
+  _id: string;
 }
 
 export interface FoodD {
-  _id: string;
-  name: string;
-  price: number;
-  desc: string;
-  image: string;
+  _id?: string;
+  name: {
+    en: string;
+    ar: string;
+  };
+  price: string;
+  desc: {
+    en: string;
+    ar: string;
+  };
+  image?: string;
   category: string;
-  quantity: number;
+  quantity?: number;
   toppings: [
     {
       name: string;

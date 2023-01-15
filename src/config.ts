@@ -28,3 +28,12 @@ export const getAllOrderFn = async () => {
   const response = await api.get(`/order`);
   return response.data;
 };
+export const getCategoryFn = async (id: any) => {
+  const response = await api.get(`/category/${id}`);
+  return response.data;
+};
+
+export const deleteCategoryFn = async (Id: string) => {
+  const response = await api.delete<any>(`/category/${Id}`);
+  return response.data;
+};
