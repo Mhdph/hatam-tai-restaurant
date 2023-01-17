@@ -1,18 +1,49 @@
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/20/solid";
 import React from "react";
-import { useQuery } from "react-query";
+import { useMutation, useQuery, useQueryClient } from "react-query";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import Loading from "../../components/Coustom/Loading";
-import { getAllFoodWoFFn } from "../../config";
+import { deleteFoodFn, getAllFoodWoFFn } from "../../config";
 import { FoodD } from "../../types";
 import AddFood from "./Modal/AddFood";
+import ReactPaginate from "react-paginate";
 
 function Food() {
   const [open, setOpen] = React.useState(false);
+  const [pageNumber, setPageNumber] = React.useState(0);
+  const userPerPage = 10;
+  const pagesVisited = pageNumber * userPerPage;
   const { isLoading, data, error } = useQuery({
     queryKey: ["foodall"],
     queryFn: getAllFoodWoFFn,
   });
+  const queryClient = useQueryClient();
+  // const pageCount = Math.ceil(data.length / userPerPage);
 
+  console.log(data);
+
+  const { mutate: deleteCategory } = useMutation(
+    (Id: string) => deleteFoodFn(Id),
+    {
+      onSuccess(data) {
+        queryClient.invalidateQueries("foodall");
+        toast.success("Food deleted successfully");
+      },
+      onError: (error: any) => {
+        toast.error(`Something went wrong: ${error.response.data.message}`);
+      },
+    }
+  );
+  const onDeleteHandler = (Id: any) => {
+    deleteCategory(Id);
+  };
+
+  const changePage = ({ selected }: any) => {
+    setPageNumber(selected);
+  };
+
+  const navigate = useNavigate();
   if (isLoading) return <Loading />;
   return (
     <div className="overflow-x-auto p-4 capitalize">
@@ -45,7 +76,7 @@ function Food() {
             </tr>
           </thead>
           <tbody>
-            {data.map((item: FoodD) => (
+            {data.slice(0, 10).map((item: FoodD) => (
               <tr className="border-b bg-white">
                 <td key={item._id} className="py-4 px-6">
                   {item.name.en}
@@ -54,20 +85,8 @@ function Food() {
                 <td className="py-4 px-6">{item.desc.en}</td>
                 <td className="py-4 px-6">{item.price}</td>
                 <td className="py-4 px-6">
-                  {item.toppings.map((item) => (
-                    <div className="flex capitalize items-center mb-1 gap-2">
-                      <div className="flex items-center ">
-                        <p>name</p>:{item.name}
-                      </div>
-                      <div className="flex items-center">
-                        <p>price</p>:{item.price}
-                      </div>
-                    </div>
-                  ))}
-                </td>
-
-                <td className="py-4 px-6">
                   <button
+                    onClick={() => navigate(`/panel/food/${item._id}`)}
                     type="button"
                     className="focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900"
                   >
@@ -76,6 +95,7 @@ function Food() {
                 </td>
                 <td className="py-4 px-6">
                   <button
+                    onClick={() => onDeleteHandler(item._id)}
                     type="button"
                     className="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
                   >
@@ -86,105 +106,20 @@ function Food() {
             ))}
           </tbody>
         </table>
-        {/* <div className="flex items-center justify-between border-t border-gray-200 bg-white px-4 py-3 sm:px-6">
-          <div className="flex flex-1 justify-between sm:hidden">
-            <a
-              href="#"
-              className="relative inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
-            >
-              Previous
-            </a>
-            <a
-              href="#"
-              className="relative ml-3 inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
-            >
-              Next
-            </a>
-          </div>
-          <div className="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
-            <div>
-              <p className="text-sm text-gray-700">
-                Showing <span className="font-medium">1</span> to{" "}
-                <span className="font-medium">10</span> of{" "}
-                <span className="font-medium">97</span> results
-              </p>
-            </div>
-            <div className="flex items-center gap-2">
-              <p className="text-sm text-gray-700">Rows per page</p>
-              <div className="flex items-center rounded-lg border border-gray-300 py-2.5 px-0">
-                <select
-                  id="currency"
-                  name="currency"
-                  className="h-full rounded-md border-transparent bg-transparent py-0 pl-2 pr-7 text-gray-500 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                  // onChange={handleChange}
-                >
-                  <option value="10">10</option>
-                  <option value="50">50</option>
-                  <option value="100">100</option>
-                </select>
-              </div>
-              <div>
-                <nav
-                  className="isolate inline-flex -space-x-px rounded-md shadow-sm"
-                  aria-label="Pagination"
-                >
-                  <a
-                    href="#"
-                    className="relative inline-flex items-center rounded-l-md border border-gray-300 bg-white px-2 py-2 text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-20"
-                  >
-                    <span className="sr-only">Previous</span>
-                    <ChevronLeftIcon className="h-5 w-5" aria-hidden="true" />
-                  </a>
-                  <a
-                    href="#"
-                    aria-current="page"
-                    className="relative z-10 inline-flex items-center border border-indigo-500 bg-indigo-50 px-4 py-2 text-sm font-medium text-indigo-600 focus:z-20"
-                  >
-                    1
-                  </a>
-                  <a
-                    href="#"
-                    className="relative inline-flex items-center border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-20"
-                  >
-                    2
-                  </a>
-                  <a
-                    href="#"
-                    className="relative hidden items-center border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-20 md:inline-flex"
-                  >
-                    3
-                  </a>
-                  <span className="relative inline-flex items-center border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700">
-                    ...
-                  </span>
-                  <a
-                    href="#"
-                    className="relative hidden items-center border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-20 md:inline-flex"
-                  >
-                    8
-                  </a>
-                  <a
-                    href="#"
-                    className="relative inline-flex items-center border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-20"
-                  >
-                    9
-                  </a>
-                  <a
-                    href="#"
-                    className="relative inline-flex items-center border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-20"
-                  >
-                    10
-                  </a>
-                  <a
-                    href="#"
-                    className="relative inline-flex items-center rounded-r-md border border-gray-300 bg-white px-2 py-2 text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-20"
-                  >
-                    <span className="sr-only">Next</span>
-                    <ChevronRightIcon className="h-5 w-5" aria-hidden="true" />
-                  </a>
-                </nav>
-              </div>
-            </div>
+        {/* <ReactPaginate
+              previousLabel={"<"}
+              nextLabel={">"}
+              pageRangeDisplayed={1}
+              marginPagesDisplayed={1}
+              breakLabel="..."
+              pageCount={pageCount}
+              onPageChange={changePage}
+              containerClassName={"paginationBttns"}
+              previousLinkClassName={"previousBttn"}
+              nextLinkClassName={"nextBttn"}
+              disabledClassName={"paginationDisabled"}
+              activeClassName={"paginationActive"}
+            />
           </div>
         </div> */}
       </div>

@@ -15,14 +15,15 @@ import {
   LastOrder,
   Panel,
   PanelCategory,
+  EditFood,
 } from "../pages";
 import MapPage from "../pages/Map";
-import ProtectedRoute from "./ProtectedRoute";
 
 export const DashboardRoutes = [
   { path: "/lastorder", component: <LastOrder /> },
   { path: "/panelcategory", component: <PanelCategory /> },
   { path: "/food", component: <Food /> },
+  { path: "/food/:id", component: <EditFood /> },
 ];
 
 function AppRoutes() {

@@ -22,21 +22,55 @@ function EditCategory({ editopen, setEditOpen, handleEditOpen, id }: any) {
   });
   const CreateCategoryFn = async (e: React.SyntheticEvent) => {
     e.preventDefault();
-    try {
-      await axios.put(`${baseUrl}/category/${id}`, {
-        name: {
-          en: name !== "" ? name : null,
-          ar: arname !== "" ? arname : null,
-        },
-      });
-      toast.success("Category Updated successfully", {
-        autoClose: 2000,
-      });
-      queryClient.invalidateQueries("category");
-      setEditOpen(false);
-    } catch (err) {
-      setEditOpen(false);
-      toast.error("Something is wrong");
+    if (arname === "") {
+      try {
+        await axios.put(`${baseUrl}/category/${id}`, {
+          name: {
+            en: name,
+          },
+        });
+        toast.success("Category Updated successfully", {
+          autoClose: 2000,
+        });
+        queryClient.invalidateQueries("category");
+        setEditOpen(false);
+      } catch (err) {
+        setEditOpen(false);
+        toast.error("Something is wrong");
+      }
+    } else if (name === "") {
+      try {
+        await axios.put(`${baseUrl}/category/${id}`, {
+          name: {
+            ar: arname,
+          },
+        });
+        toast.success("Category Updated successfully", {
+          autoClose: 2000,
+        });
+        queryClient.invalidateQueries("category");
+        setEditOpen(false);
+      } catch (err) {
+        setEditOpen(false);
+        toast.error("Something is wrong");
+      }
+    } else {
+      try {
+        await axios.put(`${baseUrl}/category/${id}`, {
+          name: {
+            en: name,
+            ar: arname,
+          },
+        });
+        toast.success("Category Updated successfully", {
+          autoClose: 2000,
+        });
+        queryClient.invalidateQueries("category");
+        setEditOpen(false);
+      } catch (err) {
+        setEditOpen(false);
+        toast.error("Something is wrong");
+      }
     }
   };
   return (
@@ -64,12 +98,7 @@ function EditCategory({ editopen, setEditOpen, handleEditOpen, id }: any) {
           >
             <span>Cancel</span>
           </Button>
-          <Button
-            disabled={name === "" || arname === "" ? true : false}
-            variant="gradient"
-            color="green"
-            onClick={CreateCategoryFn}
-          >
+          <Button variant="gradient" color="green" onClick={CreateCategoryFn}>
             <span>Add</span>
           </Button>
         </DialogFooter>

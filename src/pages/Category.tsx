@@ -27,7 +27,7 @@ function Category() {
       </div>
       <div className="flex flex-col gap-8">
         {data.map((item: CategoryD) => (
-          <Link key={item.id} to={`/main/${item.name.en}`}>
+          <Link key={item._id} to={`/main/${item.name.en}`}>
             <div className="px-20 z-10">
               <div className="flex items-center justify-center category h-16">
                 <p

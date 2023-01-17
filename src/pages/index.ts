@@ -12,3 +12,6 @@ export const Panel = React.lazy(() => import("./Panel"));
 export const Food = React.lazy(() => import("./Panel/Food"));
 export const LastOrder = React.lazy(() => import("./Panel/LastOrder"));
 export const PanelCategory = React.lazy(() => import("./Panel/PanelCategory"));
+export const EditFood = React.lazy(
+  () => import("./Panel/Modal/AddFood/EditFood")
+);

@@ -3,28 +3,30 @@ import { Input, Typography } from "@material-tailwind/react";
 import React from "react";
 
 function AddToppings({ items, setItems }: any) {
-  const [portNumber, setPortNumber] = React.useState("");
-  const [toppingName, setToppingName] = React.useState("");
+  const [Price, setPrice] = React.useState("");
+  const [artoppingName, setArToppingName] = React.useState("");
   const [enToppingName, setEnToppingName] = React.useState("");
   const handleAddButtonClick = (e: React.SyntheticEvent) => {
     e.preventDefault();
-    const newPort = {
-      enname: {
-        port: portNumber,
+    const newTopping = {
+      en: {
+        price: Price,
         enname: enToppingName,
       },
-      arname: {
-        port: portNumber,
-        arname: toppingName,
+      ar: {
+        price: Price,
+        arname: artoppingName,
       },
     };
 
-    const newPorts = [...items, newPort];
+    const newToppins = [...items, newTopping];
 
     setItems(() => {
-      return newPorts;
+      return newToppins;
     });
-    console.log(newPorts);
+    newToppins.map((item) => {
+      console.log(item.en.enname);
+    });
   };
   return (
     <div>
@@ -40,25 +42,26 @@ function AddToppings({ items, setItems }: any) {
           </div>
         </button>
       </div>
-      <div className="mt-1">
-        {items.map((item: any) => (
-          <div key={item.port} className="flex justify-between">
-            <div>{item.port}</div>
-            <div>{item.name}</div>
-          </div>
-        ))}
-      </div>
+
       <div className="flex items-center gap-2 mb-1">
         <Input
           label="EnName"
-          onChange={(e) => setToppingName(e.target.value)}
-        />
-        <Input
-          label="FaName"
           onChange={(e) => setEnToppingName(e.target.value)}
         />
+        <Input
+          label="ArName"
+          onChange={(e) => setArToppingName(e.target.value)}
+        />
       </div>
-      <Input label="Price" onChange={(e) => setPortNumber(e.target.value)} />
+      <Input label="Price" onChange={(e) => setPrice(e.target.value)} />
+      <div className="mt-1">
+        {items.map((item: any) => (
+          <div key={item.price} className="flex justify-between">
+            <div>{item.en.enname}</div>
+            <div>{item.ar.arname}</div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
