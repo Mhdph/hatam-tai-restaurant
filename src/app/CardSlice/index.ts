@@ -19,26 +19,27 @@ export const cartItemsSlice = createSlice({
       const duplicate = state.value.filter(
         (e: FoodD) =>
           e._id === newItem._id &&
-          e.name === newItem.name &&
+          e.name.en === newItem.name.en &&
           e.image === newItem.image
       );
       if (duplicate.length > 0) {
         state.value = state.value.filter(
           (e: FoodD) =>
             e._id !== newItem._id ||
-            e.name !== newItem.name ||
+            e.name.en !== newItem.name.en ||
             e.image !== newItem.image
         );
         state.value = [
           ...state.value,
-          {
-            id: duplicate[0].id,
-            name: newItem.name,
-            color: newItem.color,
-            size: newItem.size,
-            price: newItem.price,
-            quantity: newItem.quantity + duplicate[0].quantity,
-          },
+          // {
+          //   id: duplicate[0].id,
+          //   name: newItem.name,
+          //   color: newItem.color,
+          //   size: newItem.size,
+          //   price: newItem.price * (newItem.quantity + duplicate[0].quantity),
+          //   quantity: newItem.quantity + duplicate[0].quantity,
+          //   totalPrice: newItem.price * newItem.quantity,
+          // },
         ];
       } else {
         state.value = [
@@ -64,27 +65,28 @@ export const cartItemsSlice = createSlice({
     updateItem: (state, action) => {
       const newItem = action.payload;
       const item = state.value.filter(
-        (e: { slug: any; color: any; size: any }) =>
-          e.slug === newItem.slug &&
-          e.color === newItem.color &&
-          e.size === newItem.size
+        (e: FoodD) =>
+          e._id === newItem._id &&
+          e.name.en === newItem.name.en &&
+          e.image === newItem.image
       );
       if (item.length > 0) {
         state.value = state.value.filter(
-          (e: { slug: any; color: any; size: any }) =>
-            e.slug !== newItem.slug ||
-            e.color !== newItem.color ||
-            e.size !== newItem.size
+          (e: FoodD) =>
+            e._id !== newItem._id ||
+            e.name.en !== newItem.name.en ||
+            e.image !== newItem.image
         );
         state.value = [
           ...state.value,
           {
             id: item[0].id,
-            slug: newItem.slug,
+            name: newItem.name,
             color: newItem.color,
             size: newItem.size,
             price: newItem.price,
             quantity: newItem.quantity,
+            totalPrice: newItem.price * newItem.quantity,
           },
         ];
       }

@@ -4,7 +4,8 @@ import { toast } from "react-toastify";
 import { addItem } from "../../app/CardSlice";
 import { ommlet } from "../../assets";
 function Food(props: any) {
-  const { image, name, desc, price, id } = props.product;
+  const { image, name, desc, price, _id, quantity } = props.product;
+  const totalprice = price;
   const PF = "http://hammtimm.ir/images/";
   const dispatch = useDispatch();
   const language = localStorage.getItem("language");
@@ -29,6 +30,8 @@ function Food(props: any) {
         name,
         desc,
         price,
+        quantity,
+        totalprice,
       };
       if (dispatch(addItem(newItem))) {
       } else {
@@ -47,7 +50,7 @@ function Food(props: any) {
               {name.ar}
             </p>
             <p className="text-sm font-medium text-secondary-color capitalize">
-              {desc.en}
+              {desc.en.slice(0, 30)}...
             </p>
           </div>
         </div>

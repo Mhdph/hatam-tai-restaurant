@@ -14,7 +14,7 @@ function OrderFeeTotal() {
   React.useEffect(() => {
     setTotalPrice(
       cartItems.reduce(
-        (total: number, item: FoodD) => total + Number(item.price),
+        (total: number, item: any) => total + Number(item.totalPrice),
         0
       )
     );

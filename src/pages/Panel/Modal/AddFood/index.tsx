@@ -37,8 +37,8 @@ function AddFood({ open, setOpen }: any) {
     // formData.append("image", file);
     const newPost: any = {
       name: {
-        en: message.arName,
-        ar: message.enName,
+        en: message.enName,
+        ar: message.arName,
       },
       price: message.price,
       category: userId,
