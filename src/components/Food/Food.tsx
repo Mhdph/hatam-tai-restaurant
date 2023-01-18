@@ -47,7 +47,7 @@ function Food(props: any) {
           <img src={PF + image} className="rounded-3xl h-28 w-28" alt="" />
           <div className="flex-col mx-4">
             <p className="font-bold text-2xl text-main-color capitalize">
-              {name.ar}
+              {language === "EN" ? name.en : name.ar}
             </p>
             <p className="text-sm font-medium text-secondary-color capitalize">
               {desc.en.slice(0, 30)}...

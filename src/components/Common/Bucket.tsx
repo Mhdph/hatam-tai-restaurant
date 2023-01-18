@@ -10,10 +10,7 @@ function Bucket() {
 
   React.useEffect(() => {
     setTotalPrice(
-      cartItems.reduce(
-        (total: number, item: FoodD) => total + Number(item.price),
-        0
-      )
+      cartItems.reduce((total: number, item: any) => Number(item.totalPrice), 0)
     );
   }, [cartItems]);
   return (

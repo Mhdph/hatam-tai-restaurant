@@ -43,8 +43,8 @@ function EditFood() {
     e.preventDefault();
     const newPost: any = {
       name: {
-        en: message.arName,
-        ar: message.enName,
+        en: message.enName,
+        ar: message.arName,
       },
       price: message.price,
       category: userId,
@@ -65,7 +65,7 @@ function EditFood() {
       } catch (err) {}
     }
     try {
-      await axios.put(`${baseUrl}/food`, newPost);
+      await axios.put(`${baseUrl}/food/${id}`, newPost);
     } catch (err) {
       console.log(err);
     }
@@ -76,7 +76,7 @@ function EditFood() {
   };
 
   const [message, setMessage] = React.useState<any>({
-    arName: (e: any) => e.target.value,
+    arName: "",
     enName: "",
     price: "",
     category: "",
@@ -92,8 +92,8 @@ function EditFood() {
         <Input
           label="EnName"
           name="enName"
+          onChange={changeInput}
           defaultValue={data.name.ar}
-          value={data.name.ar}
         />
         <Input label="ArName" name="arName" onChange={changeInput} />
       </div>

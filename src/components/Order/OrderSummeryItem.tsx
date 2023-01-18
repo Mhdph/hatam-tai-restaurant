@@ -44,7 +44,6 @@ function OrderSummeryItem(props: any) {
   };
 
   const removeCartItem = () => {
-    console.log("removeCartItem");
     dispatch(removeItem(item));
   };
 

@@ -31,15 +31,16 @@ export const cartItemsSlice = createSlice({
         );
         state.value = [
           ...state.value,
-          // {
-          //   id: duplicate[0].id,
-          //   name: newItem.name,
-          //   color: newItem.color,
-          //   size: newItem.size,
-          //   price: newItem.price * (newItem.quantity + duplicate[0].quantity),
-          //   quantity: newItem.quantity + duplicate[0].quantity,
-          //   totalPrice: newItem.price * newItem.quantity,
-          // },
+          {
+            id: duplicate[0].id,
+            name: newItem.name,
+            desc: newItem.desc,
+            image: newItem.image,
+            price: newItem.price,
+            quantity: newItem.quantity + duplicate[0].quantity,
+            totalPrice:
+              newItem.price * (newItem.quantity + duplicate[0].quantity),
+          },
         ];
       } else {
         state.value = [
