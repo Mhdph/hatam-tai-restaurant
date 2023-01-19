@@ -32,9 +32,6 @@ function AddFood({ open, setOpen }: any) {
 
   const handleSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault();
-
-    // const formData: any = new FormData();
-    // formData.append("image", file);
     const newPost: any = {
       name: {
         en: message.enName,
@@ -46,7 +43,6 @@ function AddFood({ open, setOpen }: any) {
         en: message.enDesc,
         ar: message.arDesc,
       },
-      toppings: items,
     };
     const data = new FormData();
     const filename = Date.now() + file.name;
@@ -102,7 +98,7 @@ function AddFood({ open, setOpen }: any) {
             <Input label="ArDescription" name="arDesc" onChange={changeInput} />
           </div>
           <SelectFood setUserId={setUserId} name="category" />
-          <AddToppings setItems={setItems} items={items} />
+          <AddToppings message={message} />
         </DialogBody>
         <DialogFooter>
           <Button

@@ -13,21 +13,17 @@ function Food() {
   const [open, setOpen] = React.useState(false);
   const [pageNumber, setPageNumber] = React.useState(0);
   const userPerPage = 10;
-  const pagesVisited = pageNumber * userPerPage;
+  // const pagesVisited = pageNumber * userPerPage;
   const { isLoading, data, error } = useQuery({
     queryKey: ["foodall"],
     queryFn: getAllFoodWoFFn,
   });
   const queryClient = useQueryClient();
   // const pageCount = Math.ceil(data.length / userPerPage);
-
-  console.log(data);
-
   const { mutate: deleteCategory } = useMutation(
     (Id: string) => deleteFoodFn(Id),
     {
       onSuccess(data) {
-        queryClient.invalidateQueries("foodall");
         toast.success("Food deleted successfully");
       },
       onError: (error: any) => {
@@ -68,6 +64,9 @@ function Food() {
                 Toppings
               </th>
               <th scope="col" className="py-3 px-6">
+                Edit Topping
+              </th>
+              <th scope="col" className="py-3 px-6">
                 Edit
               </th>
               <th scope="col" className="py-3 px-6">
@@ -84,6 +83,15 @@ function Food() {
                 <td className="py-4 px-6">{item.category}</td>
                 <td className="py-4 px-6">{item.desc.en}</td>
                 <td className="py-4 px-6">{item.price}</td>
+                <td className="py-4 px-6">
+                  <button
+                    onClick={() => navigate(`/panel/food/${item._id}`)}
+                    type="button"
+                    className="focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900"
+                  >
+                    Edit Topping
+                  </button>
+                </td>
                 <td className="py-4 px-6">
                   <button
                     onClick={() => navigate(`/panel/food/${item._id}`)}

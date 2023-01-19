@@ -1,33 +1,59 @@
 import { PlusIcon } from "@heroicons/react/24/outline";
 import { Input, Typography } from "@material-tailwind/react";
+import axios from "axios";
 import React from "react";
+import { useQueryClient } from "react-query";
+import { toast } from "react-toastify";
+import { baseUrl } from "../../../../config";
 
-function AddToppings({ items, setItems }: any) {
-  const [Price, setPrice] = React.useState("");
+function AddToppings({ message }: any) {
+  const [price, setPrice] = React.useState("");
   const [artoppingName, setArToppingName] = React.useState("");
   const [enToppingName, setEnToppingName] = React.useState("");
-  const handleAddButtonClick = (e: React.SyntheticEvent) => {
+  const queryClient = useQueryClient();
+  // const handleAddButtonClick = (e: React.SyntheticEvent) => {
+  //   e.preventDefault();
+  //   const newTopping = {
+  //     en: {
+  //       price: Price,
+  //       enname: enToppingName,
+  //     },
+  //     ar: {
+  //       price: Price,
+  //       arname: artoppingName,
+  //     },
+  //   };
+
+  //   const newToppins = [...items, newTopping];
+
+  //   setItems(() => {
+  //     return newToppins;
+  //   });
+  //   newToppins.map((item) => {
+  //     console.log(item.en.enname);
+  //   });
+  // };
+
+  const handleAddButtonClick = async (e: React.SyntheticEvent) => {
     e.preventDefault();
-    const newTopping = {
-      en: {
-        price: Price,
-        enname: enToppingName,
-      },
-      ar: {
-        price: Price,
-        arname: artoppingName,
-      },
-    };
-
-    const newToppins = [...items, newTopping];
-
-    setItems(() => {
-      return newToppins;
-    });
-    newToppins.map((item) => {
-      console.log(item.en.enname);
-    });
+    try {
+      await axios.post(`${baseUrl}/topping/`, {
+        name: {
+          en: artoppingName,
+          ar: enToppingName,
+        },
+        price: price,
+        food: message.enName,
+      });
+      toast.success("Topping Created successfully", {
+        autoClose: 2000,
+      });
+      queryClient.invalidateQueries("category");
+    } catch (err) {
+      toast.error("Something is wrong");
+    }
   };
+
   return (
     <div>
       <div className="flex items-center justify-between my-2">
@@ -54,14 +80,6 @@ function AddToppings({ items, setItems }: any) {
         />
       </div>
       <Input label="Price" onChange={(e) => setPrice(e.target.value)} />
-      <div className="mt-1">
-        {items.map((item: any) => (
-          <div key={item.price} className="flex justify-between">
-            <div>{item.en.enname}</div>
-            <div>{item.ar.arname}</div>
-          </div>
-        ))}
-      </div>
     </div>
   );
 }

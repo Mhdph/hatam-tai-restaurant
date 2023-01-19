@@ -87,7 +87,6 @@ function EditFood() {
   return (
     <div className="px-20 mt-4">
       <AddPhoto file={file} setFile={setFile} />
-      {data.name.ar}
       <div className="flex items-center gap-1 mb-4">
         <Input
           label="EnName"
