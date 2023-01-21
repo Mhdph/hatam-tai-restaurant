@@ -37,6 +37,10 @@ export const getCategoryFn = async (id: any) => {
   const response = await api.get(`/category/${id}`);
   return response.data;
 };
+export const getToppingFn = async (name: any) => {
+  const response = await api.get(`topping?category=${name}`);
+  return response.data;
+};
 
 export const deleteCategoryFn = async (Id: string) => {
   const response = await api.delete<any>(`/category/${Id}`);

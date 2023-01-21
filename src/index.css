@@ -65,7 +65,7 @@ body {
   );
 
   /* card stork */
-  border: 1px solid rgba(205, 171, 107, 0.3);
+  /* border: 1px solid rgba(205, 171, 107, 0.3); */
 
   /* card effect */
   box-shadow: 4px 4px 7px rgba(59, 45, 13, 0.25);
@@ -123,14 +123,14 @@ textarea {
   box-shadow: 4px 4px 7px rgba(59, 45, 13, 0.25);
   border-radius: 20px;
 }
-input[type="checkbox"] {
-  accent-color: black;
+/* input[type="checkbox"] {
+  accent-color: blue;
 }
 
 input[type="checkbox"]::before {
-  accent-color: black;
+  accent-color: blue;
   background-color: #9d7822;
-}
+} */
 
 .container {
   display: block;
@@ -290,4 +290,91 @@ layer base {
 .paginationDisabled a:hover {
   color: #acc8e5;
   background-color: white;
+}
+.input_serach_map {
+  background: #9d7822;
+  border: 1px solid rgba(205, 171, 107, 0.3);
+  box-shadow: 4px 4px 7px rgba(59, 45, 13, 0.25);
+  backdrop-filter: blur(1.5px);
+  border-radius: 20px;
+}
+.input_serach_map::placeholder {
+  font-family: "Brando Arabic";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 23px;
+  display: flex;
+  align-items: center;
+  text-align: right;
+  text-transform: capitalize;
+  margin-right: 20px;
+  color: rgba(78, 60, 17, 0.55);
+}
+.modal_bg {
+  background: linear-gradient(
+    167.64deg,
+    #c4962a -2.6%,
+    #a2864d 57.25%,
+    #cdab6b 98.09%
+  );
+  border-radius: 40px;
+}
+
+/* Create the checkmark/indicator for toppings */
+.containerTopping {
+  display: block;
+  position: relative;
+  padding-right: 1px;
+  margin-bottom: 16px;
+  cursor: pointer;
+  font-size: 22px;
+  width: auto;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.containerTopping input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+.checkmarkTopping {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 18px;
+  width: 18px;
+  background-color: transparent;
+  border: 2px beige solid;
+  border-radius: 2px;
+}
+.containerTopping:hover input ~ .checkmarkTopping {
+  background-color: #ccc;
+}
+
+.containerTopping input:checked ~ .checkmarkTopping {
+  background-color: transparent;
+}
+.checkmarkTopping:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+.containerTopping input:checked ~ .checkmarkTopping:after {
+  display: block;
+}
+.containerTopping .checkmarkTopping:after {
+  left: 8px;
+  bottom: 4px;
+  width: 5px;
+  height: 16px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  -webkit-transform: rotate(35deg);
+  -ms-transform: rotate(35deg);
+  transform: rotate(35deg);
 }

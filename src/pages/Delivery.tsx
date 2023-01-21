@@ -18,12 +18,12 @@ function Delivery() {
   });
   const navigate = useNavigate();
   const language = localStorage.getItem("language");
-
   const handleSubmitForm = (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
     e.preventDefault();
     dispatch(NumberSlice.actions.saveInfo(data));
+    navigate("/payment");
   };
 
   const changeInput = (event: any) => {
@@ -47,6 +47,7 @@ function Delivery() {
         </p>
         <div>
           <input
+            onChange={changeInput}
             name="phoneNumber"
             type="text"
             className="py-1.5 rounded-[20px] outline-none w-3/4 px-3"
@@ -67,13 +68,16 @@ function Delivery() {
         <div className="px-2">
           <textarea
             onChange={changeInput}
-            name=""
+            name="SpecialRequest"
             id=""
             className="rounded-[20px] w-full py-10 outline-none placeholder:text-main-color placeholder:text-center "
           ></textarea>
         </div>
         <div className="my-12">
-          <Button title={translate("next", language)} addres="/payment" />
+          <Button
+            handle={handleSubmitForm}
+            title={translate("next", language)}
+          />
         </div>
       </div>
       <img src={Kashi} className="-z-10 absolute bottom-20" alt="" />
