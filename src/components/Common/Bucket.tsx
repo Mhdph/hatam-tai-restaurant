@@ -7,12 +7,24 @@ function Bucket() {
   const cartItems = useSelector((state: any) => state.cartReducer.value);
   const quantity = useSelector((state: any) => state.cartReducer.quantity);
   const [totalPrice, setTotalPrice] = React.useState(0);
+  const [price, setPrice] = React.useState(0);
 
   React.useEffect(() => {
     setTotalPrice(
-      cartItems.reduce((total: number, item: any) => Number(item.totalPrice), 0)
+      cartItems.reduce(
+        (total: number, item: any) => total + Number(item.totalprice),
+        0
+      )
     );
   }, [cartItems]);
+  // React.useEffect(() => {
+  //   setPrice(
+  //     cartItems.reduce(
+  //       (total: number, item: FoodD) => total + Number(item.price),
+  //       0
+  //     )
+  //   );
+  // }, [cartItems]);
   return (
     <div className="px-6 fixed bottom-0 w-full mb-28  mt-2">
       <Link to="/ordersummery" className="w-full font-roboto  cursor-pointer">

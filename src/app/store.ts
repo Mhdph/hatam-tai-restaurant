@@ -3,6 +3,7 @@ import addressReducer from "./addressSlice";
 import cartItemsSlice from "./CardSlice";
 import NumberSlice from "./addNumberSlice";
 import languageReducer from "./languageSlice";
+import ToppingReducer from "./toppingSlice";
 
 export const store = configureStore({
   reducer: {
@@ -10,5 +11,6 @@ export const store = configureStore({
     cartReducer: cartItemsSlice,
     numberReucer: NumberSlice,
     language: languageReducer,
+    topping: ToppingReducer,
   },
 });

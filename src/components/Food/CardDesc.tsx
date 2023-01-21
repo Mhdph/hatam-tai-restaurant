@@ -6,6 +6,7 @@ import { getToppingFn } from "../../config";
 import Footer from "../Common/Footer";
 import Header from "../Common/Header";
 import Loading from "../Coustom/Loading";
+import Topping from "./Topping";
 const PF = "http://api.hammtimm.ir/images/";
 
 function CardDesc({
@@ -66,20 +67,7 @@ function CardDesc({
                       </p>
                     </div>
                     {data.map((item: any) => (
-                      <div className="flex justify-between">
-                        <p className="font-medium mt-2 text-base text-[#F9EFBC] capitalize">
-                          {item.name.ar}
-                        </p>
-                        <div className="flex items-center gap-2">
-                          <p className="font-bold my-2 text-base text-[#F9EFBC] uppercase">
-                            AED {item.price}.00
-                          </p>
-                          <label className="containerTopping">
-                            <input type="checkbox" />
-                            <span className="checkmarkTopping"></span>
-                          </label>
-                        </div>
-                      </div>
+                      <Topping product={item} />
                     ))}
                   </div>
                 </div>

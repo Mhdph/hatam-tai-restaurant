@@ -11,13 +11,9 @@ function OrderFee() {
   );
   const language = localStorage.getItem("language");
   const [totalPrice, setTotalPrice] = React.useState(0);
-
   React.useEffect(() => {
     setTotalPrice(
-      cartItems.reduce(
-        (total: number, item: any) => total + Number(item.totalPrice),
-        0
-      )
+      cartItems.reduce((total: number, item: any) => Number(item.totalprice), 0)
     );
   }, [cartItems]);
 

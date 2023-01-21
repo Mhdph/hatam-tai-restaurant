@@ -5,40 +5,29 @@ const items = <any>[];
 
 const initialState = {
   value: items,
-  deliveryFee: 12.0,
-  quantity: 0,
 };
 
-export const cartItemsSlice = createSlice({
-  name: "cartItems",
+export const ToppingSlice = createSlice({
+  name: "ToppingItems",
   initialState,
   reducers: {
-    addItem: (state, action) => {
-      state.quantity += 1;
+    addTopping: (state, action) => {
       const newItem = action.payload;
       const duplicate = state.value.filter(
-        (e: FoodD) =>
-          e._id === newItem._id &&
-          e.name.en === newItem.name.en &&
-          e.image === newItem.image
+        (e: FoodD) => e._id === newItem._id && e.name.en === newItem.name.en
       );
       if (duplicate.length > 0) {
         state.value = state.value.filter(
-          (e: FoodD) =>
-            e._id !== newItem._id ||
-            e.name.en !== newItem.name.en ||
-            e.image !== newItem.image
+          (e: FoodD) => e._id !== newItem._id || e.name.en !== newItem.name.en
         );
         state.value = [
           ...state.value,
           {
             id: duplicate[0].id,
             name: newItem.name,
-            desc: newItem.desc,
-            image: newItem.image,
             price: newItem.price,
             quantity: newItem.quantity + duplicate[0].quantity,
-            totalprice:
+            totalPrice:
               newItem.price * (newItem.quantity + duplicate[0].quantity),
           },
         ];
@@ -63,7 +52,7 @@ export const cartItemsSlice = createSlice({
         )
       );
     },
-    updateItem: (state, action) => {
+    updateTopping: (state, action) => {
       const newItem = action.payload;
       const item = state.value.filter(
         (e: FoodD) =>
@@ -83,11 +72,9 @@ export const cartItemsSlice = createSlice({
           {
             id: item[0].id,
             name: newItem.name,
-            color: newItem.color,
-            size: newItem.size,
             price: newItem.price,
             quantity: newItem.quantity,
-            totalprice: newItem.price * newItem.quantity,
+            totalPrice: newItem.price * newItem.quantity,
           },
         ];
       }
@@ -100,7 +87,7 @@ export const cartItemsSlice = createSlice({
         )
       );
     },
-    removeItem: (state, action) => {
+    removeTopping: (state, action) => {
       const item = action.payload;
       state.value = state.value.filter(
         (e: { slug: any; color: any; size: any }) =>
@@ -119,6 +106,7 @@ export const cartItemsSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { addItem, removeItem, updateItem } = cartItemsSlice.actions;
+export const { addTopping, removeTopping, updateTopping } =
+  ToppingSlice.actions;
 
-export default cartItemsSlice.reducer;
+export default ToppingSlice.reducer;
