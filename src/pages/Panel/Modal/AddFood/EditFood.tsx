@@ -92,24 +92,43 @@ function EditFood() {
           label="EnName"
           name="enName"
           onChange={changeInput}
-          defaultValue={data.name.ar}
+          value={data.name.en}
         />
-        <Input label="ArName" name="arName" onChange={changeInput} />
+        <Input
+          label="ArName"
+          name="arName"
+          onChange={changeInput}
+          value={data.name.ar}
+        />
       </div>
-      <Input label="Price" name="price" onChange={changeInput} />
+      <Input
+        label="Price"
+        name="price"
+        onChange={changeInput}
+        value={data.price}
+      />
       <div className="flex items-center gap-1 mt-4">
-        <Input label="EnDescription" name="enDesc" onChange={changeInput} />
-        <Input label="ArDescription" name="arDesc" onChange={changeInput} />
+        <Input
+          label="EnDescription"
+          name="enDesc"
+          onChange={changeInput}
+          value={data.desc.en}
+        />
+        <Input
+          label="ArDescription"
+          name="arDesc"
+          onChange={changeInput}
+          value={data.desc.ar}
+        />
       </div>
       <SelectFood setUserId={setUserId} name="category" />
-      <AddToppings setItems={setItems} items={items} />
       <Button
-        className="mt-1"
+        className="mt-3 w-full"
         variant="gradient"
         color="green"
         onClick={handleSubmit}
       >
-        <span>Add</span>
+        <span>update</span>
       </Button>
     </div>
   );

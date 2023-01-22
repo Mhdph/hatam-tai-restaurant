@@ -10,6 +10,9 @@ function OrderFeeTotal() {
     (state: any) => state.cartReducer.deliveryFee
   );
   const [totalPrice, setTotalPrice] = React.useState(0);
+  const toppingItems = useSelector((state: any) => state.topping.value);
+  const [totalToppingPrice, setTotalToppingPrice] = React.useState(0);
+
   const language = localStorage.getItem("language");
   React.useEffect(() => {
     setTotalPrice(
@@ -19,7 +22,14 @@ function OrderFeeTotal() {
       )
     );
   }, [cartItems]);
-
+  React.useEffect(() => {
+    setTotalToppingPrice(
+      toppingItems.reduce(
+        (total: number, item: any) => total + Number(item.totalprice),
+        0
+      )
+    );
+  }, [toppingItems]);
   return (
     <div
       className={clsx(
@@ -33,7 +43,7 @@ function OrderFeeTotal() {
         {translate("total", language)}{" "}
       </p>
       <p className="text-base font-roboto text-main-color font-normal">
-        AED {totalPrice + deliveryFee}
+        AED {totalPrice + deliveryFee + totalToppingPrice}
       </p>
     </div>
   );

@@ -9,13 +9,29 @@ function OrderFee() {
   const deliveryFee = useSelector(
     (state: any) => state.cartReducer.deliveryFee
   );
+  const toppingItems = useSelector((state: any) => state.topping.value);
+
   const language = localStorage.getItem("language");
   const [totalPrice, setTotalPrice] = React.useState(0);
+  const [totalToppingPrice, setTotalToppingPrice] = React.useState(0);
+
   React.useEffect(() => {
     setTotalPrice(
-      cartItems.reduce((total: number, item: any) => Number(item.totalprice), 0)
+      cartItems.reduce(
+        (total: number, item: any) => total + Number(item.totalprice),
+        0
+      )
     );
   }, [cartItems]);
+
+  React.useEffect(() => {
+    setTotalToppingPrice(
+      toppingItems.reduce(
+        (total: number, item: any) => total + Number(item.totalprice),
+        0
+      )
+    );
+  }, [toppingItems]);
 
   return (
     <div
@@ -31,7 +47,7 @@ function OrderFee() {
           {translate("subtotal", language)}
         </p>
         <p className="text-base text-[#F9EFBC] font-roboto font-normal">
-          AED {totalPrice}
+          AED {totalPrice + totalToppingPrice}
         </p>
       </div>
       <div className="flex justify-between">

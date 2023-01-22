@@ -10,7 +10,7 @@ const LastOrder = () => {
   });
 
   if (isLoading) return <p>Loading</p>;
-
+  console.log(data);
   return (
     <div className="overflow-x-auto p-4">
       <div className="fixed w-full overflow-x-auto shadow-md sm:rounded-lg md:relative">
@@ -44,7 +44,7 @@ const LastOrder = () => {
                   {item.products?.map((item) => (
                     <div className="flex items-center capitalize gap-2">
                       <div className="flex">
-                        <p>name</p> :<p>{item.productname}</p>
+                        <p>name</p> :<p>{item?.name.en}</p>
                       </div>
                       <div className="flex">
                         <p>quantiry</p> :<p>{item.quantity}</p>
@@ -66,26 +66,34 @@ const LastOrder = () => {
                   ))}
                 </td>
                 <td className="py-4 px-6">
-                  <div className="flex items-center">
+                  <div className="flex flex-col items-center">
                     <div className="flex items-center gap-1">
-                      <p>Hi</p>:<p>{item.address?.apartmant}</p>
+                      <p>distruct</p>:<p>{item.address?.distruct}</p>
                     </div>
                     <div className="flex items-center gap-1">
-                      <p>Hi</p>:<p>{item.address?.apartmant}</p>
+                      <p>street</p>:<p>{item.address?.street}</p>
                     </div>{" "}
                     <div className="flex items-center gap-1">
-                      <p>Hi</p>:<p>{item.address?.apartmant}</p>
+                      <p>building</p>:<p>{item.address?.building}</p>
                     </div>{" "}
                     <div className="flex items-center gap-1">
-                      <p>Hi</p>:<p>{item.address?.apartmant}</p>
+                      <p>house</p>:<p>{item.address?.house}</p>
+                    </div>
+                    <div className="flex items-center gap-1">
+                      <p>floor</p>:<p>{item.address?.floor}</p>
+                    </div>
+                    <div className="flex items-center gap-1">
+                      <p>apartmant no</p>:<p>{item.address?.apartmant}</p>
+                    </div>
+                    <div className="flex items-center gap-1">
+                      <p>office</p>:<p>{item.address?.office}</p>
+                    </div>
+                    <div className="flex items-center gap-1">
+                      <p>additional</p>:<p>{item.address?.additional}</p>
                     </div>
                   </div>
-                  {item.address?.building},{item.address?.distruct},
-                  {item.address?.floor},{item.address?.street},
-                  {item.address?.house},{item.address?.office},
-                  {item.address?.street},
                 </td>
-                <td className="py-4 px-6">{item.address?.additional}</td>
+                <td className="py-4 px-6">{item.specialReq}</td>
                 <td className="py-4 px-6">{item.phoneNumber}</td>
                 <td className="py-4 px-6">{item.cashMethod}</td>
                 <td className="py-4 px-6">{item.status}</td>

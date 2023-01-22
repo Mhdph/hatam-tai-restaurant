@@ -18,12 +18,14 @@ import {
   EditFood,
 } from "../pages";
 import MapPage from "../pages/Map";
+import EditTopping from "../pages/Panel/EditTopping";
 
 export const DashboardRoutes = [
   { path: "/lastorder", component: <LastOrder /> },
   { path: "/panelcategory", component: <PanelCategory /> },
   { path: "/food", component: <Food /> },
   { path: "/food/:id", component: <EditFood /> },
+  { path: "/topping/:name", component: <EditTopping /> },
 ];
 
 function AppRoutes() {

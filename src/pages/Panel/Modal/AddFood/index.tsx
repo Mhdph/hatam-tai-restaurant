@@ -17,7 +17,6 @@ import SelectFood from "./SelectFood";
 
 function AddFood({ open, setOpen }: any) {
   const handleOpen = () => setOpen(!open);
-  const [items, setItems] = useState<any>([]);
   const [userId, setUserId] = React.useState("");
   const [message, setMessage] = React.useState<any>({
     arName: "",
@@ -28,6 +27,9 @@ function AddFood({ open, setOpen }: any) {
     arDesc: "",
   });
   const [file, setFile] = React.useState<any>("");
+  const [limitToppings, setLimitTopping] = React.useState("0");
+  const [topping, setTopping] = React.useState(false);
+
   const [loading, setLoading] = React.useState(false);
 
   const handleSubmit = async (e: React.SyntheticEvent) => {
@@ -43,6 +45,8 @@ function AddFood({ open, setOpen }: any) {
         en: message.enDesc,
         ar: message.arDesc,
       },
+      limitTopping: limitToppings,
+      topping: topping,
     };
     const data = new FormData();
     const filename = Date.now() + file.name;
@@ -98,7 +102,6 @@ function AddFood({ open, setOpen }: any) {
             <Input label="ArDescription" name="arDesc" onChange={changeInput} />
           </div>
           <SelectFood setUserId={setUserId} name="category" />
-          <AddToppings message={message} />
         </DialogBody>
         <DialogFooter>
           <Button

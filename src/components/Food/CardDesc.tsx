@@ -67,7 +67,7 @@ function CardDesc({
                       </p>
                     </div>
                     {data.map((item: any) => (
-                      <Topping product={item} />
+                      <Topping nameGhaza={name} product={item} />
                     ))}
                   </div>
                 </div>

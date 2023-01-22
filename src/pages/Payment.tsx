@@ -17,7 +17,7 @@ function Payment() {
     (state: any) => state.numberReucer.phoneNumber
   );
   const cartItems = useSelector((state: any) => state.cartReducer.value);
-
+  const toppingItems = useSelector((state: any) => state.topping.value);
   const SpecialRequest = useSelector(
     (state: any) => state.numberReucer.SpecialRequest
   );
@@ -29,7 +29,7 @@ function Payment() {
   React.useEffect(() => {
     setTotalPrice(
       cartItems.reduce(
-        (total: number, item: any) => total + Number(item.totalPrice),
+        (total: number, item: any) => total + Number(item.totalprice),
         0
       )
     );
@@ -44,21 +44,12 @@ function Payment() {
     try {
       axios.post(`${baseUrl}/order`, {
         price: price,
-        address: {
-          productname: {
-            type: String,
-          },
-          quantity: {
-            type: Number,
-            default: 1,
-          },
-          topping: {
-            type: String,
-          },
-        },
+        address: address,
         phoneNumber: phoneNumber,
         cashMethod: cashMethod,
         products: cartItems,
+        specialReq: SpecialRequest,
+        topping: toppingItems,
       });
     } catch (error) {
       console.log(error);

@@ -39,7 +39,7 @@ function PanelCategory() {
     deleteCategory(Id);
   };
   if (isLoading) return <Loading />;
-
+  console.log(data);
   return (
     <div className="overflow-x-auto p-4">
       <AddCategory open={open} setOpen={setOpen} />

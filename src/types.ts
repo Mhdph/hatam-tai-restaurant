@@ -32,7 +32,9 @@ export interface OrderD {
   _id: string;
   products: [
     {
-      productname: string;
+      name: {
+        en: string;
+      };
       quantity: number;
       topping: [
         {
@@ -55,6 +57,7 @@ export interface OrderD {
   status: string;
   phoneNumber: number;
   cashMethod: string;
+  specialReq: string;
 }
 export interface SearchResultData {
   description: string;

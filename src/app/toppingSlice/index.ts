@@ -27,7 +27,7 @@ export const ToppingSlice = createSlice({
             name: newItem.name,
             price: newItem.price,
             quantity: newItem.quantity + duplicate[0].quantity,
-            totalPrice:
+            totalprice:
               newItem.price * (newItem.quantity + duplicate[0].quantity),
           },
         ];
@@ -74,7 +74,7 @@ export const ToppingSlice = createSlice({
             name: newItem.name,
             price: newItem.price,
             quantity: newItem.quantity,
-            totalPrice: newItem.price * newItem.quantity,
+            totalprice: newItem.price * newItem.quantity,
           },
         ];
       }

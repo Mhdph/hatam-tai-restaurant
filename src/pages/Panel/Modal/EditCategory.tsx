@@ -99,7 +99,7 @@ function EditCategory({ editopen, setEditOpen, handleEditOpen, id }: any) {
             <span>Cancel</span>
           </Button>
           <Button variant="gradient" color="green" onClick={CreateCategoryFn}>
-            <span>Add</span>
+            <span>Update</span>
           </Button>
         </DialogFooter>
       </Dialog>

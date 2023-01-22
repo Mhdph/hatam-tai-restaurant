@@ -8,6 +8,7 @@ import Order from "../components/Order/Order";
 import OrderFee from "../components/Order/OrderFee";
 import OrderFeeTotal from "../components/Order/OrderFeeTotal";
 import { translate } from "../i18n";
+import ToppingsSummery from "../components/Food/ToppingsSummery";
 
 function OrderSummery() {
   const language = localStorage.getItem("language");
@@ -18,6 +19,8 @@ function OrderSummery() {
       <Header title={translate("Order Summary", language)} />
       <div className="p-4 md:px-8">
         <Order />
+        <hr className=" border-opacity-30 border-[0.1px] my-4 border-secondary-color" />
+        <ToppingsSummery />
         <hr className=" border-opacity-30 border-[0.1px] my-4 border-secondary-color" />
         <OrderFee />
         <hr className=" border-opacity-30 border-[0.1px] my-4 border-secondary-color" />

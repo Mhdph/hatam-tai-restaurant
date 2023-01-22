@@ -246,9 +246,15 @@ input[type="checkbox"]::before {
   font-style: normal;
   font-display: swap;
 }
-.mahdi {
-  font-family: "Brando Arabic";
-}
+
+/* @font-face {
+  font-family: "IranNastaliq";
+  src: url("./fonts/IranNastaliq.woff2") format("woff2"),
+    url("./fonts/IranNastaliq.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+} */
 
 layer base {
   @font-face {
@@ -259,6 +265,14 @@ layer base {
     font-style: normal;
     font-display: swap;
   }
+  /* @font-face {
+    font-family: "IranNastaliq";
+    src: url("./fonts/IranNastaliq.woff2") format("woff2"),
+      url("./fonts/IranNastaliq.woff") format("woff");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  } */
 }
 .paginationBttns {
   padding: 20px;

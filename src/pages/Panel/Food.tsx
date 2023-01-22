@@ -61,9 +61,6 @@ function Food() {
                 Price
               </th>
               <th scope="col" className="py-3 px-6">
-                Toppings
-              </th>
-              <th scope="col" className="py-3 px-6">
                 Edit Topping
               </th>
               <th scope="col" className="py-3 px-6">
@@ -85,11 +82,11 @@ function Food() {
                 <td className="py-4 px-6">{item.price}</td>
                 <td className="py-4 px-6">
                   <button
-                    onClick={() => navigate(`/panel/food/${item._id}`)}
+                    onClick={() => navigate(`/panel/topping/${item.name.en}`)}
                     type="button"
-                    className="focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900"
+                    className="focus:outline-none text-white bg-indigo-700 hover:bg-indigo-800 focus:ring-4 focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:ring-indigo-900"
                   >
-                    Edit Topping
+                    Topping
                   </button>
                 </td>
                 <td className="py-4 px-6">
