@@ -34,6 +34,8 @@ function EditCategory({ editopen, setEditOpen, handleEditOpen, id }: any) {
         });
         queryClient.invalidateQueries("category");
         setEditOpen(false);
+        setArName("");
+        setName("");
       } catch (err) {
         setEditOpen(false);
         toast.error("Something is wrong");
@@ -50,6 +52,8 @@ function EditCategory({ editopen, setEditOpen, handleEditOpen, id }: any) {
         });
         queryClient.invalidateQueries("category");
         setEditOpen(false);
+        setArName("");
+        setName("");
       } catch (err) {
         setEditOpen(false);
         toast.error("Something is wrong");
@@ -67,6 +71,8 @@ function EditCategory({ editopen, setEditOpen, handleEditOpen, id }: any) {
         });
         queryClient.invalidateQueries("category");
         setEditOpen(false);
+        setArName("");
+        setName("");
       } catch (err) {
         setEditOpen(false);
         toast.error("Something is wrong");
