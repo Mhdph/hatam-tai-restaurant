@@ -48,14 +48,13 @@ function Food(props: any) {
     <div>
       <CardDesc
         image={image}
-        name={name.en}
-        desc={desc.en}
+        name={name}
+        desc={desc}
         price={price}
         open={open}
         setopen={setOpen}
         handleOpen={handleOpen}
-        ardesc={desc.ar}
-        arname={name.ar}
+        quantity={quantity}
       />
       <div className="pt-6 px-6">
         <div className="card-food z-10 justify-between flex items-center">

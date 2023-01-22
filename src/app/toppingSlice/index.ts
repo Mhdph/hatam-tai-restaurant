@@ -90,8 +90,7 @@ export const ToppingSlice = createSlice({
     removeTopping: (state, action) => {
       const item = action.payload;
       state.value = state.value.filter(
-        (e: { slug: any; color: any; size: any }) =>
-          e.slug !== item.slug || e.color !== item.color || e.size !== item.size
+        (e: FoodD) => e.name.en !== item.name.en || e.name.ar !== item.name.ar
       );
       localStorage.setItem(
         "cartItems",

@@ -2,6 +2,8 @@ import { Dialog, DialogHeader, DialogBody } from "@material-tailwind/react";
 import clsx from "clsx";
 import React from "react";
 import { useQuery } from "react-query";
+import { useDispatch } from "react-redux";
+import { addItem } from "../../app/CardSlice";
 import { ommlet, Kashi } from "../../assets";
 import { getToppingFn } from "../../config";
 import { translate } from "../../i18n";
@@ -13,19 +15,30 @@ const PF = "http://api.hammtimm.ir/images/";
 
 function CardDesc({
   open,
-  ardesc,
   handleOpen,
   image,
   name,
   desc,
   price,
-  arname,
+  quantity,
 }: any) {
   const { isLoading, data, error } = useQuery("get all toppings", async () => {
     return await getToppingFn(name);
   });
   if (isLoading) return <Loading />;
   const language = localStorage.getItem("language");
+  const totalprice = price;
+  const dispatch = useDispatch();
+  const addToCart = () => {
+    let newItem = {
+      name,
+      desc,
+      price,
+      quantity,
+      totalprice,
+    };
+    dispatch(addItem(newItem));
+  };
 
   return (
     <div>
@@ -57,12 +70,15 @@ function CardDesc({
                       "font-bold text-lg text-main-color capitalize"
                     )}
                   >
-                    {language === "EN" ? name : arname}
+                    {language === "EN" ? name.en : name.ar}
                   </p>
                   <p className="font-normal my-4 text-base text-secondary-color uppercase">
                     AED {price}
                   </p>
-                  <button className="text-sm font-normal w-24 h-6 text-main-color uppercase add-button">
+                  <button
+                    onClick={() => addToCart()}
+                    className="text-sm font-normal w-24 h-6 text-main-color uppercase add-button"
+                  >
                     +ADD
                   </button>
                 </div>
@@ -75,7 +91,7 @@ function CardDesc({
                     "text-base font-medium text-center text-secondary-color"
                   )}
                 >
-                  {language === "EN" ? desc : ardesc}
+                  {language === "EN" ? desc.en : desc.ar}
                 </p>
               </div>
               {data.length > 0 ? (

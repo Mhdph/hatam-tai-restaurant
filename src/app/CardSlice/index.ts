@@ -101,10 +101,13 @@ export const cartItemsSlice = createSlice({
       );
     },
     removeItem: (state, action) => {
+      state.quantity -= 1;
       const item = action.payload;
       state.value = state.value.filter(
-        (e: { slug: any; color: any; size: any }) =>
-          e.slug !== item.slug || e.color !== item.color || e.size !== item.size
+        (e: FoodD) =>
+          e.name.en !== item.name.en ||
+          e.desc !== item.desc ||
+          e.image !== item.image
       );
       localStorage.setItem(
         "cartItems",

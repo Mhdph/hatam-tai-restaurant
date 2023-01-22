@@ -5,14 +5,13 @@ import {
   DialogFooter,
   DialogHeader,
   Input,
+  Radio,
 } from "@material-tailwind/react";
 import axios from "axios";
-import React, { Fragment, useState } from "react";
+import React, { Fragment } from "react";
 import Loading from "../../../../components/Coustom/Loading";
 import { baseUrl } from "../../../../config";
-import { FoodD } from "../../../../types";
 import AddPhoto from "./AddPhoto";
-import AddToppings from "./AddToppings";
 import SelectFood from "./SelectFood";
 
 function AddFood({ open, setOpen }: any) {
@@ -102,6 +101,27 @@ function AddFood({ open, setOpen }: any) {
             <Input label="ArDescription" name="arDesc" onChange={changeInput} />
           </div>
           <SelectFood setUserId={setUserId} name="category" />
+          <p>This food have topping?</p>
+          <div className="flex gap-2">
+            <Radio
+              id="html"
+              name="type"
+              label="Yes"
+              className="bg-transparent"
+              onChange={(e) => setTopping(true)}
+            />
+            <Radio
+              id="react"
+              name="type"
+              label="No"
+              className="bg-transparent"
+              onChange={(e) => setTopping(false)}
+            />
+          </div>
+          <Input
+            label="Enter topping limit"
+            onChange={(e) => setLimitTopping(e.target.value)}
+          />
         </DialogBody>
         <DialogFooter>
           <Button

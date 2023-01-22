@@ -2,7 +2,7 @@ import clsx from "clsx";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { removeItem, updateItem } from "../../app/CardSlice";
-import { updateTopping } from "../../app/toppingSlice";
+import { removeTopping, updateTopping } from "../../app/toppingSlice";
 import { Minus, Plus } from "../../assets";
 import { FoodD } from "../../types";
 
@@ -39,10 +39,8 @@ function ToppingItems(props: any) {
   };
 
   const removeCartItem = () => {
-    dispatch(removeItem(item));
+    dispatch(removeTopping(item));
   };
-
-  const ToppingItems = useSelector((state: any) => state.topping.value);
 
   return (
     <div className="input_custom flex py-3 items-center justify-around ">
