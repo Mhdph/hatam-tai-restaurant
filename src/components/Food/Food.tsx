@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import React from "react";
 import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
@@ -53,6 +54,8 @@ function Food(props: any) {
         open={open}
         setopen={setOpen}
         handleOpen={handleOpen}
+        ardesc={desc.ar}
+        arname={name.ar}
       />
       <div className="pt-6 px-6">
         <div className="card-food z-10 justify-between flex items-center">
@@ -64,22 +67,38 @@ function Food(props: any) {
           >
             <img src={PF + image} className="rounded-3xl h-28 w-28" alt="" />
             <div className="flex-col mx-4">
-              <p className="font-bold text-xl text-main-color capitalize">
+              <p
+                className={clsx(
+                  language === "EN"
+                    ? "text-xl font-bold"
+                    : "text-2xl font-normal",
+                  " text-main-color capitalize"
+                )}
+              >
                 {language === "EN" ? name.en : name.ar}
               </p>
-              <p className="text-sm font-medium text-secondary-color capitalize">
-                {desc.en.slice(0, 20)}
+              <p
+                className={clsx(
+                  language === "EN"
+                    ? "font-roboto text-sm font-medium "
+                    : "font-bernardo text-xl mt-2 font-normal",
+                  " text-secondary-color capitalize"
+                )}
+              >
+                {language === "EN"
+                  ? desc.en.slice(0, 20)
+                  : desc.ar.slice(0, 20)}
                 {desc.en.length > 20 ? "..." : null}
               </p>
             </div>
           </div>
           <div className="flex-col px-2 md:px-2 justify-around">
-            <p className="font-normal mb-4 text-base text-secondary-color uppercase">
+            <p className="font-normal mb-4 text-base text-center font-roboto text-secondary-color uppercase">
               AED {price}
             </p>
             <button
               onClick={() => addToCart()}
-              className="text-sm font-normal w-20 h-6 text-main-color uppercase add-button"
+              className="text-sm font-normal font-roboto w-20 h-6 text-main-color uppercase add-button"
             >
               +ADD
             </button>

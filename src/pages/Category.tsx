@@ -19,8 +19,10 @@ function Category() {
 
   return (
     <div className="font-iran flex flex-col h-full">
-      <Arrowback />
-      <div className="flex items-center my-10 justify-between px-6 md:px-8">
+      <div className={clsx(language === "EN" ? "" : "px-6")}>
+        <Arrowback />
+      </div>
+      <div className="flex items-center mb-4 justify-between px-6 md:px-8">
         <img src={hatam} className="mr-2" alt="" />
         <img src={hatamphoto} alt="" />
         <img src={hatamarabic} alt="" />

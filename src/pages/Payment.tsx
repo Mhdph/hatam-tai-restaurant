@@ -10,6 +10,7 @@ import clsx from "clsx";
 import axios from "axios";
 import { baseUrl } from "../config";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 function Payment() {
   const [cashMethod, setCashMethod] = React.useState("");
@@ -40,6 +41,8 @@ function Payment() {
   const updateCash = (e: any) => {
     setCashMethod(e.target.value);
   };
+
+  const navigate = useNavigate();
   const submitOrder = () => {
     try {
       axios.post(`${baseUrl}/order`, {
@@ -51,6 +54,7 @@ function Payment() {
         specialReq: SpecialRequest,
         topping: toppingItems,
       });
+      navigate("/complate");
     } catch (error) {
       console.log(error);
     }
@@ -58,7 +62,9 @@ function Payment() {
 
   return (
     <div className="h-screen">
-      <Arrowback />
+      <div className="px-6">
+        <Arrowback />
+      </div>
       <Header title={translate("payment method", language)} />
       <div
         className={clsx(
@@ -73,15 +79,17 @@ function Payment() {
         </p>
         <div className="payment mb-4 px-4 py-4 flex items-center ">
           <div className="flex items-center gap-3">
-            <label className="container">
-              <input
-                name="default-radio"
-                value="cash on delivery"
-                type="checkbox"
-                onChange={updateCash}
-              />
-              <span className="checkmark"></span>
-            </label>
+            <div className="pr-3">
+              <label className="container">
+                <input
+                  name="default-radio"
+                  value="cash on delivery"
+                  type="checkbox"
+                  onChange={updateCash}
+                />
+                <span className="checkmark"></span>
+              </label>
+            </div>
             <p className="text-secondary-color text-base capitalize font-semibold">
               {translate("cash on delivery", language)}
             </p>
@@ -89,15 +97,17 @@ function Payment() {
         </div>
         <div className="payment mb-4 px-4 py-4 flex items-center ">
           <div className="flex items-center gap-3">
-            <label className="container">
-              <input
-                name="default-radio"
-                value="card on delivery"
-                type="checkbox"
-                onChange={updateCash}
-              />
-              <span className="checkmark"></span>
-            </label>
+            <div className="pr-3">
+              <label className="container">
+                <input
+                  name="default-radio"
+                  value="card on delivery"
+                  type="checkbox"
+                  onChange={updateCash}
+                />
+                <span className="checkmark"></span>
+              </label>
+            </div>
             <p className="text-secondary-color text-base capitalize font-semibold">
               {translate("card on delivery", language)}
             </p>
@@ -105,15 +115,17 @@ function Payment() {
         </div>
         <div className="payment mb-4 px-4 py-4 flex items-center ">
           <div className="flex items-center gap-3">
-            <label className="container">
-              <input
-                name="default-radio"
-                value="other option of payment"
-                type="checkbox"
-                onChange={updateCash}
-              />
-              <span className="checkmark"></span>
-            </label>
+            <div className="pr-3">
+              <label className="container">
+                <input
+                  name="default-radio"
+                  value="other option of payment"
+                  type="checkbox"
+                  onChange={updateCash}
+                />
+                <span className="checkmark"></span>
+              </label>
+            </div>
             <div className="flex w-full flex-col">
               <p className="text-secondary-color text-base capitalize font-semibold">
                 {translate("other option of payment", language)}
@@ -130,11 +142,10 @@ function Payment() {
           <hr className=" border-opacity-30 border-[0.1px] my-4 border-[#4e3c114d]" />
           <OrderFeeTotal />
         </div>
-        <div className="mt-12 mb-6">
+        <div className="mt-12 mb-12">
           <Button
             handle={submitOrder}
             title={translate("place order", language)}
-            addres="/complate"
           />
         </div>
         <Footer />

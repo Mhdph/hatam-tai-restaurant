@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import React from "react";
 import { useDispatch } from "react-redux";
 import { addTopping } from "../../app/toppingSlice";
@@ -22,12 +23,24 @@ function Topping(props: any) {
   };
 
   return (
-    <div className="flex justify-between">
+    <div
+      className={clsx(
+        language === "EN"
+          ? "left_direction font-roboto"
+          : "right_direction font-iran",
+        "flex justify-between"
+      )}
+    >
       <p className="font-medium mt-2 text-base text-[#F9EFBC] capitalize">
-        {name.ar}
+        {language === "EN" ? name.en : name.ar}
       </p>
       <div className="flex items-center gap-2">
-        <p className="font-bold my-2 text-base text-[#F9EFBC] uppercase">
+        <p
+          className={clsx(
+            language === "EN" ? "" : "ml-5",
+            "font-bold my-2 font-roboto text-base text-[#F9EFBC] uppercase"
+          )}
+        >
           AED {price}.00
         </p>
         <label className="containerTopping">

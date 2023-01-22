@@ -31,17 +31,17 @@ function Delivery() {
   };
 
   return (
-    <div>
+    <div
+      className={clsx(
+        language === "EN"
+          ? "left_direction font-roboto"
+          : "right_direction font-iran",
+        "mt-2"
+      )}
+    >
       <Arrowback />
       <Header title={translate("Delivery", language)} />
-      <div
-        className={clsx(
-          language === "EN"
-            ? "left_direction font-roboto"
-            : "right_direction font-iran",
-          "px-4 mt-2"
-        )}
-      >
+      <div className="px-4">
         <p className="text-base ml-2 mb-2 font-semibold capitalize text-secondary-color">
           {translate("phone number", language)}
         </p>

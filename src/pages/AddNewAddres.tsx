@@ -10,6 +10,7 @@ import { AddressSlice } from "../app/addressSlice";
 import AddressButton from "../components/Coustom/AddressButton";
 import { translate } from "../i18n";
 import clsx from "clsx";
+import { useNavigate } from "react-router-dom";
 
 function AddNewAddres() {
   const dispatch = useDispatch();
@@ -27,12 +28,13 @@ function AddNewAddres() {
     apartment: "",
   });
 
+  const navigate = useNavigate();
   const handleSubmitForm = (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
     e.preventDefault();
     dispatch(AddressSlice.actions.saveAddress(data));
-    console.log("hello");
+    navigate("/delivery");
   };
 
   const changeInput = (event: any) => {
@@ -40,7 +42,14 @@ function AddNewAddres() {
   };
 
   return (
-    <div className="h-full">
+    <div
+      className={clsx(
+        language === "EN"
+          ? "left_direction font-roboto"
+          : "right_direction font-iran",
+        ""
+      )}
+    >
       <Arrowback />
       <Header title={translate("Add New Address", language)} />
       <div
@@ -48,10 +57,10 @@ function AddNewAddres() {
           language === "EN"
             ? "left_direction font-roboto"
             : "right_direction font-bernardo",
-          ""
+          "px-4"
         )}
       >
-        <div className="flex flex-col gap-3 px-4">
+        <div className="flex flex-col gap-3 ">
           <Input
             placeText={translate("First Name", language)}
             name="firstname"

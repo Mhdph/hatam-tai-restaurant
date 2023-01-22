@@ -160,10 +160,10 @@ input[type="checkbox"]::before {
   position: absolute;
   top: 0;
   left: 0;
-  height: 14px;
-  width: 14px;
+  height: 18px;
+  width: 18px;
   background-color: transparent;
-  border: 2px #9d7822 solid;
+  border: 2px #4e3c11 solid;
 }
 
 /* On mouse-over, add a grey background color */
@@ -173,7 +173,7 @@ input[type="checkbox"]::before {
 
 /* When the checkbox is checked, add a blue background */
 .container input:checked ~ .checkmark {
-  background-color: #9d7822;
+  background-color: #4e3c11;
 }
 
 /* Create the checkmark/indicator (hidden when not checked) */
@@ -190,10 +190,10 @@ input[type="checkbox"]::before {
 
 /* Style the checkmark/indicator */
 .container .checkmark:after {
-  left: 6px;
-  top: 3px;
+  left: 8px;
+  bottom: 4px;
   width: 5px;
-  height: 8px;
+  height: 16px;
   border: solid white;
   border-width: 0 2px 2px 0;
   -webkit-transform: rotate(35deg);

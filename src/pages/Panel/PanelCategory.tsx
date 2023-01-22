@@ -39,18 +39,15 @@ function PanelCategory() {
     deleteCategory(Id);
   };
   if (isLoading) return <Loading />;
-  console.log(data);
   return (
     <div className="overflow-x-auto p-4">
       <AddCategory open={open} setOpen={setOpen} />
-
       <EditCategory
         editopen={editopen}
         setEditOpen={setEditOpen}
         handleEditOpen={handleEditOpen}
         id={id}
       />
-
       <div className="fixed w-full overflow-x-auto shadow-md sm:rounded-lg md:relative">
         <table className="w-full text-left text-sm text-gray-500">
           <thead className="bg-gray-50 text-base font-bold capitalize text-[#78909c]">

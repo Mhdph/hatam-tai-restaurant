@@ -32,7 +32,7 @@ function Complate() {
           </p>
         </div>
       </div>
-      <div className="px-6 mt-80 md:mt-[500px]">
+      <div className="px-6 mt-96 md:mt-[600px]">
         <Footer />
       </div>
     </div>

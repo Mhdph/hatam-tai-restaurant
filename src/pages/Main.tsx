@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import React from "react";
 import { useQuery } from "react-query";
 import { useSelector } from "react-redux";
@@ -10,6 +11,7 @@ import Footer from "../components/Common/Footer";
 import Loading from "../components/Coustom/Loading";
 import Food from "../components/Food/Food";
 import { getAllFoodFn } from "../config";
+import { translate } from "../i18n";
 import { FoodD } from "../types";
 
 function Main() {
@@ -20,13 +22,24 @@ function Main() {
   });
 
   if (isLoading) return <Loading />;
-  console.log(data);
+  const language = localStorage.getItem("language");
 
   return (
-    <div className="h-screen font-roboto">
-      <Arrowback />
+    <div
+      className={clsx(
+        language === "EN"
+          ? "left_direction font-roboto"
+          : "right_direction font-iran",
+        "h-screen"
+      )}
+    >
+      <div className="pl-20">
+        <Arrowback />
+      </div>
       <div className="flex justify-between px-6 md:px-8 items-center">
-        <p className="font-bold text-3xl capitalize  text-main-color">{id}</p>
+        <p className="font-bold text-3xl capitalize  text-main-color">
+          {translate(id, language)}
+        </p>
         <img src={logo} alt="" />
       </div>
       <div className="flex flex-col md:flex-row md:justify-center md:items-center">

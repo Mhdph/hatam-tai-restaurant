@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { removeItem, updateItem } from "../../app/CardSlice";
@@ -46,7 +47,12 @@ function ToppingItems(props: any) {
   return (
     <div className="input_custom flex py-3 items-center justify-around ">
       <div className="flex-col">
-        <p className="font-bold capitalize text-xl text-[#4E3C11]">
+        <p
+          className={clsx(
+            language === "EN" ? "font-roboto" : "font-bernardo",
+            "font-bold capitalize text-xl text-[#4E3C11]"
+          )}
+        >
           {language === "EN" ? item.name.en : item.name.ar}
         </p>
         <p className="font-bold capitalize text-xl text-[#4E3C11]"></p>
@@ -59,7 +65,9 @@ function ToppingItems(props: any) {
             quantity === 1 ? () => removeCartItem() : () => updateQuantity("-")
           }
         />
-        <p className="font-bold text-xl text-main-color">{quantity}</p>
+        <p className="font-bold text-xl font-roboto text-main-color">
+          {quantity}
+        </p>
         <img
           className="cursor-pointer"
           src={Plus}
@@ -68,7 +76,7 @@ function ToppingItems(props: any) {
         />
       </div>
       <div>
-        <p className="text-base text-[#F9EFBC] font-bold">
+        <p className="text-base text-[#F9EFBC] font-roboto font-bold">
           AED {props.item.totalprice}
         </p>
       </div>

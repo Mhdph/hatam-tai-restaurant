@@ -9,12 +9,20 @@ import OrderFee from "../components/Order/OrderFee";
 import OrderFeeTotal from "../components/Order/OrderFeeTotal";
 import { translate } from "../i18n";
 import ToppingsSummery from "../components/Food/ToppingsSummery";
+import clsx from "clsx";
 
 function OrderSummery() {
   const language = localStorage.getItem("language");
 
   return (
-    <div className=" h-screen font-roboto">
+    <div
+      className={clsx(
+        language === "EN"
+          ? "left_direction font-roboto"
+          : "right_direction font-iran",
+        "xs:h-screen h-full "
+      )}
+    >
       <Arrowback />
       <Header title={translate("Order Summary", language)} />
       <div className="p-4 md:px-8">
