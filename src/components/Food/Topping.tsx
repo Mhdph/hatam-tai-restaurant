@@ -1,11 +1,11 @@
 import clsx from "clsx";
 import React from "react";
 import { useDispatch } from "react-redux";
-import { addTopping } from "../../app/toppingSlice";
+import { addTopping, removeTopping } from "../../app/toppingSlice";
 
 function Topping(props: any) {
   const { name, price, quantity, food } = props.product;
-  const [open, setOpen] = React.useState(false);
+  const [check, setCheck] = React.useState(false);
   const totalprice = price;
   const PF = "http://api.hammtimm.ir/images/";
   const dispatch = useDispatch();
@@ -20,6 +20,10 @@ function Topping(props: any) {
       food,
     };
     dispatch(addTopping(newItem));
+  };
+
+  const removeCartItem = () => {
+    dispatch(removeTopping(props.product));
   };
 
   return (
@@ -44,7 +48,11 @@ function Topping(props: any) {
           AED {price}.00
         </p>
         <label className="containerTopping">
-          <input onClick={() => addToCart()} type="checkbox" />
+          <input
+            onChange={(e) => setCheck(!check)}
+            onClick={check ? () => removeCartItem() : () => addToCart()}
+            type="checkbox"
+          />
           <span className="checkmarkTopping"></span>
         </label>
       </div>

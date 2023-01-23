@@ -1,4 +1,4 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Kashi } from "../assets";
 import Arrowback from "../components/Common/Arrowback";
@@ -9,6 +9,7 @@ import React from "react";
 import { NumberSlice } from "../app/addNumberSlice";
 import { translate } from "../i18n";
 import clsx from "clsx";
+import { PencilSquareIcon } from "@heroicons/react/24/outline";
 
 function Delivery() {
   const dispatch = useDispatch();
@@ -29,6 +30,7 @@ function Delivery() {
   const changeInput = (event: any) => {
     setData({ ...data, [event.target.name]: event.target.value });
   };
+  const address = useSelector((state: any) => state.user);
 
   return (
     <div
@@ -56,12 +58,42 @@ function Delivery() {
         <p className="text-base mt-4 mb-2 ml-2 font-semibold capitalize text-secondary-color">
           {translate("address", language)}
         </p>
-        <textarea
-          onClick={() => navigate("/addaddress")}
-          name=""
-          id=""
-          className="rounded-[20px] outline-none w-full py-10 "
-        ></textarea>
+        {address.firstname !== "" ? (
+          <div className="flex items-center mt-6">
+            <p
+              className={clsx(
+                language === "EN"
+                  ? "font-roboto font-semibold ml-2 text-base"
+                  : "font-bernardo text-xl",
+                "text-secondary-color  "
+              )}
+            >
+              {address?.firstname} {address?.lastname},{address?.distruct},
+              {address?.street},
+              {address?.building && translate("building", language)}
+              {address?.building},
+              {address?.floor && translate("floor", language)}
+              {address?.floor},{address?.house && translate("House", language)}{" "}
+              {address?.house},{translate("apartment no.", language)}{" "}
+              {address?.apartment},
+              {address?.additional &&
+                translate("additional directions (optional)", language)}
+              {address?.additional}
+              <PencilSquareIcon
+                onClick={() => navigate("/addaddress")}
+                className="h-6 w-6"
+              />
+            </p>
+          </div>
+        ) : (
+          <textarea
+            onClick={() => navigate("/addaddress")}
+            name=""
+            id=""
+            className="rounded-[20px] outline-none w-full py-10 "
+          ></textarea>
+        )}
+
         <p className="text-2xl ml-2 mb-2 mt-20 font-semibold capitalize text-secondary-color">
           {translate("special request", language)}
         </p>

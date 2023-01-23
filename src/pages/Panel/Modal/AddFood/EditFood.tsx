@@ -92,33 +92,33 @@ function EditFood() {
           label="EnName"
           name="enName"
           onChange={changeInput}
-          value={data.name.en}
+          defaultValue={data.name.en}
         />
         <Input
           label="ArName"
           name="arName"
           onChange={changeInput}
-          value={data.name.ar}
+          defaultValue={data.name.ar}
         />
       </div>
       <Input
         label="Price"
         name="price"
         onChange={changeInput}
-        value={data.price}
+        defaultValue={data.price}
       />
       <div className="flex items-center gap-1 mt-4">
         <Input
           label="EnDescription"
           name="enDesc"
           onChange={changeInput}
-          value={data.desc.en}
+          defaultValue={data.desc.en}
         />
         <Input
           label="ArDescription"
           name="arDesc"
           onChange={changeInput}
-          value={data.desc.ar}
+          defaultValue={data.desc.ar}
         />
       </div>
       <SelectFood setUserId={setUserId} name="category" />

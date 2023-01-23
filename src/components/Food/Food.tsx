@@ -60,7 +60,7 @@ function Food(props: any) {
         <div className="card-food z-10 justify-between flex items-center">
           <div
             onClick={
-              desc.en.length > 20 ? handleOpen : () => console.log("nothing")
+              desc.en.length > 10 ? handleOpen : () => console.log("nothing")
             }
             className="p-2 cursor-pointer flex items-center"
           >

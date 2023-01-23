@@ -23,7 +23,7 @@ function CardDesc({
   quantity,
 }: any) {
   const { isLoading, data, error } = useQuery("get all toppings", async () => {
-    return await getToppingFn(name);
+    return await getToppingFn(name.en);
   });
   if (isLoading) return <Loading />;
   const language = localStorage.getItem("language");
@@ -108,7 +108,7 @@ function CardDesc({
                       </p>
                     </div>
                     {data.map((item: any) => (
-                      <Topping nameGhaza={name} product={item} />
+                      <Topping nameGhaza={name.en} product={item} />
                     ))}
                   </div>
                 </div>

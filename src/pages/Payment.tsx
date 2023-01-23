@@ -14,6 +14,8 @@ import { useNavigate } from "react-router-dom";
 
 function Payment() {
   const [cashMethod, setCashMethod] = React.useState("");
+  const [error, setErorr] = React.useState(false);
+  const [errorMessage, setErorrMessage] = React.useState("");
   const phoneNumber = useSelector(
     (state: any) => state.numberReucer.phoneNumber
   );
@@ -57,6 +59,8 @@ function Payment() {
       navigate("/complate");
     } catch (error) {
       console.log(error);
+      setErorr(true);
+      setErorrMessage("some thing went wrong");
     }
   };
 
@@ -142,6 +146,7 @@ function Payment() {
           <hr className=" border-opacity-30 border-[0.1px] my-4 border-[#4e3c114d]" />
           <OrderFeeTotal />
         </div>
+        {error && <p>{errorMessage}</p>}
         <div className="mt-12 mb-12">
           <Button
             handle={submitOrder}
