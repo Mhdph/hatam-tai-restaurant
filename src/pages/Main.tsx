@@ -33,9 +33,7 @@ function Main() {
         "h-screen"
       )}
     >
-      <div className="pl-20">
-        <Arrowback />
-      </div>
+      <Arrowback />
       <div className="flex justify-between px-6 md:px-8 items-center">
         <p className="font-bold text-3xl capitalize  text-main-color">
           {translate(id, language)}
@@ -47,7 +45,7 @@ function Main() {
           <Food product={product} />
         ))}
       </div>
-      <img src={Kashi} className="-z-10 absolute bottom-20" alt="" />
+      <img src={Kashi} className="-z-10 absolute -bottom-20" alt="" />
       {quantity > 0 ? <Bucket /> : null}
       <Footer fixed />
     </div>

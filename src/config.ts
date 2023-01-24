@@ -33,6 +33,10 @@ export const getAllOrderFn = async () => {
   const response = await api.get(`/order`);
   return response.data;
 };
+export const getAllIndoorOrderFn = async () => {
+  const response = await api.get(`/order/indoor`);
+  return response.data;
+};
 export const getCategoryFn = async (id: any) => {
   const response = await api.get(`/category/${id}`);
   return response.data;

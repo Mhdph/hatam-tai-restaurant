@@ -13,13 +13,12 @@ function Food() {
   const [open, setOpen] = React.useState(false);
   const [pageNumber, setPageNumber] = React.useState(0);
   const userPerPage = 10;
-  // const pagesVisited = pageNumber * userPerPage;
+  const pagesVisited = pageNumber * userPerPage;
   const { isLoading, data, error } = useQuery({
     queryKey: ["foodall"],
     queryFn: getAllFoodWoFFn,
   });
   const queryClient = useQueryClient();
-  // const pageCount = Math.ceil(data.length / userPerPage);
   const { mutate: deleteCategory } = useMutation(
     (Id: string) => deleteFoodFn(Id),
     {
@@ -41,6 +40,8 @@ function Food() {
 
   const navigate = useNavigate();
   if (isLoading) return <Loading />;
+  if (error) return <p>something went wrong</p>;
+  const pageCount = Math.ceil(data.length / userPerPage);
   return (
     <div className="overflow-x-auto p-4 capitalize">
       <AddFood open={open} setOpen={setOpen} />
@@ -111,22 +112,20 @@ function Food() {
             ))}
           </tbody>
         </table>
-        {/* <ReactPaginate
-              previousLabel={"<"}
-              nextLabel={">"}
-              pageRangeDisplayed={1}
-              marginPagesDisplayed={1}
-              breakLabel="..."
-              pageCount={pageCount}
-              onPageChange={changePage}
-              containerClassName={"paginationBttns"}
-              previousLinkClassName={"previousBttn"}
-              nextLinkClassName={"nextBttn"}
-              disabledClassName={"paginationDisabled"}
-              activeClassName={"paginationActive"}
-            />
-          </div>
-        </div> */}
+        <ReactPaginate
+          previousLabel={"<"}
+          nextLabel={">"}
+          pageRangeDisplayed={1}
+          marginPagesDisplayed={1}
+          breakLabel="..."
+          pageCount={pageCount}
+          onPageChange={changePage}
+          containerClassName={"paginationBttns"}
+          previousLinkClassName={"previousBttn"}
+          nextLinkClassName={"nextBttn"}
+          disabledClassName={"paginationDisabled"}
+          activeClassName={"paginationActive"}
+        />
       </div>
     </div>
   );
