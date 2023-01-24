@@ -67,13 +67,13 @@ function CardDesc({
                   <p
                     className={clsx(
                       language === "EN" ? "font-roboto" : "font-iran",
-                      "font-bold text-lg text-main-color capitalize"
+                      "font-bold text-2xl text-main-color capitalize"
                     )}
                   >
                     {language === "EN" ? name.en : name.ar}
                   </p>
                   <p className="font-normal my-4 text-base text-secondary-color uppercase">
-                    AED {price}
+                    AED {price}.00
                   </p>
                   <button
                     onClick={() => addToCart()}

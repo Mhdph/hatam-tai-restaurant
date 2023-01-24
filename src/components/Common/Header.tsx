@@ -12,7 +12,7 @@ function Header({ title }: HeaderProps) {
     <div className="flex my-1 md:px-8 justify-between px-6 items-center">
       <p
         className={clsx(
-          language === "EN" ? "font-roboto text-xl" : "font-iran text-4xl",
+          language === "EN" ? "font-roboto text-4xl" : "font-iran text-4xl",
           "font-bold capitalize text-main-color"
         )}
       >

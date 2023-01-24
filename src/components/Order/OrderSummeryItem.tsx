@@ -83,7 +83,7 @@ function OrderSummeryItem(props: any) {
       </div>
       <div>
         <p className="text-base text-[#F9EFBC] font-roboto font-bold">
-          AED {props.item.totalprice}
+          AED {props.item.totalprice}.00
         </p>
       </div>
     </div>

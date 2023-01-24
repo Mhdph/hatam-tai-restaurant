@@ -47,7 +47,7 @@ function OrderFee() {
           {translate("subtotal", language)}
         </p>
         <p className="text-base text-[#F9EFBC] font-roboto font-normal">
-          AED {totalPrice + totalToppingPrice}
+          AED {totalPrice + totalToppingPrice}.00
         </p>
       </div>
       <div className="flex justify-between">
@@ -55,7 +55,7 @@ function OrderFee() {
           {translate("delivery fee", language)}
         </p>
         <p className="text-base font-roboto text-[#4E3C11] font-normal">
-          AED {deliveryFee}
+          AED {deliveryFee}.00
         </p>
       </div>
     </div>

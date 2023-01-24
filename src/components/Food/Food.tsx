@@ -69,8 +69,8 @@ function Food(props: any) {
               <p
                 className={clsx(
                   language === "EN"
-                    ? "text-xl font-bold"
-                    : "text-2xl font-normal",
+                    ? "text-2xl font-bold"
+                    : "text-2xl font-bold",
                   " text-main-color capitalize"
                 )}
               >
