@@ -36,12 +36,12 @@ export interface OrderD {
         en: string;
       };
       quantity: number;
-      topping: [
-        {
-          name: string;
-          price: string;
-        }
-      ];
+    }
+  ];
+  topping: [
+    {
+      name: string;
+      price: string;
     }
   ];
   address: {

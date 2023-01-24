@@ -27,7 +27,7 @@ function PanelSideBar() {
         />
         <PanelTab
           Icon={ArrowTrendingUpIcon}
-          name="last order"
+          name="last indoor order"
           address="/panel/lastindoororder"
         />
       </ul>

@@ -29,7 +29,7 @@ const LastOrderIndoor = () => {
                 Product
               </th>
               <th scope="col" className="py-3 px-6">
-                Payment Method
+                Toppings{" "}
               </th>
               <th scope="col" className="py-3 px-6">
                 <span>Status</span>
@@ -50,21 +50,23 @@ const LastOrderIndoor = () => {
                         <div className="flex">
                           <p>quantiry</p> :<p>{item.quantity}</p>
                         </div>
-                        {item.topping?.length > 0 ? (
-                          <div>
-                            product toppings:
-                            <p>
-                              {item.topping?.map((item) => (
-                                <div>
-                                  <p>{item.name}</p>
-                                  <p>{item.price}</p>
-                                </div>
-                              ))}
-                            </p>
-                          </div>
-                        ) : null}
                       </div>
                     ))}
+                  </td>
+                  <td>
+                    {item.topping?.length > 0 ? (
+                      <div>
+                        product toppings:
+                        <p>
+                          {item.topping?.map((item) => (
+                            <div>
+                              <p>{item.name}</p>
+                              <p>{item.price}</p>
+                            </div>
+                          ))}
+                        </p>
+                      </div>
+                    ) : null}
                   </td>
                   <td className="py-4 px-6">{item.status}</td>
                 </tr>
