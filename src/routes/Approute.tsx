@@ -19,11 +19,13 @@ import {
 } from "../pages";
 import MapPage from "../pages/Map";
 import EditTopping from "../pages/Panel/EditTopping";
+import LastOrderIndoor from "../pages/Panel/LastOrderIndoor";
 
 export const DashboardRoutes = [
   { path: "/lastorder", component: <LastOrder /> },
   { path: "/panelcategory", component: <PanelCategory /> },
   { path: "/food", component: <Food /> },
+  { path: "/lastindoororder", component: <LastOrderIndoor /> },
   { path: "/food/:id", component: <EditFood /> },
   { path: "/topping/:name", component: <EditTopping /> },
 ];

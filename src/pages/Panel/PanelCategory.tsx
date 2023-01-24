@@ -1,5 +1,6 @@
 import { Button } from "@material-tailwind/react";
 import React from "react";
+import ReactPaginate from "react-paginate";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { toast } from "react-toastify";
 import Loading from "../../components/Coustom/Loading";
@@ -13,6 +14,9 @@ function PanelCategory() {
     queryKey: ["category"],
     queryFn: getAllCategoryFn,
   });
+  const [pageNumber, setPageNumber] = React.useState(0);
+  const userPerPage = 10;
+  const pagesVisited = pageNumber * userPerPage;
 
   const [open, setOpen] = React.useState(false);
   const [editopen, setEditOpen] = React.useState(false);
@@ -34,11 +38,16 @@ function PanelCategory() {
       },
     }
   );
+  const changePage = ({ selected }: any) => {
+    setPageNumber(selected);
+  };
 
   const onDeleteHandler = (Id: string) => {
     deleteCategory(Id);
   };
   if (isLoading) return <Loading />;
+  if (error) return <p>something went wrong</p>;
+  const pageCount = Math.ceil(data.length / userPerPage);
   return (
     <div className="overflow-x-auto p-4">
       <AddCategory open={open} setOpen={setOpen} />
@@ -67,26 +76,47 @@ function PanelCategory() {
             </tr>
           </thead>
           <tbody>
-            {data.map((item: CategoryD) => (
-              <tr className="border-b bg-white">
-                <td key={item._id} className="py-4 px-6">
-                  {item.name.en}
-                </td>
-                <td className="py-4 px-6">{item.name.ar}</td>
-                <td className="py-4 px-6">
-                  <Button id={item._id} onClick={handleEditOpen} color="blue">
-                    Edit
-                  </Button>
-                </td>
-                <td className="py-4 px-6">
-                  <Button onClick={() => onDeleteHandler(item._id)} color="red">
-                    Delete
-                  </Button>
-                </td>
-              </tr>
-            ))}
+            {data
+              .slice(pagesVisited, pagesVisited + userPerPage)
+              .map((item: CategoryD) => (
+                <tr className="border-b bg-white">
+                  <td key={item._id} className="py-4 px-6">
+                    {item.name.en}
+                  </td>
+                  <td className="py-4 px-6">{item.name.ar}</td>
+                  <td className="py-4 px-6">
+                    <Button id={item._id} onClick={handleEditOpen} color="blue">
+                      Edit
+                    </Button>
+                  </td>
+                  <td className="py-4 px-6">
+                    <Button
+                      onClick={() => onDeleteHandler(item._id)}
+                      color="red"
+                    >
+                      Delete
+                    </Button>
+                  </td>
+                </tr>
+              ))}
           </tbody>
         </table>
+        <div className="pb-4">
+          <ReactPaginate
+            previousLabel={"<"}
+            nextLabel={">"}
+            pageRangeDisplayed={1}
+            marginPagesDisplayed={1}
+            breakLabel="..."
+            pageCount={pageCount}
+            onPageChange={changePage}
+            containerClassName={"paginationBttns"}
+            previousLinkClassName={"previousBttn"}
+            nextLinkClassName={"nextBttn"}
+            disabledClassName={"paginationDisabled"}
+            activeClassName={"paginationActive"}
+          />
+        </div>
       </div>
     </div>
   );

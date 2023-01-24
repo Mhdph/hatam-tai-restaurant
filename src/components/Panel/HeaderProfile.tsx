@@ -1,6 +1,7 @@
 import { ArrowLeftOnRectangleIcon, UserIcon } from "@heroicons/react/20/solid";
 
 function HeaderProfile({ profile, setProfile }: any) {
+  const username = localStorage.getItem("token");
   return (
     <div className="hidden lg:flex w-full pr-6">
       <div className="w-1/2 h-full hidden lg:flex items-center pl-6 pr-24"></div>
@@ -32,7 +33,7 @@ function HeaderProfile({ profile, setProfile }: any) {
                 <div className="w-2 h-2 rounded-full bg-green-400 border border-white absolute inset-0 mb-0 mr-0 m-auto" />
               </div>
             </div>
-            <p className="text-gray-800 text-sm mx-3">Jane Doe</p>
+            <p className="text-gray-800 text-sm mx-3">{username}</p>
           </div>
         </div>
       </div>
