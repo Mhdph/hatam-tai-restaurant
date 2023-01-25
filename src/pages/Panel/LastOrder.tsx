@@ -57,10 +57,10 @@ const LastOrder = () => {
                     {item.products?.map((item) => (
                       <div className="flex items-center capitalize gap-2">
                         <div className="flex">
-                          <p>name</p> :<p>{item?.name.en}</p>
+                          <p>{item?.name.en}:</p>
                         </div>
                         <div className="flex">
-                          <p>quantiry</p> :<p>{item.quantity}</p>
+                          <p>{item.quantity}</p>
                         </div>
                       </div>
                     ))}
@@ -68,12 +68,13 @@ const LastOrder = () => {
                   <td>
                     {item.topping?.length > 0 ? (
                       <div>
-                        product toppings:
                         <p>
                           {item.topping?.map((item) => (
                             <div>
-                              <p>{item.name}</p>
-                              <p>{item.price}</p>
+                              <div className="flex items-center gap-1">
+                                <p>{item.name.en}:</p>
+                                <p>{item.quantity}</p>
+                              </div>
                             </div>
                           ))}
                         </p>

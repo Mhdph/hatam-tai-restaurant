@@ -69,7 +69,7 @@ function Food(props: any) {
               <p
                 className={clsx(
                   language === "EN"
-                    ? "text-2xl font-bold"
+                    ? "text-[23px] font-bold"
                     : "text-2xl font-bold",
                   " text-main-color capitalize"
                 )}
@@ -79,8 +79,8 @@ function Food(props: any) {
               <p
                 className={clsx(
                   language === "EN"
-                    ? "font-roboto text-sm font-medium "
-                    : "font-bernardo text-xl mt-2 font-normal",
+                    ? "font-roboto text-base font-medium "
+                    : "font-bernardo text-base mt-2 font-normal",
                   " text-secondary-color capitalize"
                 )}
               >
@@ -93,7 +93,7 @@ function Food(props: any) {
           </div>
           <div className="flex-col px-2 md:px-2 justify-around">
             <p className="font-normal mb-4 text-base text-center font-roboto text-secondary-color uppercase">
-              AED {price}
+              AED {price}.00
             </p>
             <button
               onClick={() => addToCart()}

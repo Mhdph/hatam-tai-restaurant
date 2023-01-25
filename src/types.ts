@@ -40,8 +40,11 @@ export interface OrderD {
   ];
   topping: [
     {
-      name: string;
+      name: {
+        en: string;
+      };
       price: string;
+      quantity: string;
     }
   ];
   address: {

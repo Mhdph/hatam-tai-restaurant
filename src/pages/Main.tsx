@@ -35,7 +35,12 @@ function Main() {
     >
       <Arrowback />
       <div className="flex justify-between px-6 md:px-8 items-center">
-        <p className="font-bold text-3xl capitalize  text-main-color">
+        <p
+          className={clsx(
+            language === "EN" ? "text-3xl" : "text-[40px]",
+            "font-bold capitalize  text-main-color"
+          )}
+        >
           {translate(id, language)}
         </p>
         <img src={logo} alt="" />
