@@ -45,7 +45,7 @@ function Main() {
           <Food product={product} />
         ))}
       </div>
-      <img src={Kashi} className="-z-10 absolute -bottom-20" alt="" />
+      <img src={Kashi} className="-z-10 absolute right-2 -bottom-20" alt="" />
       {quantity > 0 ? <Bucket /> : null}
       <Footer fixed />
     </div>

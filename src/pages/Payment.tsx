@@ -65,10 +65,8 @@ function Payment() {
   };
 
   return (
-    <div className="h-screen">
-      <div className="px-6">
-        <Arrowback />
-      </div>
+    <div className="h-full">
+      <Arrowback />
       <Header title={translate("payment method", language)} />
       <div
         className={clsx(
@@ -148,10 +146,14 @@ function Payment() {
         </div>
         {error && <p>{errorMessage}</p>}
         <div className="mt-12 mb-12">
-          <Button
-            handle={submitOrder}
-            title={translate("place order", language)}
-          />
+          <button
+            onClick={submitOrder}
+            className="button_complate font-bernardo w-full text-center text-white py-2.5 cursor-pointer font-bold text-2xl uppercase"
+          >
+            <p className="font-bernardo">
+              {translate("place order", language)}
+            </p>
+          </button>
         </div>
         <Footer />
       </div>

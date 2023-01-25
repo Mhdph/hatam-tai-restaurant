@@ -112,7 +112,7 @@ function Delivery() {
           />
         </div>
       </div>
-      <img src={Kashi} className="-z-10 absolute bottom-20" alt="" />
+      <img src={Kashi} className="-z-10 absolute -bottom-20" alt="" />
       <div className="mb-8">
         <Footer />
       </div>

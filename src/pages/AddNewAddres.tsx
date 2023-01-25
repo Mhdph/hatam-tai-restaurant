@@ -83,7 +83,7 @@ function AddNewAddres() {
           <Tabs setData={setData} data={data} />
         </div>
         <AddressButton submitForm={handleSubmitForm} />
-        <img src={Kashi} className="-z-10 absolute bottom-20" alt="" />
+        <img src={Kashi} className="-z-10 absolute left-4 -bottom-20" alt="" />
       </div>
     </div>
   );
