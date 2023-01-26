@@ -9,8 +9,9 @@ import Arrowback from "../components/Common/Arrowback";
 import Bucket from "../components/Common/Bucket";
 import Footer from "../components/Common/Footer";
 import Loading from "../components/Coustom/Loading";
+import Additional from "../components/Food/Additional";
 import Food from "../components/Food/Food";
-import { getAllFoodFn } from "../config";
+import { getAllFoodFn, getAllOneAdditionalFn } from "../config";
 import { translate } from "../i18n";
 import { FoodD } from "../types";
 
@@ -20,8 +21,16 @@ function Main() {
   const { isLoading, data, error } = useQuery("get all food", async () => {
     return await getAllFoodFn(id);
   });
-
+  const {
+    isLoading: AdditionalLoading,
+    data: AdditionalData,
+    error: AdditionalEroor,
+  } = useQuery("get all additonal", async () => {
+    return await getAllOneAdditionalFn(id);
+  });
   if (isLoading) return <Loading />;
+  if (AdditionalLoading) return <Loading />;
+  console.log(AdditionalData);
   const language = localStorage.getItem("language");
 
   return (
@@ -30,10 +39,12 @@ function Main() {
         language === "EN"
           ? "left_direction font-roboto"
           : "right_direction font-iran",
-        "h-screen"
+        "h-full"
       )}
     >
-      <Arrowback />
+      <div className="mr-5">
+        <Arrowback />
+      </div>
       <div className="flex justify-between px-6 md:px-8 items-center">
         <p
           className={clsx(
@@ -45,14 +56,19 @@ function Main() {
         </p>
         <img src={logo} alt="" />
       </div>
-      <div className="flex flex-col md:flex-row md:justify-center md:items-center">
+      <div className="flex flex-col h-screen overflow-scroll md:flex-row md:justify-center md:items-center">
         {data.map((product: FoodD) => (
           <Food product={product} />
+        ))}
+        {AdditionalData.map((additional: FoodD) => (
+          <Additional product={additional} />
         ))}
       </div>
       <img src={Kashi} className="-z-10 absolute right-2 -bottom-20" alt="" />
       {quantity > 0 ? <Bucket /> : null}
-      <Footer fixed />
+      <div className="mt-28">
+        <Footer fixed />
+      </div>
     </div>
   );
 }

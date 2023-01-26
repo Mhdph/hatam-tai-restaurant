@@ -25,8 +25,17 @@ export const getAllFoodWoFFn = async () => {
   return response.data;
 };
 
+export const getAllAdditionalFn = async () => {
+  const response = await api.get(`/additional`);
+  return response.data;
+};
+
 export const getAllOneFoodFn = async (id: string) => {
   const response = await api.get(`/food/${id}`);
+  return response.data;
+};
+export const getAllOneAdditionalFn = async (id: any) => {
+  const response = await api.get(`/additional/${id}`);
   return response.data;
 };
 export const getAllOrderFn = async () => {
@@ -56,5 +65,9 @@ export const deleteFoodFn = async (Id: string) => {
 };
 export const deleteToppingFn = async (Id: string) => {
   const response = await api.delete<any>(`/topping/${Id}`);
+  return response.data;
+};
+export const deleteAdditionalFn = async (Id: string) => {
+  const response = await api.delete<any>(`/additional/${Id}`);
   return response.data;
 };

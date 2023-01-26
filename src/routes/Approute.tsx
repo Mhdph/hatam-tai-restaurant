@@ -18,6 +18,8 @@ import {
   EditFood,
 } from "../pages";
 import MapPage from "../pages/Map";
+import Additional from "../pages/Panel/additional";
+import EditAdditonal from "../pages/Panel/additional/EditAditional";
 import EditTopping from "../pages/Panel/EditTopping";
 import LastOrderIndoor from "../pages/Panel/LastOrderIndoor";
 
@@ -27,7 +29,10 @@ export const DashboardRoutes = [
   { path: "/food", component: <Food /> },
   { path: "/lastindoororder", component: <LastOrderIndoor /> },
   { path: "/food/:id", component: <EditFood /> },
+  { path: "/additonal", component: <Additional /> },
+  { path: "/additonal/:id", component: <EditAdditonal /> },
   { path: "/topping/:name", component: <EditTopping /> },
+  ,
 ];
 
 function AppRoutes() {

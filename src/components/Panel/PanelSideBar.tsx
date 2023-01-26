@@ -3,6 +3,7 @@ import {
   TagIcon,
   CakeIcon,
   ArrowTrendingUpIcon,
+  FolderPlusIcon,
 } from "@heroicons/react/20/solid";
 import PanelTab from "./PanelTab";
 import { logo } from "../../assets";
@@ -29,6 +30,11 @@ function PanelSideBar() {
           Icon={ArrowTrendingUpIcon}
           name="last indoor order"
           address="/panel/lastindoororder"
+        />
+        <PanelTab
+          Icon={FolderPlusIcon}
+          name="additional"
+          address="/panel/additonal"
         />
       </ul>
     </div>

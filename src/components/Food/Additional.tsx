@@ -1,11 +1,11 @@
 import clsx from "clsx";
 import React from "react";
 import { useDispatch } from "react-redux";
-import { toast } from "react-toastify";
 import { addItem } from "../../app/CardSlice";
-import { ommlet } from "../../assets";
+import { translate } from "../../i18n";
+import Header from "../Common/Header";
 import CardDesc from "./CardDesc";
-function Food(props: any) {
+function Additional(props: any) {
   const { image, name, desc, price, _id, quantity } = props.product;
   const [open, setOpen] = React.useState(false);
   const totalprice = price;
@@ -56,6 +56,16 @@ function Food(props: any) {
         handleOpen={handleOpen}
         quantity={quantity}
       />
+      <p
+        className={clsx(
+          language === "EN"
+            ? "font-roboto text-4xl"
+            : "font-iran text-4xl mr-6",
+          "font-bold capitalize mt-6 text-main-color"
+        )}
+      >
+        {translate("additional", language)}
+      </p>{" "}
       <div className="pt-6 px-6">
         <div className="card-food z-10 justify-between flex items-center">
           <div
@@ -108,4 +118,4 @@ function Food(props: any) {
   );
 }
 
-export default Food;
+export default Additional;
