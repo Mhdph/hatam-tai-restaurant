@@ -3,8 +3,8 @@ import React from "react";
 import { useQuery } from "react-query";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+import { ArKashi, Kashi } from "../assets";
 import logo from "../assets/circle logo.png";
-import Kashi from "../assets/kashi.png";
 import Arrowback from "../components/Common/Arrowback";
 import Bucket from "../components/Common/Bucket";
 import Footer from "../components/Common/Footer";
@@ -34,38 +34,46 @@ function Main() {
   const language = localStorage.getItem("language");
 
   return (
-    <div
-      className={clsx(
-        language === "EN"
-          ? "left_direction font-roboto"
-          : "right_direction font-iran",
-        "h-full"
-      )}
-    >
+    <div>
       <div className="mr-5">
         <Arrowback />
       </div>
-      <div className="flex justify-between px-6 md:px-8 items-center">
-        <p
+      <div
+        className={clsx(
+          language === "EN"
+            ? "left_direction font-roboto"
+            : "right_direction font-iran"
+        )}
+      >
+        <div className="flex justify-between px-6 md:px-8 items-center">
+          <p
+            className={clsx(
+              language === "EN" ? "text-3xl" : "text-[40px]",
+              "font-bold capitalize  text-main-color"
+            )}
+          >
+            {translate(id, language)}
+          </p>
+          <img src={logo} alt="" />
+        </div>
+        <div className="flex flex-col h-screen overflow-scroll ">
+          {data.map((product: FoodD) => (
+            <Food product={product} />
+          ))}
+          {AdditionalData.map((additional: FoodD) => (
+            <Additional product={additional} />
+          ))}
+        </div>
+        <img
+          src={language === "EN" ? Kashi : ArKashi}
           className={clsx(
-            language === "EN" ? "text-3xl" : "text-[40px]",
-            "font-bold capitalize  text-main-color"
+            language === "EN" ? "right-16" : "right-2",
+            "-z-10 absolute  -bottom-20"
           )}
-        >
-          {translate(id, language)}
-        </p>
-        <img src={logo} alt="" />
+          alt=""
+        />
+        {quantity > 0 ? <Bucket /> : null}
       </div>
-      <div className="flex flex-col h-screen overflow-scroll md:flex-row md:justify-center md:items-center">
-        {data.map((product: FoodD) => (
-          <Food product={product} />
-        ))}
-        {AdditionalData.map((additional: FoodD) => (
-          <Additional product={additional} />
-        ))}
-      </div>
-      <img src={Kashi} className="-z-10 absolute right-2 -bottom-20" alt="" />
-      {quantity > 0 ? <Bucket /> : null}
       <div className="mt-28">
         <Footer fixed />
       </div>

@@ -35,7 +35,7 @@ function Panel() {
           <Routes>
             <Route element={<ProtectedRoute />}>
               <Route index element={<LastOrder />} />
-              {DashboardRoutes.map((route) => (
+              {DashboardRoutes.map((route: any) => (
                 <Route
                   key={route.path}
                   path={route.path}

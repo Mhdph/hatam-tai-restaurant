@@ -12,7 +12,7 @@ function Welcome() {
   };
 
   return (
-    <div className="font-iran h-full">
+    <div className="font-iran h-full md:h-screen">
       <div className="flex flex-col items-center text-main-color">
         <img className="mt-10" src={logo} alt="logo" />
         <div className="flex mt-4 items-center justify-center gap-8 md:gap-40">
@@ -38,7 +38,7 @@ function Welcome() {
         alt="flower"
         className="absolute -bottom-24 md:left-[360px] md:bottom-32 -z-10"
       />
-      <div className="xs:mt-20 mt-12 2xs:mt-20 md:mt-48 px-6">
+      <div className="xs:mt-20 mt-12 2xs:mt-20 md:mt-96 px-6">
         <Footer />
       </div>
     </div>

@@ -65,95 +65,96 @@ function Payment() {
   };
 
   return (
-    <div className="h-full">
+    <div className="h-full md:h-screen">
       <Arrowback />
-      <Header title={translate("payment method", language)} />
       <div
         className={clsx(
           language === "EN"
             ? "left_direction font-roboto"
-            : "right_direction font-bernardo",
-          "px-6"
+            : "right_direction font-bernardo"
         )}
       >
-        <p className="text-secondary-color pl-2 mb-4 font-semibold text-[20px] capitalize">
-          {translate("select your payment method", language)}
-        </p>
-        <div className="payment mb-4 px-4 py-4 flex items-center ">
-          <div className="flex items-center gap-3">
-            <div className="pr-3">
-              <label className="container">
-                <input
-                  name="default-radio"
-                  value="cash on delivery"
-                  type="checkbox"
-                  onChange={updateCash}
-                />
-                <span className="checkmark"></span>
-              </label>
-            </div>
-            <p className="text-secondary-color text-base capitalize font-semibold">
-              {translate("cash on delivery", language)}
-            </p>
-          </div>
-        </div>
-        <div className="payment mb-4 px-4 py-4 flex items-center ">
-          <div className="flex items-center gap-3">
-            <div className="pr-3">
-              <label className="container">
-                <input
-                  name="default-radio"
-                  value="card on delivery"
-                  type="checkbox"
-                  onChange={updateCash}
-                />
-                <span className="checkmark"></span>
-              </label>
-            </div>
-            <p className="text-secondary-color text-base capitalize font-semibold">
-              {translate("card on delivery", language)}
-            </p>
-          </div>
-        </div>
-        <div className="payment mb-4 px-4 py-4 flex items-center ">
-          <div className="flex items-center gap-3">
-            <div className="pr-3">
-              <label className="container">
-                <input
-                  name="default-radio"
-                  value="other option of payment"
-                  type="checkbox"
-                  onChange={updateCash}
-                />
-                <span className="checkmark"></span>
-              </label>
-            </div>
-            <div className="flex w-full flex-col">
+        <Header title={translate("payment method", language)} />
+        <div className="px-6">
+          <p className="text-secondary-color pl-2 mb-4 font-semibold text-[20px] capitalize">
+            {translate("select your payment method", language)}
+          </p>
+          <div className="payment mb-4 px-4 py-4 flex items-center ">
+            <div className="flex items-center gap-3">
+              <div className="pr-3">
+                <label className="container">
+                  <input
+                    name="default-radio"
+                    value="cash on delivery"
+                    type="checkbox"
+                    onChange={updateCash}
+                  />
+                  <span className="checkmark"></span>
+                </label>
+              </div>
               <p className="text-secondary-color text-base capitalize font-semibold">
-                {translate("other option of payment", language)}
-              </p>
-              <p className="text-[#E7D5AA] capitalize text-xs font-semibold">
-                {translate("Please contact us on whats app", language)}
-                (026220095)
+                {translate("cash on delivery", language)}
               </p>
             </div>
           </div>
-        </div>
-        <div className="my-8 py-3 subtotal">
-          <OrderFee />
-          <hr className=" border-opacity-30 border-[0.1px] my-4 border-[#4e3c114d]" />
-          <OrderFeeTotal />
-        </div>
-        {error && <p>{errorMessage}</p>}
-        <div className="mt-12 mb-12">
-          <button
-            onClick={submitOrder}
-            className="button_complate font-bernardo w-full text-center text-white py-2.5 cursor-pointer font-bold text-2xl uppercase"
-          >
-            <p className="font-bernardo">
-              {translate("place order", language)}
-            </p>
-          </button>
+          <div className="payment mb-4 px-4 py-4 flex items-center ">
+            <div className="flex items-center gap-3">
+              <div className="pr-3">
+                <label className="container">
+                  <input
+                    name="default-radio"
+                    value="card on delivery"
+                    type="checkbox"
+                    onChange={updateCash}
+                  />
+                  <span className="checkmark"></span>
+                </label>
+              </div>
+              <p className="text-secondary-color text-base capitalize font-semibold">
+                {translate("card on delivery", language)}
+              </p>
+            </div>
+          </div>
+          <div className="payment mb-4 px-4 py-4 flex items-center ">
+            <div className="flex items-center gap-3">
+              <div className="pr-3">
+                <label className="container">
+                  <input
+                    name="default-radio"
+                    value="other option of payment"
+                    type="checkbox"
+                    onChange={updateCash}
+                  />
+                  <span className="checkmark"></span>
+                </label>
+              </div>
+              <div className="flex w-full flex-col">
+                <p className="text-secondary-color text-base capitalize font-semibold">
+                  {translate("other option of payment", language)}
+                </p>
+                <p className="text-[#E7D5AA] capitalize text-xs font-semibold">
+                  {translate("Please contact us on whats app", language)}
+                  (026220095)
+                </p>
+              </div>
+            </div>
+          </div>
+          <div className="my-8 py-3 subtotal">
+            <OrderFee />
+            <hr className=" border-opacity-30 border-[0.1px] my-4 border-[#4e3c114d]" />
+            <OrderFeeTotal />
+          </div>
+          {error && <p>{errorMessage}</p>}
+          <div className="mt-12 mb-12">
+            <button
+              onClick={submitOrder}
+              className="button_complate font-bernardo w-full text-center text-white py-2.5 cursor-pointer font-bold text-2xl uppercase"
+            >
+              <p className="font-bernardo">
+                {translate("place order", language)}
+              </p>
+            </button>
+          </div>
         </div>
         <Footer />
       </div>

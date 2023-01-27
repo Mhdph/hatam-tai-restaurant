@@ -12,7 +12,7 @@ function Arrowback() {
       src={arrow}
       alt="arroback"
       className={clsx(
-        language === "EN" ? "ml-6" : "mr-80 xs:mr-96",
+        language === "EN" ? "ml-6" : "ml-6",
         "h-5 arrow_direction w-5 mt-12 md:ml-8 cursor-pointer"
       )}
     />

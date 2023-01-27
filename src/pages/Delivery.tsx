@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { Kashi } from "../assets";
+import { ArKashi, Kashi } from "../assets";
 import Arrowback from "../components/Common/Arrowback";
 import Button from "../components/Coustom/Button";
 import Footer from "../components/Common/Footer";
@@ -33,17 +33,25 @@ function Delivery() {
   const address = useSelector((state: any) => state.user);
 
   return (
-    <div
-      className={clsx(
-        language === "EN"
-          ? "left_direction font-roboto"
-          : "right_direction font-iran",
-        "mt-2"
-      )}
-    >
+    <div className="mt-2 md:h-screen">
       <Arrowback />
-      <Header title={translate("Delivery", language)} />
-      <div className="px-4">
+      <div
+        className={clsx(
+          language === "EN"
+            ? "left_direction font-roboto"
+            : "right_direction font-iran"
+        )}
+      >
+        <Header title={translate("Delivery", language)} />
+      </div>
+      <div
+        className={clsx(
+          language === "EN"
+            ? "left_direction font-roboto"
+            : "right_direction font-iran",
+          "px-4"
+        )}
+      >
         <p className="text-base ml-2 mb-2 font-semibold capitalize text-secondary-color">
           {translate("phone number", language)}
         </p>
@@ -112,7 +120,14 @@ function Delivery() {
           />
         </div>
       </div>
-      <img src={Kashi} className="-z-10 absolute -bottom-20" alt="" />
+      <img
+        src={language === "EN" ? Kashi : ArKashi}
+        className={clsx(
+          language === "EN" ? "right-16" : "right-2",
+          "-z-10 absolute  -bottom-20 md:-bottom-0 md:top-44"
+        )}
+        alt=""
+      />{" "}
       <div className="mb-8">
         <Footer />
       </div>

@@ -17,7 +17,7 @@ function EditAdditonal() {
   useEffect(() => {
     const getOneFoodFn = async () => {
       try {
-        const response = await axios.get(`${baseUrl}/additional/${id}`);
+        const response = await axios.get(`${baseUrl}/additional/id/${id}`);
         setData(response.data);
         console.log(data);
         setLoading(false);

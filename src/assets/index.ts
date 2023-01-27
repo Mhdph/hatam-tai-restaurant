@@ -1,6 +1,7 @@
 export { default as Plus } from "./plus.png";
 export { default as Minus } from "./minus.png";
 export { default as Kashi } from "./kashi.png";
+export { default as ArKashi } from "./arkashi.png";
 export { default as hatam } from "./hatam.png";
 export { default as hatamphoto } from "./hatamphoto.png";
 export { default as hatamarabic } from "./hatamarabic.png";

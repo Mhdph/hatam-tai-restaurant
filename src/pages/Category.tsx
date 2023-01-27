@@ -18,7 +18,7 @@ function Category() {
   if (isLoading) return <Loading />;
 
   return (
-    <div className="font-iran flex flex-col h-full">
+    <div className="font-iran flex flex-col h-full md:h-screen">
       <div className={clsx(language === "EN" ? "" : "px-6")}>
         <Arrowback />
       </div>
@@ -44,7 +44,7 @@ function Category() {
               <img
                 src={categorykashi}
                 alt=""
-                className="h-16 -z-10 relative -mb-20 bottom-16 left-12 2xs:left-14 md:left-[310px]"
+                className="h-16 -z-10 relative -mb-20 bottom-16 left-16 md:left-[270px] "
               />
             </div>
           </Link>

@@ -1,5 +1,5 @@
 import React from "react";
-import { Kashi } from "../assets";
+import { ArKashi, Kashi } from "../assets";
 import Apartmant from "../components/Tabs/Apartmant";
 import Arrowback from "../components/Common/Arrowback";
 import Header from "../components/Common/Header";
@@ -42,48 +42,57 @@ function AddNewAddres() {
   };
 
   return (
-    <div
-      className={clsx(
-        language === "EN"
-          ? "left_direction font-roboto"
-          : "right_direction font-iran",
-        ""
-      )}
-    >
+    <div className="md:h-screen">
       <Arrowback />
-      <Header title={translate("Add New Address", language)} />
       <div
         className={clsx(
           language === "EN"
             ? "left_direction font-roboto"
-            : "right_direction font-bernardo",
-          "px-4"
+            : "right_direction font-iran",
+          "md:h-screen"
         )}
       >
-        <div className="flex flex-col gap-3 ">
-          <Input
-            placeText={translate("First Name", language)}
-            name="firstname"
-            changeText={changeInput}
+        <Header title={translate("Add New Address", language)} />
+        <div
+          className={clsx(
+            language === "EN"
+              ? "left_direction font-roboto"
+              : "right_direction font-bernardo",
+            "px-4"
+          )}
+        >
+          <div className="flex flex-col gap-3 ">
+            <Input
+              placeText={translate("First Name", language)}
+              name="firstname"
+              changeText={changeInput}
+            />
+            <Input
+              placeText={translate("last name", language)}
+              name="lastname"
+              changeText={changeInput}
+            />
+            <p className="text-sm ml-2 font-semibold text-main-color capitalize">
+              {translate("address details", language)}
+            </p>
+            <Input placeText={translate("abu dhabi", language)} />
+            <Input
+              placeText={translate("district", language)}
+              name="distruct"
+              changeText={changeInput}
+            />
+            <Tabs setData={setData} data={data} />
+          </div>
+          <AddressButton submitForm={handleSubmitForm} />
+          <img
+            src={language === "EN" ? Kashi : ArKashi}
+            className={clsx(
+              language === "EN" ? "right-16" : "right-2",
+              "-z-10 absolute  -bottom-20 md:-bottom-0 md:top-44"
+            )}
+            alt=""
           />
-          <Input
-            placeText={translate("last name", language)}
-            name="lastname"
-            changeText={changeInput}
-          />
-          <p className="text-sm ml-2 font-semibold text-main-color capitalize">
-            {translate("address details", language)}
-          </p>
-          <Input placeText={translate("abu dhabi", language)} />
-          <Input
-            placeText={translate("district", language)}
-            name="distruct"
-            changeText={changeInput}
-          />
-          <Tabs setData={setData} data={data} />
         </div>
-        <AddressButton submitForm={handleSubmitForm} />
-        <img src={Kashi} className="-z-10 absolute left-4 -bottom-20" alt="" />
       </div>
     </div>
   );
