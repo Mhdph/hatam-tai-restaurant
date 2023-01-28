@@ -36,7 +36,7 @@ function Topping(props: any) {
       )}
     >
       <p className="font-medium mt-2 text-base text-[#F9EFBC] capitalize">
-        {language === "EN" ? name.en : name.ar}
+        {language === "EN" ? name.ar : name.en}
       </p>
       <div className="flex items-center gap-2">
         <p

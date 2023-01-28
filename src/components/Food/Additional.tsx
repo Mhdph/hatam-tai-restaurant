@@ -56,16 +56,7 @@ function Additional(props: any) {
         handleOpen={handleOpen}
         quantity={quantity}
       />
-      <p
-        className={clsx(
-          language === "EN"
-            ? "font-roboto text-4xl"
-            : "font-iran text-4xl mr-6",
-          "font-bold capitalize mt-6 text-main-color"
-        )}
-      >
-        {translate("additional", language)}
-      </p>{" "}
+
       <div className="pt-6 px-6">
         <div className="card-food z-10 justify-between flex items-center">
           <div

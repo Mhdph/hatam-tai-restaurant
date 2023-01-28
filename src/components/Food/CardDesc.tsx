@@ -1,14 +1,11 @@
-import { Dialog, DialogHeader, DialogBody } from "@material-tailwind/react";
+import { Dialog, DialogBody } from "@material-tailwind/react";
+import axios from "axios";
 import clsx from "clsx";
 import React from "react";
-import { useQuery } from "react-query";
 import { useDispatch } from "react-redux";
 import { addItem } from "../../app/CardSlice";
-import { ommlet, Kashi } from "../../assets";
-import { getToppingFn } from "../../config";
+import { baseUrl } from "../../config";
 import { translate } from "../../i18n";
-import Footer from "../Common/Footer";
-import Header from "../Common/Header";
 import Loading from "../Coustom/Loading";
 import Topping from "./Topping";
 const PF = "http://api.hammtimm.ir/images/";
@@ -21,11 +18,27 @@ function CardDesc({
   desc,
   price,
   quantity,
+  limitTopping,
 }: any) {
-  const { isLoading, data, error } = useQuery("get all toppings", async () => {
-    return await getToppingFn(name.en);
-  });
-  if (isLoading) return <Loading />;
+  const [loading, setLoading] = React.useState(true);
+  const [data, setData] = React.useState([]);
+  const [error, setError] = React.useState(false);
+
+  const getTopping = async () => {
+    try {
+      const res = await axios.get<any>(`${baseUrl}/topping/${name.en}`);
+      console.log(res);
+      setData(res.data);
+      setLoading(false);
+    } catch (error) {
+      setError(true);
+    }
+  };
+  React.useEffect(() => {
+    getTopping();
+  }, [name.en]);
+
+  if (loading) return <Loading />;
   const language = localStorage.getItem("language");
   const totalprice = price;
   const dispatch = useDispatch();
@@ -77,7 +90,7 @@ function CardDesc({
                   </p>
                   <button
                     onClick={() => addToCart()}
-                    className="text-sm font-normal w-24 h-6 text-main-color uppercase add-button"
+                    className="text-sm font-normal w-24 h-6 text-main-color uppercase outline-none add-button"
                   >
                     +ADD
                   </button>
@@ -97,7 +110,7 @@ function CardDesc({
               {data.length > 0 ? (
                 <div className="w-full px-6">
                   <div className="topping flex px-6 py-3 flex-col mt-2 mb-4">
-                    <div className="flex justify-between">
+                    <div className="flex justify-between items-center">
                       <p
                         className={clsx(
                           language === "EN" ? "font-roboto" : "font-iran",
@@ -106,6 +119,11 @@ function CardDesc({
                       >
                         {translate("toppings", language)}:
                       </p>
+                      {limitTopping > 0 && (
+                        <p className="font-roboto text-[11px] font-medium text-secondary-color">
+                          (choose up to {limitTopping} items)
+                        </p>
+                      )}
                     </div>
                     {data.map((item: any) => (
                       <Topping nameGhaza={name.en} product={item} />

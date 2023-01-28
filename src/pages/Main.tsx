@@ -60,6 +60,18 @@ function Main() {
           {data.map((product: FoodD) => (
             <Food product={product} />
           ))}
+          {AdditionalData.length > 0 ? (
+            <p
+              className={clsx(
+                language === "EN"
+                  ? "font-roboto text-4xl ml-6"
+                  : "font-iran text-4xl mr-6",
+                "font-bold capitalize mt-6 text-main-color"
+              )}
+            >
+              {translate("additional", language)}
+            </p>
+          ) : null}
           {AdditionalData.map((additional: FoodD) => (
             <Additional product={additional} />
           ))}
