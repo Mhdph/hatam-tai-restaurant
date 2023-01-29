@@ -3,7 +3,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { addTopping, removeTopping } from "../../app/toppingSlice";
 
-function Topping(props: any) {
+function YourChoise(props: any) {
   const { name, price, quantity, food, choiceList } = props.product;
   const [check, setCheck] = React.useState(false);
   const totalprice = price;
@@ -28,7 +28,7 @@ function Topping(props: any) {
 
   return (
     <div>
-      {!choiceList && (
+      {choiceList && (
         <div
           className={clsx(
             language === "EN"
@@ -53,7 +53,10 @@ function Topping(props: any) {
               <input
                 onChange={(e) => setCheck(!check)}
                 onClick={check ? () => removeCartItem() : () => addToCart()}
-                type="checkbox"
+                id="default-radio-2"
+                type="radio"
+                value="update"
+                name="default-radio"
               />
               <span className="checkmarkTopping"></span>
             </label>
@@ -64,4 +67,4 @@ function Topping(props: any) {
   );
 }
 
-export default Topping;
+export default YourChoise;

@@ -8,6 +8,7 @@ import { baseUrl } from "../../config";
 import { translate } from "../../i18n";
 import Loading from "../Coustom/Loading";
 import Topping from "./Topping";
+import YourChoise from "./YourChoise";
 const PF = "http://api.hammtimm.ir/images/";
 
 function CardDesc({
@@ -52,7 +53,7 @@ function CardDesc({
     };
     dispatch(addItem(newItem));
   };
-
+  console.log(limitTopping);
   return (
     <div>
       <div onClick={handleOpen}></div>
@@ -114,6 +115,30 @@ function CardDesc({
                       <p
                         className={clsx(
                           language === "EN" ? "font-roboto" : "font-iran",
+                          "font-bold text-xl text-main-color capitalize"
+                        )}
+                      >
+                        {translate("your choise", language)}:
+                        <p className="text-[13px]">(Choose 1)</p>
+                      </p>
+                    </div>
+                    {data.map((item: any) => (
+                      <div>
+                        {item.choiceList === true ? (
+                          <YourChoise nameGhaza={name.en} product={item} />
+                        ) : null}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ) : null}
+              {data.length > 0 ? (
+                <div className="w-full px-6">
+                  <div className="topping flex px-6 py-3 flex-col mt-2 mb-4">
+                    <div className="flex justify-between items-center">
+                      <p
+                        className={clsx(
+                          language === "EN" ? "font-roboto" : "font-iran",
                           "font-bold text-2xl text-main-color capitalize"
                         )}
                       >
@@ -126,7 +151,9 @@ function CardDesc({
                       )}
                     </div>
                     {data.map((item: any) => (
-                      <Topping nameGhaza={name.en} product={item} />
+                      <div>
+                        <Topping nameGhaza={name.en} product={item} />
+                      </div>
                     ))}
                   </div>
                 </div>

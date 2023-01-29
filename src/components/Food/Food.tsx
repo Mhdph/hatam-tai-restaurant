@@ -6,7 +6,8 @@ import { addItem } from "../../app/CardSlice";
 import { ommlet } from "../../assets";
 import CardDesc from "./CardDesc";
 function Food(props: any) {
-  const { image, name, desc, price, _id, quantity } = props.product;
+  const { image, name, desc, price, _id, quantity, limitTopping } =
+    props.product;
   const [open, setOpen] = React.useState(false);
   const totalprice = price;
   const PF = "http://api.hammtimm.ir/images/";
@@ -55,6 +56,7 @@ function Food(props: any) {
         setopen={setOpen}
         handleOpen={handleOpen}
         quantity={quantity}
+        limitTopping={limitTopping}
       />
       <div className="pt-6 px-6">
         <div className="card-food z-10 justify-between flex items-center">

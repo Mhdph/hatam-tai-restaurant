@@ -12,6 +12,7 @@ function EditTopping() {
   const [price, setPrice] = React.useState("");
   const [artoppingName, setArToppingName] = React.useState("");
   const [enToppingName, setEnToppingName] = React.useState("");
+  const [choise, setChoise] = React.useState(false);
   const { isLoading, data, error } = useQuery("get all toppings", async () => {
     return await getToppingFn(name);
   });
@@ -42,6 +43,7 @@ function EditTopping() {
         },
         price: price,
         food: name,
+        choiceList: choise,
       });
       toast.success("Topping Created successfully", {
         autoClose: 2000,
@@ -100,7 +102,6 @@ function EditTopping() {
         </div>
       ))}
       <hr className=" border-opacity-30 border-[0.1px] my-4 border-gray-800" />
-
       <Input
         placeholder="En name"
         onChange={(e) => setEnToppingName(e.target.value)}
@@ -110,6 +111,27 @@ function EditTopping() {
         onChange={(e) => setArToppingName(e.target.value)}
       />
       <Input placeholder="Price" onChange={(e) => setPrice(e.target.value)} />
+      <p>This item is your choise ?</p>
+      <div className="flex items-center gap-2">
+        <label htmlFor="">No</label>
+        <input
+          onClick={() => setChoise(false)}
+          id="default-radio-2"
+          type="radio"
+          value="update"
+          name="default-radio"
+          className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 focus:ring-2 "
+        />
+        <label htmlFor="">Yes</label>
+        <input
+          onClick={() => setChoise(true)}
+          id="default-radio-2"
+          type="radio"
+          value="update"
+          name="default-radio"
+          className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 focus:ring-2 "
+        />
+      </div>
       <Button onClick={handleAddButtonClick} color="green">
         Add new Topping
       </Button>
