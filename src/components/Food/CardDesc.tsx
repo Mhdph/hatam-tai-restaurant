@@ -53,18 +53,12 @@ function CardDesc({
     };
     dispatch(addItem(newItem));
   };
-  let mahdi = false;
 
-  const mahdifil = data.filter((item: any) => {
-    if (item.choiceList === true && item.name.ar === "rice") {
-      mahdi = true;
-    }
-  });
   return (
-    <div>
+    <div className="mt-2">
       <div onClick={handleOpen}></div>
       <Dialog
-        className=" w-full modal_bg max-w-full overflow-y-scroll mb-48"
+        className=" w-full modal_bg max-w-full h-[90%] overflow-y-scroll"
         open={open}
         size="sm"
         handler={handleOpen}
@@ -138,32 +132,34 @@ function CardDesc({
                   </div>
                 </div>
               ) : null} */}
-
-              {mahdifil && (
-                <div className="w-full px-6">
-                  <div className="topping flex px-6 py-3 flex-col mt-2 mb-4">
-                    <div className="flex justify-between items-center">
-                      <p
-                        className={clsx(
-                          language === "EN" ? "font-roboto" : "font-iran",
-                          "font-bold text-xl text-main-color capitalize"
-                        )}
-                      >
-                        {translate("your choise", language)}:
-                        <p className="text-[13px]">(Choose 1)</p>
-                      </p>
-                    </div>
-                    {data.map((item: any) => (
-                      <div>
-                        {item.choiceList === true ? (
-                          <YourChoise nameGhaza={name.en} product={item} />
-                        ) : null}
+              {data.map((item: any) => {
+                if (item.choiceList === true && item.name.ar === "rice") {
+                  return (
+                    <div className="w-full px-6">
+                      <div className="topping flex px-6 py-3 flex-col mt-2 mb-4">
+                        <div className="flex justify-between left_direction items-center">
+                          <p
+                            className="font-roboto
+                              font-bold text-xl text-main-color capitalize"
+                          >
+                            Your Choise Of
+                          </p>
+                          <p className="text-[13px] text-main-color mr-3 font-bold">
+                            (Choose 1)
+                          </p>
+                        </div>
+                        {data.map((item: any) => (
+                          <div>
+                            {item.choiceList === true ? (
+                              <YourChoise nameGhaza={name.en} product={item} />
+                            ) : null}
+                          </div>
+                        ))}
                       </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-
+                    </div>
+                  );
+                }
+              })}
               {data.length > 0 ? (
                 <div className="w-full px-6">
                   <div className="topping flex px-6 py-3 flex-col mt-2 mb-4">
