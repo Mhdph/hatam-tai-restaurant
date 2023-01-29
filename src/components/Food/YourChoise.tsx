@@ -11,6 +11,9 @@ function YourChoise(props: any) {
   const dispatch = useDispatch();
   const language = localStorage.getItem("language");
 
+  const removeCartItem = () => {
+    dispatch(removeTopping(props.product));
+  };
   const addToCart = () => {
     let newItem = {
       name,
@@ -20,10 +23,6 @@ function YourChoise(props: any) {
       food,
     };
     dispatch(addTopping(newItem));
-  };
-
-  const removeCartItem = () => {
-    dispatch(removeTopping(props.product));
   };
 
   return (

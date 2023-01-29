@@ -53,7 +53,13 @@ function CardDesc({
     };
     dispatch(addItem(newItem));
   };
-  console.log(limitTopping);
+  let mahdi = false;
+
+  const mahdifil = data.filter((item: any) => {
+    if (item.choiceList === true && item.name.ar === "rice") {
+      mahdi = true;
+    }
+  });
   return (
     <div>
       <div onClick={handleOpen}></div>
@@ -108,7 +114,7 @@ function CardDesc({
                   {language === "EN" ? desc.en : desc.ar}
                 </p>
               </div>
-              {data.length > 0 ? (
+              {/* {data.length > 0 ? (
                 <div className="w-full px-6">
                   <div className="topping flex px-6 py-3 flex-col mt-2 mb-4">
                     <div className="flex justify-between items-center">
@@ -131,7 +137,33 @@ function CardDesc({
                     ))}
                   </div>
                 </div>
-              ) : null}
+              ) : null} */}
+
+              {mahdifil && (
+                <div className="w-full px-6">
+                  <div className="topping flex px-6 py-3 flex-col mt-2 mb-4">
+                    <div className="flex justify-between items-center">
+                      <p
+                        className={clsx(
+                          language === "EN" ? "font-roboto" : "font-iran",
+                          "font-bold text-xl text-main-color capitalize"
+                        )}
+                      >
+                        {translate("your choise", language)}:
+                        <p className="text-[13px]">(Choose 1)</p>
+                      </p>
+                    </div>
+                    {data.map((item: any) => (
+                      <div>
+                        {item.choiceList === true ? (
+                          <YourChoise nameGhaza={name.en} product={item} />
+                        ) : null}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
               {data.length > 0 ? (
                 <div className="w-full px-6">
                   <div className="topping flex px-6 py-3 flex-col mt-2 mb-4">
