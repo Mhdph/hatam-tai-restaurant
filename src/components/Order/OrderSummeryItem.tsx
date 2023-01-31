@@ -8,15 +8,10 @@ import { FoodD } from "../../types";
 function OrderSummeryItem(props: any) {
   const [item, setItem] = React.useState(props.item);
   const [quantity, setQuantity] = React.useState(props.item.quantity);
-  const [mahdiPrice, setMahdiPrice] = React.useState([]);
   const language = localStorage.getItem("language");
   const price = props.item.price;
   const cartItems = useSelector((state: any) => state.cartReducer.value);
-  // React.useEffect(() => {
-  //   setMahdiPrice(
-  //     cartItems.reduce((total: number, item: any) => Number(item.totalPrice), 0)
-  //   );
-  // }, [cartItems]);
+
   const dispatch = useDispatch();
   React.useEffect(() => {
     setItem(props.item);
@@ -51,41 +46,67 @@ function OrderSummeryItem(props: any) {
   const ToppingItems = useSelector((state: any) => state.topping.value);
 
   return (
-    <div className="input_custom flex py-3 items-center justify-around ">
-      <div className="flex-col">
+    <div className="input_custom flex py-3 items-center justify-between ">
+      <div>
         <p
           className={clsx(
             language === "EN" ? "font-roboto" : "font-bernardo",
-            "font-bold capitalize text-xl text-[#4E3C11]"
+            "font-bold capitalize mx-2 text-xl text-[#4E3C11]"
           )}
         >
           {language === "EN" ? item.name.en : item.name.ar}
         </p>
-        <p className="font-bold capitalize text-xl text-[#4E3C11]"></p>
       </div>
-      <div className="flex gap-2 items-center">
-        <img
-          className="cursor-pointer"
-          src={Minus}
-          onClick={
-            quantity === 1 ? () => removeCartItem() : () => updateQuantity("-")
-          }
-        />
-        <p className="font-bold text-xl font-roboto text-main-color">
-          {quantity}
-        </p>
-        <img
-          className="cursor-pointer"
-          src={Plus}
-          alt=""
-          onClick={() => updateQuantity("+")}
-        />
-      </div>
-      <div>
-        <p className="text-base text-[#F9EFBC] font-roboto font-bold">
-          AED {props.item.totalprice}.00
-        </p>
-      </div>
+      {language === "EN" ? (
+        <div className="flex gap-2 items-center">
+          <img
+            className="cursor-pointer"
+            src={Minus}
+            onClick={
+              quantity === 1
+                ? () => removeCartItem()
+                : () => updateQuantity("-")
+            }
+          />
+          <p className="font-bold text-xl font-roboto text-main-color">
+            {quantity}
+          </p>
+          <img
+            className="cursor-pointer"
+            src={Plus}
+            alt=""
+            onClick={() => updateQuantity("+")}
+          />
+          <p className="text-base text-[#F9EFBC] font-roboto mx-2 font-bold">
+            AED {props.item.totalprice}.00
+          </p>
+        </div>
+      ) : (
+        <div className="flex gap-2 items-center">
+          <img
+            className="cursor-pointer"
+            src={Plus}
+            alt=""
+            onClick={() => updateQuantity("+")}
+          />
+          <p className="font-bold text-xl font-roboto text-main-color">
+            {quantity}
+          </p>
+          <img
+            className="cursor-pointer"
+            src={Minus}
+            onClick={
+              quantity === 1
+                ? () => removeCartItem()
+                : () => updateQuantity("-")
+            }
+          />
+
+          <p className="text-base text-[#F9EFBC] font-roboto mx-2 font-bold">
+            AED {props.item.totalprice}.00
+          </p>
+        </div>
+      )}
     </div>
   );
 }

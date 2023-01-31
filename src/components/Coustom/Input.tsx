@@ -10,7 +10,7 @@ function Input({ changeText, placeText, name }: Input) {
   return (
     <div className="w-full px-2">
       <input
-        className="input_default w-full py-4 outline-none placeholder:capitalize px-3"
+        className="input_default w-full py-4 outline-none placeholder:capitalize px-3 text-main-color font-bold"
         type="text"
         placeholder={placeText}
         onChange={changeText}

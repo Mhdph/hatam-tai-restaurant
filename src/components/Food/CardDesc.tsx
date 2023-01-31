@@ -77,11 +77,11 @@ function CardDesc({
                   className="rounded-3xl h-36 w-[136px]"
                   alt=""
                 />
-                <div className="flex-col flex items-center justify-around my-4">
+                <div className="flex-col flex items-center justify-around">
                   <p
                     className={clsx(
                       language === "EN" ? "font-roboto" : "font-iran",
-                      "font-bold text-2xl text-main-color capitalize"
+                      "font-bold text-2xl text-main-color text-center capitalize"
                     )}
                   >
                     {language === "EN" ? name.en : name.ar}

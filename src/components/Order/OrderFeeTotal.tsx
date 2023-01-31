@@ -42,7 +42,7 @@ function OrderFeeTotal() {
       <p className="text-base text-main-color font-bold capitalize">
         {translate("total", language)}{" "}
       </p>
-      <p className="text-base font-roboto text-main-color font-normal">
+      <p className="text-base font-bold font-roboto text-main-color">
         AED {totalPrice + deliveryFee + totalToppingPrice}.00
       </p>
     </div>

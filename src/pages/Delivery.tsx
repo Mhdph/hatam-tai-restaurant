@@ -17,20 +17,26 @@ function Delivery() {
     phoneNumber: "",
     SpecialRequest: "",
   });
+  const [error, setError] = React.useState(false);
   const navigate = useNavigate();
   const language = localStorage.getItem("language");
+  const address = useSelector((state: any) => state.user);
+
   const handleSubmitForm = (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
     e.preventDefault();
-    dispatch(NumberSlice.actions.saveInfo(data));
-    navigate("/payment");
+    if (address.length > 0) {
+      dispatch(NumberSlice.actions.saveInfo(data));
+      navigate("/payment");
+    } else {
+      setError(true);
+    }
   };
 
   const changeInput = (event: any) => {
     setData({ ...data, [event.target.name]: event.target.value });
   };
-  const address = useSelector((state: any) => state.user);
 
   return (
     <div className="mt-2 md:h-screen">
@@ -60,7 +66,8 @@ function Delivery() {
             onChange={changeInput}
             name="phoneNumber"
             type="text"
-            className="py-1.5 rounded-[20px] outline-none w-3/4 px-3"
+            className="py-1.5 rounded-[20px] outline-none w-3/4 px-3 placeholder:text-secondary-color placeholder:font-bold"
+            placeholder="+971"
           />
         </div>
         <p className="text-base mt-4 mb-2 ml-2 font-semibold capitalize text-secondary-color">
@@ -114,6 +121,16 @@ function Delivery() {
           ></textarea>
         </div>
         <div className="my-12">
+          {error && (
+            <p
+              className={clsx(
+                language === "EN" ? "font-roboto" : "font-bernardo",
+                "mb-4 font-bold text-xl text-center"
+              )}
+            >
+              {translate("Please add your address", language)}
+            </p>
+          )}
           <Button
             handle={handleSubmitForm}
             title={translate("next", language)}
