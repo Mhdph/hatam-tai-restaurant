@@ -1,6 +1,7 @@
 import { Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
 import Loading from "../components/Coustom/Loading";
+import MapSearch from "../components/Map/MapSearch";
 import {
   Main,
   Category,
@@ -48,7 +49,7 @@ function AppRoutes() {
         <Route path="/complate" element={<Complate />} />
         <Route path="/addaddress" element={<AddNewAddres />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/map" element={<MapPage />} />
+        <Route path="/map" element={<MapSearch />} />
         <Route path="/panel/*" element={<Panel />} />
       </Routes>
     </Suspense>
