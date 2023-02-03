@@ -6,7 +6,7 @@ import { addItem } from "../../app/CardSlice";
 import { ommlet } from "../../assets";
 import CardDesc from "./CardDesc";
 function Food(props: any) {
-  const { image, name, desc, price, _id, quantity, limitTopping } =
+  const { image, name, desc, price, topping, quantity, limitTopping, popUp } =
     props.product;
   const [open, setOpen] = React.useState(false);
   const totalprice = price;
@@ -86,10 +86,11 @@ function Food(props: any) {
                   " text-secondary-color capitalize"
                 )}
               >
-                {language === "EN"
+                {language === "EN" && popUp
                   ? desc.en.slice(0, 20)
                   : desc.ar.slice(0, 20)}
-                {desc.en.length > 20 ? "..." : null}
+                {popUp ? "..." : null}
+                {language === "EN" ? desc.en : desc.ar}
               </p>
             </div>
           </div>
@@ -98,7 +99,7 @@ function Food(props: any) {
               AED {price}.00
             </p>
             <button
-              onClick={() => addToCart()}
+              onClick={topping ? () => handleOpen() : () => addToCart()}
               className="text-sm font-normal font-roboto w-20 h-6 text-main-color uppercase add-button"
             >
               +ADD

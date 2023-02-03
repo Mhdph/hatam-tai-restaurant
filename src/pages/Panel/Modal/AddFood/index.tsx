@@ -28,6 +28,7 @@ function AddFood({ open, setOpen }: any) {
   const [file, setFile] = React.useState<any>("");
   const [limitToppings, setLimitTopping] = React.useState("0");
   const [topping, setTopping] = React.useState(false);
+  const [popUp, setpopUp] = React.useState(false);
 
   const [loading, setLoading] = React.useState(false);
 
@@ -46,6 +47,7 @@ function AddFood({ open, setOpen }: any) {
       },
       limitTopping: limitToppings,
       topping: topping,
+      popUp,
     };
     const data = new FormData();
     const filename = Date.now() + file.name;
@@ -101,22 +103,45 @@ function AddFood({ open, setOpen }: any) {
             <Input label="ArDescription" name="arDesc" onChange={changeInput} />
           </div>
           <SelectFood setUserId={setUserId} name="category" />
-          <p>This food have topping?</p>
-          <div className="flex gap-2">
-            <Radio
-              id="html"
-              name="type"
-              label="Yes"
-              className="bg-transparent"
-              onChange={(e) => setTopping(true)}
-            />
-            <Radio
-              id="react"
-              name="type"
-              label="No"
-              className="bg-transparent"
-              onChange={(e) => setTopping(false)}
-            />
+          <div className="flex justify-around">
+            <div className="flex flex-col">
+              <p>This food have topping?</p>
+              <div className="flex gap-2">
+                <Radio
+                  id="html"
+                  name="type"
+                  label="Yes"
+                  className="bg-transparent"
+                  onChange={(e) => setTopping(true)}
+                />
+                <Radio
+                  id="react"
+                  name="type"
+                  label="No"
+                  className="bg-transparent"
+                  onChange={(e) => setTopping(false)}
+                />
+              </div>
+            </div>
+            <div className="flex flex-col">
+              <p>This food have popUp?</p>
+              <div className="flex gap-2">
+                <Radio
+                  id="html"
+                  name="type"
+                  label="Yes"
+                  className="bg-transparent"
+                  onChange={(e) => setpopUp(true)}
+                />
+                <Radio
+                  id="react"
+                  name="type"
+                  label="No"
+                  className="bg-transparent"
+                  onChange={(e) => setpopUp(false)}
+                />
+              </div>
+            </div>
           </div>
           <Input
             label="Enter topping limit"

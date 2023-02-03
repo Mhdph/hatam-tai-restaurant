@@ -5,6 +5,7 @@ import {
   DialogFooter,
   DialogHeader,
   Input,
+  Radio,
 } from "@material-tailwind/react";
 import axios from "axios";
 import React, { Fragment, useEffect, useState } from "react";
@@ -23,6 +24,9 @@ function EditFood() {
   const [data, setData] = React.useState<any>([]);
   const { id } = useParams();
   const [loading, setLoading] = React.useState(true);
+  const [limitToppings, setLimitTopping] = React.useState("0");
+  const [topping, setTopping] = React.useState(false);
+  const [popUp, setpopUp] = React.useState(false);
 
   useEffect(() => {
     const getOneFoodFn = async () => {
@@ -53,6 +57,9 @@ function EditFood() {
         ar: message.arDesc,
       },
       toppings: items,
+      limitTopping: limitToppings,
+      topping: topping,
+      popUp,
     };
     const data = new FormData();
     const filename = Date.now() + file.name;
@@ -122,6 +129,50 @@ function EditFood() {
         />
       </div>
       <SelectFood setUserId={setUserId} name="category" />
+      <div className="flex justify-around">
+        <div className="flex flex-col">
+          <p>This food have topping?</p>
+          <div className="flex gap-2">
+            <Radio
+              id="html"
+              name="type"
+              label="Yes"
+              className="bg-transparent"
+              onChange={(e) => setTopping(true)}
+            />
+            <Radio
+              id="react"
+              name="type"
+              label="No"
+              className="bg-transparent"
+              onChange={(e) => setTopping(false)}
+            />
+          </div>
+        </div>
+        <div className="flex flex-col">
+          <p>This food have popUp?</p>
+          <div className="flex gap-2">
+            <Radio
+              id="html"
+              name="type"
+              label="Yes"
+              className="bg-transparent"
+              onChange={(e) => setpopUp(true)}
+            />
+            <Radio
+              id="react"
+              name="type"
+              label="No"
+              className="bg-transparent"
+              onChange={(e) => setpopUp(false)}
+            />
+          </div>
+        </div>
+      </div>
+      <Input
+        label="Enter topping limit"
+        onChange={(e) => setLimitTopping(e.target.value)}
+      />
       <Button
         className="mt-3 w-full"
         variant="gradient"
