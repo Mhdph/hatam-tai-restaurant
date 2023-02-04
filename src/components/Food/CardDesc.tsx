@@ -58,7 +58,7 @@ function CardDesc({
     <div className="mt-2">
       <div onClick={handleOpen}></div>
       <Dialog
-        className=" w-full modal_bg max-w-full h-[90%] overflow-y-scroll"
+        className=" w-full modal_bg max-w-full  overflow-y-scroll"
         open={open}
         size="sm"
         handler={handleOpen}
@@ -108,30 +108,7 @@ function CardDesc({
                   {language === "EN" ? desc.en : desc.ar}
                 </p>
               </div>
-              {/* {data.length > 0 ? (
-                <div className="w-full px-6">
-                  <div className="topping flex px-6 py-3 flex-col mt-2 mb-4">
-                    <div className="flex justify-between items-center">
-                      <p
-                        className={clsx(
-                          language === "EN" ? "font-roboto" : "font-iran",
-                          "font-bold text-xl text-main-color capitalize"
-                        )}
-                      >
-                        {translate("your choise", language)}:
-                        <p className="text-[13px]">(Choose 1)</p>
-                      </p>
-                    </div>
-                    {data.map((item: any) => (
-                      <div>
-                        {item.choiceList === true ? (
-                          <YourChoise nameGhaza={name.en} product={item} />
-                        ) : null}
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              ) : null} */}
+
               {data.map((item: any) => {
                 if (item.choiceList === true && item.name.ar === "rice") {
                   return (

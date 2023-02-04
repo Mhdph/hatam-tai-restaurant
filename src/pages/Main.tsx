@@ -30,7 +30,6 @@ function Main() {
   });
   if (isLoading) return <Loading />;
   if (AdditionalLoading) return <Loading />;
-  console.log(AdditionalData);
   const language = localStorage.getItem("language");
 
   return (

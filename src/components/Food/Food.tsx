@@ -86,11 +86,11 @@ function Food(props: any) {
                   " text-secondary-color capitalize"
                 )}
               >
-                {language === "EN" && popUp
-                  ? desc.en.slice(0, 20)
-                  : desc.ar.slice(0, 20)}
+                {language === "EN" && popUp ? desc.en.slice(0, 20) : null}
+                {language === "AR" && popUp ? desc.ar.slice(0, 20) : null}
                 {popUp ? "..." : null}
-                {language === "EN" ? desc.en : desc.ar}
+                {language === "EN" && popUp === false ? desc.en : null}
+                {language === "AR" && popUp === false ? desc.ar : null}
               </p>
             </div>
           </div>

@@ -29,10 +29,9 @@ function MapSearch() {
               onClick={() => {
                 address.setValue(item.place_name);
                 console.log(address.value);
-
                 address.suggestion.map((mahdi: any) => {
                   if (item.place_name === mahdi.place_name) {
-                    localStorage.setItem("mahdi", item.center[0]);
+                    localStorage.setItem("Longitude", item.center[0]);
                     localStorage.setItem("Latitude", item.center[1]);
                   }
                 });
