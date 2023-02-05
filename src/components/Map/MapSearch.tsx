@@ -1,52 +1,139 @@
-import clsx from "clsx";
-import React from "react";
-import useInput from "../../hooks/useInput";
-import { translate } from "../../i18n";
-import MapPage from "../../pages/Map";
-import Arrowback from "../Common/Arrowback";
-import Header from "../Common/Header";
-function MapSearch() {
-  const address = useInput("");
-  const language = localStorage.getItem("language");
-  return (
-    <div className="h-screen">
-      <Arrowback />
-      <Header title={translate("Add New Address", language)} />{" "}
-      <input
-        className={clsx(
-          address.setSuggestion.length > 0 ? "top-48" : "top-4",
-          "z-10 input_serach_map absolute  left-12 w-72 h-10"
-        )}
-        {...address}
-        placeholder="ابحث عن شارع أو معلم شهیر"
-      />
-      {address.suggestion?.length > 0 && (
-        <div className="absolute z-10 top-10 mt-3 p-2 rounded-b-lg left-16 bg-[#9d7822] w-64">
-          {address.suggestion.map((item: any, index) => (
-            <p
-              className="cursor-pointer hover:bg-blue-800"
-              key={index}
-              onClick={() => {
-                address.setValue(item.place_name);
-                console.log(address.value);
-                address.suggestion.map((mahdi: any) => {
-                  if (item.place_name === mahdi.place_name) {
-                    localStorage.setItem("Longitude", item.center[0]);
-                    localStorage.setItem("Latitude", item.center[1]);
-                  }
-                });
+import * as React from "react";
+import { useState } from "react";
+import { useControl, Marker, MarkerProps, ControlPosition } from "react-map-gl";
+import MapboxGeocoder, { GeocoderOptions } from "@mapbox/mapbox-gl-geocoder";
 
-                address.setSuggestion([]);
-              }}
-            >
-              {item.place_name}
-            </p>
-          ))}
-        </div>
-      )}
-      <MapPage />
-    </div>
+type GeocoderControlProps = Omit<
+  GeocoderOptions,
+  "accessToken" | "mapboxgl" | "marker"
+> & {
+  mapboxAccessToken: string;
+  marker?: boolean | Omit<MarkerProps, "longitude" | "latitude">;
+
+  position: ControlPosition;
+
+  onLoading?: (e: object) => void;
+  onResults?: (e: object) => void;
+  onResult?: (e: object) => void;
+  onError?: (e: object) => void;
+};
+
+/* eslint-disable complexity,max-statements */
+export default function GeocoderControl(props: GeocoderControlProps) {
+  const [marker, setMarker] = useState<any>(null);
+
+  const geocoder = useControl<MapboxGeocoder>(
+    () => {
+      const ctrl = new MapboxGeocoder({
+        ...props,
+        marker: false,
+        accessToken: props.mapboxAccessToken,
+      });
+      // @ts-ignore (TS2339) private member
+
+      ctrl.on("loading", props.onLoading);
+      // @ts-ignore (TS2339) private member
+
+      ctrl.on("results", props.onResults);
+      ctrl.on("result", (evt: any) => {
+        // @ts-ignore (TS2339) private member
+
+        props.onResult(evt);
+
+        const { result } = evt;
+        const location =
+          result &&
+          (result.center ||
+            (result.geometry?.type === "Point" && result.geometry.coordinates));
+        if (location && props.marker) {
+          // @ts-ignore (TS2339) private member
+          setMarker(
+            <Marker
+              // @ts-ignore (TS2339) private member
+              {...props.marker}
+              longitude={location[0]}
+              latitude={location[1]}
+            />
+          );
+        } else {
+          setMarker(null);
+        }
+      });
+      // @ts-ignore (TS2339) private member
+      ctrl.on("error", props.onError);
+      return ctrl;
+    },
+    {
+      position: props.position,
+    }
   );
+
+  // @ts-ignore (TS2339) private member
+  if (geocoder._map) {
+    if (
+      geocoder.getProximity() !== props.proximity &&
+      props.proximity !== undefined
+    ) {
+      geocoder.setProximity(props.proximity);
+    }
+    if (
+      geocoder.getRenderFunction() !== props.render &&
+      props.render !== undefined
+    ) {
+      geocoder.setRenderFunction(props.render);
+    }
+    if (
+      geocoder.getLanguage() !== props.language &&
+      props.language !== undefined
+    ) {
+      geocoder.setLanguage(props.language);
+    }
+    if (geocoder.getZoom() !== props.zoom && props.zoom !== undefined) {
+      geocoder.setZoom(props.zoom);
+    }
+    if (geocoder.getFlyTo() !== props.flyTo && props.flyTo !== undefined) {
+      geocoder.setFlyTo(props.flyTo);
+    }
+    if (
+      geocoder.getPlaceholder() !== props.placeholder &&
+      props.placeholder !== undefined
+    ) {
+      geocoder.setPlaceholder(props.placeholder);
+    }
+    if (
+      geocoder.getCountries() !== props.countries &&
+      props.countries !== undefined
+    ) {
+      geocoder.setCountries(props.countries);
+    }
+    if (geocoder.getTypes() !== props.types && props.types !== undefined) {
+      geocoder.setTypes(props.types);
+    }
+    if (
+      geocoder.getMinLength() !== props.minLength &&
+      props.minLength !== undefined
+    ) {
+      geocoder.setMinLength(props.minLength);
+    }
+    if (geocoder.getLimit() !== props.limit && props.limit !== undefined) {
+      geocoder.setLimit(props.limit);
+    }
+    if (geocoder.getFilter() !== props.filter && props.filter !== undefined) {
+      geocoder.setFilter(props.filter);
+    }
+    if (geocoder.getOrigin() !== props.origin && props.origin !== undefined) {
+      geocoder.setOrigin(props.origin);
+    }
+  }
+  return marker;
 }
 
-export default MapSearch;
+const noop = () => {};
+
+GeocoderControl.defaultProps = {
+  marker: true,
+  onLoading: noop,
+  onResults: noop,
+  onResult: noop,
+  onError: noop,
+};

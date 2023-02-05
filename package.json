@@ -10,8 +10,10 @@
   },
   "dependencies": {
     "@heroicons/react": "^2.0.13",
+    "@mapbox/mapbox-gl-geocoder": "^5.0.1",
     "@material-tailwind/react": "^1.2.5",
     "@reduxjs/toolkit": "^1.9.1",
+    "@types/mapbox__mapbox-gl-geocoder": "^4.7.3",
     "axios": "^1.2.2",
     "clsx": "^1.2.1",
     "geolib": "^3.3.3",

@@ -1,14 +1,32 @@
 import "mapbox-gl/dist/mapbox-gl.css";
-import React from "react";
-import Map, { GeolocateControl, Marker } from "react-map-gl";
+import { useCallback, useState } from "react";
+import Map, { LngLat, Marker, MarkerDragEvent } from "react-map-gl";
+import GeocoderControl from "../components/Map/MapSearch";
 const MapPage = () => {
   const MAPBOX_TOKEN =
     "pk.eyJ1IjoibWRocGgiLCJhIjoiY2xjdWl2YTlpMHZnODNvczF3MjJvMmhleSJ9.jmlbzAmRD4BE0qsLyYVdXA"; // Set your mapbox token here
 
-  const geolocateControlRef = React.useCallback((ref: any) => {
-    if (ref) {
-      ref.trigger();
-    }
+  const [marker, setMarker] = useState({
+    latitude: 24.46,
+    longitude: 54.36,
+  });
+  const [events, logEvents] = useState<Record<string, LngLat>>({});
+
+  const onMarkerDragStart = useCallback((event: MarkerDragEvent) => {
+    logEvents((_events) => ({ ..._events, onDragStart: event.lngLat }));
+  }, []);
+
+  const onMarkerDrag = useCallback((event: MarkerDragEvent) => {
+    logEvents((_events) => ({ ..._events, onDrag: event.lngLat }));
+
+    setMarker({
+      longitude: event.lngLat.lng,
+      latitude: event.lngLat.lat,
+    });
+  }, []);
+
+  const onMarkerDragEnd = useCallback((event: MarkerDragEvent) => {
+    logEvents((_events) => ({ ..._events, onDragEnd: event.lngLat }));
   }, []);
 
   return (
@@ -24,12 +42,15 @@ const MapPage = () => {
         mapboxAccessToken={MAPBOX_TOKEN}
       >
         <Marker
-          draggable={true}
-          longitude={54.36}
-          latitude={24.46}
-          color="red"
-        />
-        <GeolocateControl className="bg-red-600" ref={geolocateControlRef} />
+          longitude={marker.longitude}
+          latitude={marker.latitude}
+          anchor="bottom"
+          draggable
+          onDragStart={onMarkerDragStart}
+          onDrag={onMarkerDrag}
+          onDragEnd={onMarkerDragEnd}
+        ></Marker>
+        <GeocoderControl mapboxAccessToken={MAPBOX_TOKEN} position="top-left" />
       </Map>
     </div>
   );

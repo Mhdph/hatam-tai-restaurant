@@ -49,7 +49,7 @@ function AppRoutes() {
         <Route path="/complate" element={<Complate />} />
         <Route path="/addaddress" element={<AddNewAddres />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/map" element={<MapSearch />} />
+        <Route path="/map" element={<MapPage />} />
         <Route path="/panel/*" element={<Panel />} />
       </Routes>
     </Suspense>

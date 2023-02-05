@@ -9,7 +9,7 @@ import "react-toastify/dist/ReactToastify.css";
 import App from "./App";
 import { store } from "./app/store";
 import "./index.css";
-
+import "mapbox-gl/dist/mapbox-gl.css";
 const queryClinet = new QueryClient();
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
