@@ -78,7 +78,7 @@ function OrderSummeryItem(props: any) {
             onClick={() => updateQuantity("+")}
           />
           <p className="text-base text-[#F9EFBC] font-roboto mx-2 font-bold">
-            AED {props.item.totalprice}.00
+            AED {props.item.totalprice}
           </p>
         </div>
       ) : (
@@ -103,7 +103,7 @@ function OrderSummeryItem(props: any) {
           />
 
           <p className="text-base text-[#F9EFBC] font-roboto mx-2 font-bold">
-            AED {props.item.totalprice}.00
+            AED {props.item.totalprice}
           </p>
         </div>
       )}

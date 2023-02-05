@@ -96,7 +96,7 @@ function Food(props: any) {
           </div>
           <div className="flex-col px-2 md:px-2 justify-around">
             <p className="font-normal mb-4 text-base text-center font-roboto text-secondary-color uppercase">
-              AED {price}.00
+              AED {price}
             </p>
             <button
               onClick={topping ? () => handleOpen() : () => addToCart()}

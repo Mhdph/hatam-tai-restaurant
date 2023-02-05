@@ -87,7 +87,7 @@ function CardDesc({
                     {language === "EN" ? name.en : name.ar}
                   </p>
                   <p className="font-normal my-4 text-base text-secondary-color uppercase">
-                    AED {price}.00
+                    AED {price}
                   </p>
                   <button
                     onClick={() => addToCart()}

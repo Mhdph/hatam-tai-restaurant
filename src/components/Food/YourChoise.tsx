@@ -46,7 +46,7 @@ function YourChoise(props: any) {
                 "font-bold my-2 font-roboto text-base text-[#F9EFBC] uppercase"
               )}
             >
-              AED {price}.00
+              AED {price}
             </p>
             <label className="containerTopping">
               <input

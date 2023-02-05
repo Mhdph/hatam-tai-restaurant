@@ -75,7 +75,7 @@ function ToppingItems(props: any) {
       </div>
       <div>
         <p className="text-base text-[#F9EFBC] font-roboto font-bold">
-          AED {props.item.totalprice}.00
+          AED {props.item.totalprice}
         </p>
       </div>
     </div>
