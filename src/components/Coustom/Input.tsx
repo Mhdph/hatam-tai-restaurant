@@ -4,9 +4,10 @@ interface Input {
   changeText?: (event: any) => void;
   placeText: string;
   name?: string;
+  valueInput?: any;
 }
 
-function Input({ changeText, placeText, name }: Input) {
+function Input({ changeText, placeText, name, valueInput }: Input) {
   return (
     <div className="w-full px-2">
       <input
@@ -15,6 +16,7 @@ function Input({ changeText, placeText, name }: Input) {
         placeholder={placeText}
         onChange={changeText}
         name={name}
+        value={valueInput}
       />
     </div>
   );

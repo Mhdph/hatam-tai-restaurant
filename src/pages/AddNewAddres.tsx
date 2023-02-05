@@ -18,7 +18,9 @@ function AddNewAddres() {
   const [data, setData] = React.useState({
     firstname: "",
     lastname: "",
-    distruct: "",
+    distruct: localStorage.getItem("address")
+      ? localStorage.getItem("address")
+      : "",
     street: "",
     building: "",
     floor: "",
@@ -75,11 +77,19 @@ function AddNewAddres() {
             <p className="text-sm ml-2 font-semibold text-main-color capitalize">
               {translate("address details", language)}
             </p>
-            <Input placeText={translate("abu dhabi", language)} />
+            <Input
+              placeText={translate("abu dhabi", language)}
+              valueInput="Abu Dhabi"
+            />
             <Input
               placeText={translate("district", language)}
               name="distruct"
               changeText={changeInput}
+              valueInput={
+                localStorage.getItem("address")
+                  ? localStorage.getItem("address")
+                  : null
+              }
             />
             <Tabs setData={setData} data={data} />
           </div>

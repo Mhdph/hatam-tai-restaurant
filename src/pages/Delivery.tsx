@@ -67,7 +67,7 @@ function Delivery() {
             name="phoneNumber"
             type="text"
             className="py-1.5 rounded-[20px] outline-none w-3/4 px-3 placeholder:text-secondary-color placeholder:font-bold"
-            placeholder="+971"
+            defaultValue="+971"
           />
         </div>
         <p className="text-base mt-4 mb-2 ml-2 font-semibold capitalize text-secondary-color">

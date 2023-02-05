@@ -85,7 +85,7 @@ function Main() {
         />
         {quantity > 0 ? <Bucket /> : null}
       </div>
-      <div className="mt-28">
+      <div className="mt-40">
         <Footer fixed />
       </div>
     </div>
