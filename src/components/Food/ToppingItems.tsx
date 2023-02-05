@@ -43,41 +43,70 @@ function ToppingItems(props: any) {
   };
 
   return (
-    <div className="input_custom flex py-3 items-center justify-around ">
+    <div className="input_custom flex py-3 items-center justify-between ">
       <div className="flex-col">
         <p
           className={clsx(
             language === "EN" ? "font-roboto" : "font-bernardo",
-            "font-bold capitalize text-xl text-[#4E3C11]"
+            "font-bold capitalize mx-2 text-xl text-[#4E3C11]"
           )}
         >
-          {language === "EN" ? item.name.en : item.name.ar}
+          {language === "EN" ? item.name.ar : item.name.en}
         </p>
         <p className="font-bold capitalize text-xl text-[#4E3C11]"></p>
       </div>
-      <div className="flex gap-2 items-center">
-        <img
-          className="cursor-pointer"
-          src={Minus}
-          onClick={
-            quantity === 1 ? () => removeCartItem() : () => updateQuantity("-")
-          }
-        />
-        <p className="font-bold text-xl font-roboto text-main-color">
-          {quantity}
-        </p>
-        <img
-          className="cursor-pointer"
-          src={Plus}
-          alt=""
-          onClick={() => updateQuantity("+")}
-        />
-      </div>
-      <div>
-        <p className="text-base text-[#F9EFBC] font-roboto font-bold">
-          AED {props.item.totalprice}
-        </p>
-      </div>
+      {language === "EN" ? (
+        <div className="flex gap-2 items-center">
+          <img
+            className="cursor-pointer"
+            src={Minus}
+            onClick={
+              quantity === 1
+                ? () => removeCartItem()
+                : () => updateQuantity("-")
+            }
+          />
+          <p className="font-bold text-xl font-roboto text-main-color">
+            {quantity}
+          </p>
+          <img
+            className="cursor-pointer"
+            src={Plus}
+            alt=""
+            onClick={() => updateQuantity("+")}
+          />
+          <div>
+            <p className="text-base text-[#F9EFBC] font-roboto mx-2 font-bold">
+              AED {props.item.totalprice}
+            </p>
+          </div>
+        </div>
+      ) : (
+        <div className="flex gap-2 items-center">
+          <img
+            className="cursor-pointer"
+            src={Plus}
+            alt=""
+            onClick={() => updateQuantity("+")}
+          />
+          <p className="font-bold text-xl font-roboto text-main-color">
+            {quantity}
+          </p>
+          <img
+            className="cursor-pointer"
+            src={Minus}
+            onClick={
+              quantity === 1
+                ? () => removeCartItem()
+                : () => updateQuantity("-")
+            }
+          />
+
+          <p className="text-base text-[#F9EFBC] font-roboto mx-2 font-bold">
+            AED {props.item.totalprice}
+          </p>
+        </div>
+      )}
     </div>
   );
 }
