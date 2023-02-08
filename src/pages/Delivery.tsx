@@ -26,9 +26,11 @@ function Delivery() {
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
     e.preventDefault();
-    if (address.length > 0) {
+    console.log(address.distruct.length);
+    if (address.distruct.length > 0) {
       dispatch(NumberSlice.actions.saveInfo(data));
       navigate("/payment");
+      localStorage.removeItem("address");
     } else {
       setError(true);
     }

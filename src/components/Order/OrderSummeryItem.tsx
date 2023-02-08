@@ -7,6 +7,7 @@ import { FoodD } from "../../types";
 
 function OrderSummeryItem(props: any) {
   const [item, setItem] = React.useState(props.item);
+  const [mahdi, setMahdi] = React.useState("");
   const [quantity, setQuantity] = React.useState(props.item.quantity);
   const language = localStorage.getItem("language");
   const price = props.item.price;
@@ -43,8 +44,6 @@ function OrderSummeryItem(props: any) {
     dispatch(removeItem(item));
   };
 
-  const ToppingItems = useSelector((state: any) => state.topping.value);
-
   return (
     <div className="input_custom flex py-3 items-center justify-between ">
       <div>
@@ -78,7 +77,7 @@ function OrderSummeryItem(props: any) {
             onClick={() => updateQuantity("+")}
           />
           <p className="text-base text-[#F9EFBC] font-roboto mx-2 font-bold">
-            AED {props.item.totalprice}
+            AED {props.item.totalprice} {quantity > 1 ? ".00" : ""}
           </p>
         </div>
       ) : (

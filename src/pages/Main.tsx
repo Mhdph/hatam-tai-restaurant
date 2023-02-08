@@ -78,7 +78,7 @@ function Main() {
         <img
           src={language === "EN" ? Kashi : ArKashi}
           className={clsx(
-            language === "EN" ? "right-16" : "right-2",
+            language === "EN" ? "right-16 xs:right-24" : "right-2",
             "-z-10 absolute  -bottom-20"
           )}
           alt=""

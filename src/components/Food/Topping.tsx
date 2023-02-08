@@ -1,7 +1,9 @@
 import clsx from "clsx";
 import React from "react";
 import { useDispatch } from "react-redux";
+import { toast } from "react-toastify";
 import { addTopping, removeTopping } from "../../app/toppingSlice";
+import { translate } from "../../i18n";
 
 function Topping(props: any) {
   const { name, price, quantity, food, choiceList } = props.product;
@@ -37,17 +39,22 @@ function Topping(props: any) {
             "flex justify-between"
           )}
         >
-          <p className="font-medium mt-2 text-base text-[#F9EFBC] capitalize">
+          <p
+            className={clsx(
+              language === "EN" ? "text-[15px] " : "text-base",
+              "font-medium mt-2 text-[#F9EFBC] capitalize"
+            )}
+          >
             {language === "EN" ? name.ar : name.en}
           </p>
           <div className="flex items-center gap-2">
             <p
               className={clsx(
                 language === "EN" ? "" : "ml-5",
-                "font-bold my-2 font-roboto text-base text-[#F9EFBC] uppercase"
+                "font-bold my-2 font-roboto text-[15px] text-[#F9EFBC] uppercase"
               )}
             >
-              AED {price}.00
+              AED {price}
             </p>
             <label className="containerTopping">
               <input

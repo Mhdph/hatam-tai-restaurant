@@ -1,6 +1,7 @@
 import clsx from "clsx";
 import React from "react";
 import { useDispatch } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { addItem } from "../../app/CardSlice";
 import { ommlet } from "../../assets";
@@ -61,9 +62,7 @@ function Food(props: any) {
       <div className="pt-6 px-6">
         <div className="card-food z-10 justify-between flex items-center">
           <div
-            onClick={
-              desc.en.length > 10 ? handleOpen : () => console.log("nothing")
-            }
+            onClick={popUp ? handleOpen : () => console.log("nothing")}
             className="p-2 cursor-pointer flex items-center"
           >
             <img src={PF + image} className="rounded-3xl h-28 w-28" alt="" />

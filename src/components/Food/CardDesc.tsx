@@ -3,9 +3,13 @@ import axios from "axios";
 import clsx from "clsx";
 import React from "react";
 import { useDispatch } from "react-redux";
+import { toast } from "react-toastify";
 import { addItem } from "../../app/CardSlice";
+import { arrow } from "../../assets";
 import { baseUrl } from "../../config";
 import { translate } from "../../i18n";
+import Arrowback from "../Common/Arrowback";
+import Bucket from "../Common/Bucket";
 import Loading from "../Coustom/Loading";
 import Topping from "./Topping";
 import YourChoise from "./YourChoise";
@@ -24,11 +28,10 @@ function CardDesc({
   const [loading, setLoading] = React.useState(true);
   const [data, setData] = React.useState([]);
   const [error, setError] = React.useState(false);
-
+  const [showen, setIsShown] = React.useState(false);
   const getTopping = async () => {
     try {
       const res = await axios.get<any>(`${baseUrl}/topping/${name.en}`);
-      console.log(res);
       setData(res.data);
       setLoading(false);
     } catch (error) {
@@ -43,6 +46,22 @@ function CardDesc({
   const language = localStorage.getItem("language");
   const totalprice = price;
   const dispatch = useDispatch();
+
+  const mahdi = () => {
+    setIsShown(true);
+  };
+
+  const jamal = () => {
+    const timeoutID = setTimeout(() => {
+      setIsShown(false);
+    }, 4000);
+
+    return () => {
+      // 👇️ clear timeout when the component unmounts
+      clearTimeout(timeoutID);
+    };
+  };
+
   const addToCart = () => {
     let newItem = {
       name,
@@ -52,6 +71,8 @@ function CardDesc({
       totalprice,
     };
     dispatch(addItem(newItem));
+    mahdi();
+    jamal();
   };
 
   return (
@@ -64,13 +85,19 @@ function CardDesc({
         handler={handleOpen}
       >
         <DialogBody>
-          <div
-            className={clsx(
-              language === "EN" ? "left_direction" : "right_direction",
-              "p-6"
-            )}
-          >
-            <div className="card-food z-10 flex flex-col justify-between items-center">
+          <div className="p-6">
+            <img
+              onClick={handleOpen}
+              src={arrow}
+              alt="arroback"
+              className="h-5 arrow_direction w-5 mb-2 md:ml-8 cursor-pointer"
+            />
+            <div
+              className={clsx(
+                language === "EN" ? "left_direction" : "right_direction",
+                "card-food z-10 flex flex-col justify-between items-center"
+              )}
+            >
               <div className="p-2 pt-4 flex gap-10">
                 <img
                   src={PF + image}
@@ -166,6 +193,7 @@ function CardDesc({
             </div>
           </div>
         </DialogBody>
+        {showen ? <Bucket /> : null}
       </Dialog>
     </div>
   );

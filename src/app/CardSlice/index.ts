@@ -36,7 +36,7 @@ export const cartItemsSlice = createSlice({
             name: newItem.name,
             desc: newItem.desc,
             image: newItem.image,
-            price: newItem.price,
+            price: +newItem.price,
             quantity: newItem.quantity + duplicate[0].quantity,
             totalprice:
               newItem.price * (newItem.quantity + duplicate[0].quantity),

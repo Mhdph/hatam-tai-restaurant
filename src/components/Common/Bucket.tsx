@@ -41,7 +41,7 @@ function Bucket() {
           </div>
           <div className="mx-4">
             <p className="text-white uppercase font-roboto font-bold">
-              aed {totalPrice}
+              aed {totalPrice}.00
             </p>
           </div>
         </div>

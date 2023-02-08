@@ -392,3 +392,11 @@ layer base {
   -ms-transform: rotate(35deg);
   transform: rotate(35deg);
 }
+.toast-message {
+  background: #9d7822;
+  color: #fff;
+  font-size: 16px;
+  width: 34vw;
+  padding: 30px 20px;
+  z-index: 99999;
+}
