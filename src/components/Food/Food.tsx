@@ -70,7 +70,7 @@ function Food(props: any) {
               <p
                 className={clsx(
                   language === "EN"
-                    ? "text-base xs:text-xl font-bold"
+                    ? "text-base xs:text-base font-bold"
                     : "text-base xs:text-xl font-bold",
                   " text-main-color mt-3 capitalize"
                 )}

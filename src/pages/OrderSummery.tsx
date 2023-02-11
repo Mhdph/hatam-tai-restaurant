@@ -13,7 +13,6 @@ import clsx from "clsx";
 
 function OrderSummery() {
   const language = localStorage.getItem("language");
-  console.log(parseFloat("11.00") + 12.0);
   return (
     <div className="xs:h-screen h-full ">
       <Arrowback />

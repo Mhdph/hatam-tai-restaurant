@@ -42,6 +42,18 @@ function ToppingItems(props: any) {
     dispatch(removeTopping(item));
   };
 
+  let mahdi = props.item.totalprice;
+  let flt = mahdi.toString().split(".")[1];
+  React.useEffect(() => {
+    if (!flt) {
+      mahdi = props.item.totalprice + ".00";
+    } else if (flt.toString().length == 1) {
+      mahdi = props.item.totalprice + "0";
+    } else {
+      mahdi = props.item.totalprice;
+    }
+  }, [mahdi]);
+
   return (
     <div className="input_custom flex py-3 items-center justify-between ">
       <div className="flex-col">
@@ -77,7 +89,7 @@ function ToppingItems(props: any) {
           />
           <div>
             <p className="text-base text-[#F9EFBC] font-roboto mx-2 font-bold">
-              AED {props.item.totalprice}
+              AED {mahdi}
             </p>
           </div>
         </div>

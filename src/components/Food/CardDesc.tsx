@@ -2,11 +2,12 @@ import { Dialog, DialogBody } from "@material-tailwind/react";
 import axios from "axios";
 import clsx from "clsx";
 import React from "react";
+import { useQuery } from "react-query";
 import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import { addItem } from "../../app/CardSlice";
 import { arrow } from "../../assets";
-import { baseUrl } from "../../config";
+import { baseUrl, getToppingFn } from "../../config";
 import { translate } from "../../i18n";
 import Arrowback from "../Common/Arrowback";
 import Bucket from "../Common/Bucket";
@@ -25,24 +26,44 @@ function CardDesc({
   quantity,
   limitTopping,
 }: any) {
-  const [loading, setLoading] = React.useState(true);
-  const [data, setData] = React.useState([]);
-  const [error, setError] = React.useState(false);
+  // const [loading, setLoading] = React.useState(true);
+  // const [data, setData] = React.useState([]);
+  // const [error, setError] = React.useState(false);
+  const [choise, setChoise] = React.useState(false);
   const [showen, setIsShown] = React.useState(false);
-  const getTopping = async () => {
-    try {
-      const res = await axios.get<any>(`${baseUrl}/topping/${name.en}`);
-      setData(res.data);
-      setLoading(false);
-    } catch (error) {
-      setError(true);
-    }
-  };
-  React.useEffect(() => {
-    getTopping();
-  }, [name.en]);
+  // const getTopping = async () => {
+  //   try {
+  //     const res = await axios.get<any>(`${baseUrl}/topping/${name.en}`);
+  //     setData(res.data);
+  //     setLoading(false);
+  //     const yrchoise = data.map((item: any) => {
+  //       if (item.choiceList === true) {
+  //         setChoise(true);
+  //       }
+  //     });
+  //   } catch (error) {
+  //     setError(true);
+  //   }
+  // };
+  // React.useEffect(() => {
+  //   getTopping();
+  // }, [name.en]);
 
-  if (loading) return <Loading />;
+  // const { isLoading, data, error } = useQuery(
+  //   ["toppings", name.en],
+  //   async () => {
+  //     return await getToppingFn(name.en);
+  //   }
+  // );
+
+  const { isLoading, data, error } = useQuery({
+    queryFn: async () => {
+      return await getToppingFn(name.en);
+    },
+    queryKey: ["toppings", name.en],
+  });
+
+  if (isLoading) return <Loading />;
   const language = localStorage.getItem("language");
   const totalprice = price;
   const dispatch = useDispatch();
@@ -74,12 +95,15 @@ function CardDesc({
     mahdi();
     jamal();
   };
-
+  console.log(choise);
   return (
     <div className="mt-2">
       <div onClick={handleOpen}></div>
       <Dialog
-        className=" w-full modal_bg max-w-full  overflow-y-scroll"
+        className={clsx(
+          choise ? " " : "",
+          " w-full h-[50%] overflow-scroll modal_bg max-w-full "
+        )}
         open={open}
         size="sm"
         handler={handleOpen}
