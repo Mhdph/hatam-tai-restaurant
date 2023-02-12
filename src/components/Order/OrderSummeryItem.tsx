@@ -7,11 +7,9 @@ import { FoodD } from "../../types";
 
 function OrderSummeryItem(props: any) {
   const [item, setItem] = React.useState(props.item);
-  const [mahdi, setMahdi] = React.useState("");
   const [quantity, setQuantity] = React.useState(props.item.quantity);
   const language = localStorage.getItem("language");
   const price = props.item.price;
-  const cartItems = useSelector((state: any) => state.cartReducer.value);
 
   const dispatch = useDispatch();
   React.useEffect(() => {
@@ -41,6 +39,7 @@ function OrderSummeryItem(props: any) {
   };
 
   const removeCartItem = () => {
+    console.log(item);
     dispatch(removeItem(item));
   };
 
@@ -62,9 +61,7 @@ function OrderSummeryItem(props: any) {
             className="cursor-pointer"
             src={Minus}
             onClick={
-              quantity === 1
-                ? () => removeCartItem()
-                : () => updateQuantity("-")
+              quantity == 1 ? () => removeCartItem() : () => updateQuantity("-")
             }
           />
           <p className="font-bold text-xl font-roboto text-main-color">
@@ -95,9 +92,7 @@ function OrderSummeryItem(props: any) {
             className="cursor-pointer"
             src={Minus}
             onClick={
-              quantity === 1
-                ? () => removeCartItem()
-                : () => updateQuantity("-")
+              quantity == 1 ? () => removeCartItem() : () => updateQuantity("-")
             }
           />
 

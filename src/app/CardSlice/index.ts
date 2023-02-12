@@ -83,8 +83,6 @@ export const cartItemsSlice = createSlice({
           {
             id: item[0].id,
             name: newItem.name,
-            color: newItem.color,
-            size: newItem.size,
             price: newItem.price,
             quantity: newItem.quantity,
             totalprice: newItem.price * newItem.quantity,
@@ -104,10 +102,7 @@ export const cartItemsSlice = createSlice({
       state.quantity -= 1;
       const item = action.payload;
       state.value = state.value.filter(
-        (e: FoodD) =>
-          e.name.en !== item.name.en ||
-          e.desc !== item.desc ||
-          e.image !== item.image
+        (e: FoodD) => e.name.en !== item.name.en
       );
       localStorage.setItem(
         "cartItems",
