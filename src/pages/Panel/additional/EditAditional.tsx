@@ -42,7 +42,6 @@ function EditAdditonal() {
         en: message.enDesc,
         ar: message.arDesc,
       },
-      toppings: items,
     };
     const data = new FormData();
     const filename = Date.now() + file.name;

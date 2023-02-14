@@ -21,7 +21,7 @@ function Complate() {
         {translate("your order is on it’s way", language)}
       </p>
       <div className="px-6 mt-4 ">
-        <div className="payment py-12 px-16">
+        <div className="payment py-12 px-10">
           <p
             className={clsx(
               language === "EN" ? "font-roboto" : "font-iran",
