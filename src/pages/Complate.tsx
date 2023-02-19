@@ -5,6 +5,7 @@ import { translate } from "../i18n";
 
 function Complate() {
   const language = localStorage.getItem("language");
+  const orderNumber = localStorage.getItem("orderNumber");
   return (
     <div className="font-roboto w-full  h-screen">
       <div className="flex items-center my-12 justify-around">
@@ -30,6 +31,10 @@ function Complate() {
           >
             {translate("thanks for choosing hatim al tai", language)}
           </p>
+          <div className="flex mt-3 flex-col text-base justify-center items-center">
+            <p>{translate("ordernumber", language)}</p>
+            <p className="font-bold text-2xl">{orderNumber}</p>
+          </div>
         </div>
       </div>
       <div className="px-6 mt-96 md:mt-[600px]">

@@ -11,17 +11,17 @@ import axios from "axios";
 import { baseUrl } from "../config";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { useMutation } from "react-query";
 
 function Payment() {
   const [cashMethod, setCashMethod] = React.useState("");
-  const [error, setErorr] = React.useState(false);
   const [errorMessage, setErorrMessage] = React.useState("");
   const phoneNumber = useSelector(
     (state: any) => state.numberReucer.phoneNumber
   );
-  const cartItems = useSelector((state: any) => state.cartReducer.value);
-  const toppingItems = useSelector((state: any) => state.topping.value);
-  const SpecialRequest = useSelector(
+  const products = useSelector((state: any) => state.cartReducer.value);
+  const topping = useSelector((state: any) => state.topping.value);
+  const specialReq = useSelector(
     (state: any) => state.numberReucer.SpecialRequest
   );
   const address = useSelector((state: any) => state.user);
@@ -31,12 +31,12 @@ function Payment() {
   const [totalPrice, setTotalPrice] = React.useState(0);
   React.useEffect(() => {
     setTotalPrice(
-      cartItems.reduce(
+      products.reduce(
         (total: number, item: any) => total + Number(item.totalprice),
         0
       )
     );
-  }, [cartItems]);
+  }, [products]);
 
   const price = totalPrice + deliveryFee;
   const language = localStorage.getItem("language");
@@ -45,23 +45,57 @@ function Payment() {
   };
 
   const navigate = useNavigate();
-  const submitOrder = () => {
-    try {
-      axios.post(`${baseUrl}/order`, {
-        price: price,
-        address: address,
-        phoneNumber: phoneNumber,
-        cashMethod: cashMethod,
-        products: cartItems,
-        specialReq: SpecialRequest,
-        topping: toppingItems,
+  // const submitOrder = () => {
+  //   try {
+  //     axios.post(`${baseUrl}/order`, {
+  //       price: price,
+  //       address: address,
+  //       phoneNumber: phoneNumber,
+  //       cashMethod: cashMethod,
+  //       products: cartItems,
+  //       specialReq: SpecialRequest,
+  //       topping: toppingItems,
+  //     });
+  //     navigate("/complate");
+  //   } catch (error) {
+  //     console.log(error);
+  //     setErorrMessage("some thing went wrong");
+  //   }
+  // };
+
+  const { mutate, error } = useMutation(
+    async (data: any) => {
+      return axios.post(`${baseUrl}/order`, {
+        price,
+        address,
+        phoneNumber,
+        cashMethod,
+        topping,
+        specialReq,
       });
-      navigate("/complate");
-    } catch (error) {
-      console.log(error);
-      setErorr(true);
-      setErorrMessage("some thing went wrong");
+    },
+    {
+      onSuccess: (orderNumber) => {
+        localStorage.setItem("orderNumber", orderNumber.data.orderNumber);
+        navigate("/complate");
+      },
+      onError: (error: any) => {
+        console.log(error);
+      },
     }
+  );
+
+  const submitOrder = async (e: React.FormEvent) => {
+    e.preventDefault();
+    mutate({
+      price,
+      address,
+      phoneNumber,
+      cashMethod,
+      products,
+      specialReq,
+      topping,
+    });
   };
 
   return (
@@ -144,13 +178,17 @@ function Payment() {
             <hr className=" border-opacity-30 border-[0.1px] my-4 border-[#4e3c114d]" />
             <OrderFeeTotal />
           </div>
-          {error && <p>{errorMessage}</p>}
+          {/* {error && <p>some thing went wrong</p>} */}
           <div className="mt-12 mb-12">
             <button
               onClick={submitOrder}
               className="button_complate font-bernardo w-full text-center text-white py-2.5 cursor-pointer font-bold text-2xl uppercase"
             >
-              <p className="font-bernardo">
+              <p
+                className={clsx(
+                  language === "EN" ? "font-roboto" : "font-bernardo"
+                )}
+              >
                 {translate("place order", language)}
               </p>
             </button>

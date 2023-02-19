@@ -83,7 +83,7 @@ const MapPage = () => {
         </div>
         <button
           className={clsx(
-            language === "EN" ? "ml-72" : "ml-10",
+            language === "EN" ? "ml-72" : "mr-8",
             "address_button mt-2 flex capitalize px-4 rounded-lg py-2"
           )}
         >

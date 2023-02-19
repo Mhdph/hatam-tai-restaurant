@@ -8,7 +8,7 @@ function Footer({ fixed }: any) {
       } w-full px-12 bottom-0 overflow-hidden`}
     >
       <div className="flex my-4 items-center justify-around  px-5 language_choose">
-        <a href="https://wa.me/97126220095&text=Hello">
+        <a href="https://wa.link/lt1x9h">
           <img src={whatsapp} alt="whatsapp" />
         </a>
         <a href="instagram://user?username=hatimaltai.ae">
