@@ -61,6 +61,7 @@ export interface OrderD {
   phoneNumber: number;
   cashMethod: string;
   specialReq: string;
+  orderNumber: number;
 }
 export interface SearchResultData {
   description: string;

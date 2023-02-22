@@ -48,7 +48,7 @@ const LastOrderIndoor = () => {
                           <p>{item?.name.en}:</p>
                         </div>
                         <div className="flex">
-                        <p>{item.quantity}</p>
+                          <p>{item.quantity}</p>
                         </div>
                       </div>
                     ))}
@@ -68,7 +68,7 @@ const LastOrderIndoor = () => {
                       </div>
                     ) : null}
                   </td>
-                  <td className="py-4 px-6">{item.status}</td>
+                  <td className="py-4 px-6">{item.orderNumber}</td>
                 </tr>
               ))}
           </tbody>

@@ -75,7 +75,7 @@ function Delivery() {
         <p className="text-base mt-4 mb-2 ml-2 font-semibold capitalize text-secondary-color">
           {translate("address", language)}
         </p>
-        {address.firstname !== "" ? (
+        {address.distruct !== "" ? (
           <div className="flex items-center mt-6">
             <p
               className={clsx(

@@ -5,9 +5,16 @@ interface Input {
   placeText: string;
   name?: string;
   valueInput?: any;
+  defaultValue?: any;
 }
 
-function Input({ changeText, placeText, name, valueInput }: Input) {
+function Input({
+  changeText,
+  placeText,
+  name,
+  valueInput,
+  defaultValue,
+}: Input) {
   return (
     <div className="w-full px-2">
       <input
@@ -17,6 +24,7 @@ function Input({ changeText, placeText, name, valueInput }: Input) {
         onChange={changeText}
         name={name}
         value={valueInput}
+        defaultValue={defaultValue}
       />
     </div>
   );

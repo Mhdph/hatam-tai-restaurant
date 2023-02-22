@@ -5,7 +5,7 @@ import Arrowback from "../components/Common/Arrowback";
 import Header from "../components/Common/Header";
 import Input from "../components/Coustom/Input";
 import { Tabs } from "../components/Tabs/Index";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { AddressSlice } from "../app/addressSlice";
 import AddressButton from "../components/Coustom/AddressButton";
 import { translate } from "../i18n";
@@ -29,6 +29,7 @@ function AddNewAddres() {
     house: "",
     apartment: "",
   });
+  const address = useSelector((state: any) => state.user);
 
   const navigate = useNavigate();
   const handleSubmitForm = (
@@ -36,6 +37,7 @@ function AddNewAddres() {
   ) => {
     e.preventDefault();
     dispatch(AddressSlice.actions.saveAddress(data));
+    localStorage.removeItem("address");
     navigate("/delivery");
   };
 
@@ -68,6 +70,7 @@ function AddNewAddres() {
               placeText={translate("First Name", language)}
               name="firstname"
               changeText={changeInput}
+              defaultValue={address.firstname}
             />
             <Input
               placeText={translate("last name", language)}

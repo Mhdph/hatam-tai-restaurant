@@ -72,6 +72,7 @@ function Payment() {
         cashMethod,
         topping,
         specialReq,
+        products,
       });
     },
     {
