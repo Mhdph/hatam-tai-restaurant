@@ -1,8 +1,11 @@
 import clsx from "clsx";
 import React from "react";
+import { useQuery } from "react-query";
 import { useSelector } from "react-redux";
+import { GetDeliveryFee } from "../../config";
 import { translate } from "../../i18n";
 import { FoodD } from "../../types";
+import Loading from "../Coustom/Loading";
 
 function OrderFeeTotal() {
   const cartItems = useSelector((state: any) => state.cartReducer.value);
@@ -30,6 +33,14 @@ function OrderFeeTotal() {
       )
     );
   }, [toppingItems]);
+
+  const { data, error, isLoading } = useQuery({
+    queryKey: ["deliveryFee"],
+    queryFn: GetDeliveryFee,
+  });
+
+  if (isLoading) return <Loading />;
+
   return (
     <div
       className={clsx(
@@ -43,7 +54,7 @@ function OrderFeeTotal() {
         {translate("total", language)}{" "}
       </p>
       <p className="text-base font-bold font-roboto text-main-color">
-        AED {totalPrice + deliveryFee + totalToppingPrice}.00
+        AED {totalPrice + +data.delivery + totalToppingPrice}.00
       </p>
     </div>
   );

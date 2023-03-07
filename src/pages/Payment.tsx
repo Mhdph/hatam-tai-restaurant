@@ -100,7 +100,7 @@ function Payment() {
   };
 
   return (
-    <div className="h-full md:h-screen">
+    <div className="h-screen md:h-screen">
       <Arrowback />
       <div
         className={clsx(
@@ -114,6 +114,7 @@ function Payment() {
           <p className="text-secondary-color pl-2 mb-4 font-semibold text-[20px] capitalize">
             {translate("select your payment method", language)}
           </p>
+
           <div className="payment mb-4 px-4 py-4 flex items-center ">
             <div className="flex items-center gap-3">
               <div className="pr-3">
@@ -129,24 +130,6 @@ function Payment() {
               </div>
               <p className="text-secondary-color text-base capitalize font-semibold">
                 {translate("cash on delivery", language)}
-              </p>
-            </div>
-          </div>
-          <div className="payment mb-4 px-4 py-4 flex items-center ">
-            <div className="flex items-center gap-3">
-              <div className="pr-3">
-                <label className="container">
-                  <input
-                    name="default-radio"
-                    value="card on delivery"
-                    type="checkbox"
-                    onChange={updateCash}
-                  />
-                  <span className="checkmark"></span>
-                </label>
-              </div>
-              <p className="text-secondary-color text-base capitalize font-semibold">
-                {translate("card on delivery", language)}
               </p>
             </div>
           </div>

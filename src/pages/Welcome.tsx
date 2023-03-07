@@ -3,14 +3,24 @@ import { Link } from "react-router-dom";
 import { frame, logo } from "../assets";
 import { useDispatch } from "react-redux";
 import { changeLanguage } from "../app/languageSlice";
+import { useQuery } from "react-query";
+import { GetTime } from "../config";
+import Loading from "../components/Coustom/Loading";
 
 function Welcome() {
   const dispatch = useDispatch();
-
   const chooseLanguageHandler = (value: any) => {
     dispatch(changeLanguage(value));
   };
 
+  const { data, error, isLoading } = useQuery({
+    queryKey: ["getTime"],
+    queryFn: GetTime,
+  });
+
+  console.log(data);
+  if (isLoading) return <Loading />;
+  if (error) return <p>Please try agian later</p>;
   return (
     <div className="font-iran h-full md:h-screen">
       <div className="flex flex-col items-center text-main-color">
@@ -29,6 +39,9 @@ function Welcome() {
             </div>
           </Link>
         </div>
+        <p className="font-roboto mt-6 font-bold text-xl text-center">
+          Delivery from {data.startTime} to {data.endTime} only
+        </p>
         <p className="text-[84px] flex items-center mt-8 xs:mt-28 2xs:mt-20">
           خوش آمدید
         </p>

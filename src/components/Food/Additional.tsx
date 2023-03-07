@@ -70,8 +70,8 @@ function Additional(props: any) {
               <p
                 className={clsx(
                   language === "EN"
-                    ? "text-[23px] font-bold"
-                    : "text-2xl font-bold",
+                    ? "text-base xs:text-base font-bold"
+                    : "text-base xs:text-xl font-bold",
                   " text-main-color mt-3 capitalize"
                 )}
               >
@@ -80,7 +80,7 @@ function Additional(props: any) {
               <p
                 className={clsx(
                   language === "EN"
-                    ? "font-roboto text-base font-medium "
+                    ? "font-roboto text- xs:text-base font-medium "
                     : "font-bernardo text-base mt-2 font-normal",
                   " text-secondary-color capitalize"
                 )}

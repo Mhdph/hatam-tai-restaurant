@@ -82,7 +82,7 @@ function AddNewAddres() {
             </p>
             <Input
               placeText={translate("abu dhabi", language)}
-              valueInput="Abu Dhabi"
+              valueInput={translate("Only Abu Dhabi", language)}
             />
             <Input
               placeText={translate("district", language)}

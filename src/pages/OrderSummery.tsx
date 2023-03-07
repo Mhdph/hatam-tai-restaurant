@@ -10,9 +10,12 @@ import OrderFeeTotal from "../components/Order/OrderFeeTotal";
 import { translate } from "../i18n";
 import ToppingsSummery from "../components/Food/ToppingsSummery";
 import clsx from "clsx";
+import { useQuery } from "react-query";
+import { GetDeliveryFee } from "../config";
 
 function OrderSummery() {
   const language = localStorage.getItem("language");
+
   return (
     <div className="xs:h-screen h-full ">
       <Arrowback />

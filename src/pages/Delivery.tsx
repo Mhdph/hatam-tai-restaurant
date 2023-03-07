@@ -60,18 +60,6 @@ function Delivery() {
           "px-4"
         )}
       >
-        <p className="text-base ml-2 mb-2 font-semibold capitalize text-secondary-color">
-          {translate("phone number", language)}
-        </p>
-        <div>
-          <input
-            onChange={changeInput}
-            name="phoneNumber"
-            type="text"
-            className="py-1.5 rounded-[20px] outline-none w-3/4 px-3 placeholder:text-secondary-color placeholder:font-bold"
-            defaultValue="+971"
-          />
-        </div>
         <p className="text-base mt-4 mb-2 ml-2 font-semibold capitalize text-secondary-color">
           {translate("address", language)}
         </p>
@@ -110,7 +98,18 @@ function Delivery() {
             className="rounded-[20px] outline-none w-full py-10 "
           ></textarea>
         )}
-
+        <p className="text-base ml-2 mb-2 mt-2 font-semibold capitalize text-secondary-color">
+          {translate("phone number", language)}
+        </p>
+        <div>
+          <input
+            onChange={changeInput}
+            name="phoneNumber"
+            type="text"
+            className="py-1.5 rounded-[20px] outline-none w-3/4 px-3 placeholder:text-secondary-color placeholder:font-bold"
+            defaultValue="+971"
+          />
+        </div>
         <p className="text-2xl ml-2 mb-2 mt-20 font-semibold capitalize text-secondary-color">
           {translate("special request", language)}
         </p>

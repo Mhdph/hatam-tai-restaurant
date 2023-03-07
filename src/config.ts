@@ -71,3 +71,11 @@ export const deleteAdditionalFn = async (Id: string) => {
   const response = await api.delete<any>(`/additional/${Id}`);
   return response.data;
 };
+export const GetDeliveryFee = async () => {
+  const response = await api.get(`/delivery`);
+  return response.data;
+};
+export const GetTime = async () => {
+  const response = await api.get(`/timeWork`);
+  return response.data;
+};

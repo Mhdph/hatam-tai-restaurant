@@ -1,4 +1,5 @@
 import { Button } from "@material-tailwind/react";
+import axios from "axios";
 import React from "react";
 import ReactPaginate from "react-paginate";
 import { useMutation, useQuery, useQueryClient } from "react-query";
@@ -15,6 +16,7 @@ function PanelCategory() {
     queryFn: getAllCategoryFn,
   });
   const [pageNumber, setPageNumber] = React.useState(0);
+  const [delivery, setDelivery] = React.useState("");
   const userPerPage = 10;
   const pagesVisited = pageNumber * userPerPage;
 
@@ -22,6 +24,9 @@ function PanelCategory() {
   const [editopen, setEditOpen] = React.useState(false);
   const queryClient = useQueryClient();
   const [id, setId] = React.useState("");
+  const [startTime, setStartTime] = React.useState("");
+  const [endTime, setEndTime] = React.useState("");
+
   const handleEditOpen = (event: any) => {
     setId(event?.target.id);
     setEditOpen(!editopen);
@@ -45,11 +50,70 @@ function PanelCategory() {
   const onDeleteHandler = (Id: string) => {
     deleteCategory(Id);
   };
+
+  const updateDeliveryFee = () => {
+    try {
+      axios.post("https://api.hammtimm.ir/api/delivery", {
+        delivery: delivery,
+      });
+      toast.success("updated successfully");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const updateWorktime = () => {
+    try {
+      axios.post("https://api.hammtimm.ir/api/timeWork", {
+        startTime: startTime,
+        endTime: endTime,
+      });
+      toast.success("updated successfully");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   if (isLoading) return <Loading />;
   if (error) return <p>something went wrong</p>;
   const pageCount = Math.ceil(data.length / userPerPage);
   return (
     <div className="overflow-x-auto p-4">
+      <div className="flex justify-between">
+        <div className="flex items-center gap-2 mb-2">
+          <input
+            onChange={(e) => setDelivery(e.target.value)}
+            type="text"
+            className="bg-white rounded-md py-2"
+          />
+          <button
+            onClick={() => updateDeliveryFee()}
+            className="bg-blue-500 rounded-md py-2 px-3 text-white"
+          >
+            Update delivey fee
+          </button>
+        </div>
+        <div className="flex items-center gap-2 mb-2">
+          <input
+            onChange={(e) => setStartTime(e.target.value)}
+            type="text"
+            placeholder="start time"
+            className="bg-white rounded-md p-2"
+          />
+          <input
+            onChange={(e) => setEndTime(e.target.value)}
+            type="text"
+            placeholder="end time"
+            className="bg-white rounded-md p-2"
+          />
+          <button
+            onClick={() => updateWorktime()}
+            className="bg-blue-500 rounded-md py-2 px-3 text-white"
+          >
+            Update Work Time
+          </button>
+        </div>
+      </div>
       <AddCategory open={open} setOpen={setOpen} />
       <EditCategory
         editopen={editopen}
