@@ -8,10 +8,11 @@ import OrderFeeTotal from "../components/Order/OrderFeeTotal";
 import { translate } from "../i18n";
 import clsx from "clsx";
 import axios from "axios";
-import { baseUrl } from "../config";
+import { baseUrl, GetDeliveryFee } from "../config";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { useMutation } from "react-query";
+import { useMutation, useQuery } from "react-query";
+import Loading from "../components/Coustom/Loading";
 
 function Payment() {
   const [cashMethod, setCashMethod] = React.useState("");
@@ -25,9 +26,17 @@ function Payment() {
     (state: any) => state.numberReucer.SpecialRequest
   );
   const address = useSelector((state: any) => state.user);
-  const deliveryFee = useSelector(
-    (state: any) => state.cartReducer.deliveryFee
-  );
+  const {
+    data,
+    error: deliveyError,
+    isLoading,
+  } = useQuery({
+    queryKey: ["deliveryFee"],
+    queryFn: GetDeliveryFee,
+  });
+  const toppingItems = useSelector((state: any) => state.topping.value);
+  const [totalToppingPrice, setTotalToppingPrice] = React.useState(0);
+
   const [totalPrice, setTotalPrice] = React.useState(0);
   React.useEffect(() => {
     setTotalPrice(
@@ -38,30 +47,21 @@ function Payment() {
     );
   }, [products]);
 
-  const price = totalPrice + deliveryFee;
+  React.useEffect(() => {
+    setTotalToppingPrice(
+      toppingItems.reduce(
+        (total: number, item: any) => total + Number(item.totalprice),
+        0
+      )
+    );
+  }, [toppingItems]);
+
   const language = localStorage.getItem("language");
   const updateCash = (e: any) => {
     setCashMethod(e.target.value);
   };
 
   const navigate = useNavigate();
-  // const submitOrder = () => {
-  //   try {
-  //     axios.post(`${baseUrl}/order`, {
-  //       price: price,
-  //       address: address,
-  //       phoneNumber: phoneNumber,
-  //       cashMethod: cashMethod,
-  //       products: cartItems,
-  //       specialReq: SpecialRequest,
-  //       topping: toppingItems,
-  //     });
-  //     navigate("/complate");
-  //   } catch (error) {
-  //     console.log(error);
-  //     setErorrMessage("some thing went wrong");
-  //   }
-  // };
 
   const { mutate, error } = useMutation(
     async (data: any) => {
@@ -99,6 +99,8 @@ function Payment() {
     });
   };
 
+  if (isLoading) return <Loading />;
+  const price = totalPrice + +data.delivery + totalToppingPrice;
   return (
     <div className="h-screen md:h-screen">
       <Arrowback />

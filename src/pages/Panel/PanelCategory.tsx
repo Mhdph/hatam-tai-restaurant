@@ -53,7 +53,7 @@ function PanelCategory() {
 
   const updateDeliveryFee = () => {
     try {
-      axios.post("https://api.hammtimm.ir/api/delivery", {
+      axios.post("https://api.hatimaltairestaurant.com/api/delivery", {
         delivery: delivery,
       });
       toast.success("updated successfully");
@@ -64,7 +64,7 @@ function PanelCategory() {
 
   const updateWorktime = () => {
     try {
-      axios.post("https://api.hammtimm.ir/api/timeWork", {
+      axios.post("https://api.hatimaltairestaurant.com/api/timeWork", {
         startTime: startTime,
         endTime: endTime,
       });

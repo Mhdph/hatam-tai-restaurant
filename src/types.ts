@@ -62,6 +62,7 @@ export interface OrderD {
   cashMethod: string;
   specialReq: string;
   orderNumber: number;
+  price: string;
 }
 export interface SearchResultData {
   description: string;

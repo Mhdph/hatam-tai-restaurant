@@ -9,7 +9,7 @@ function Additional(props: any) {
   const { image, name, desc, price, _id, quantity } = props.product;
   const [open, setOpen] = React.useState(false);
   const totalprice = price;
-  const PF = "http://api.hammtimm.ir/images/";
+  const PF = "https://api.hatimaltairestaurant.com/images/";
   const dispatch = useDispatch();
   const language = localStorage.getItem("language");
   const check = () => {

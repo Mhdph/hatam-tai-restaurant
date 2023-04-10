@@ -35,6 +35,14 @@ function OrderSummery() {
           <OrderFee />
           <hr className=" border-opacity-30 border-[0.1px] my-4 border-secondary-color" />
           <OrderFeeTotal />
+          <p
+            className={clsx(
+              language === "EN" ? "font-roboto" : "font-bernardo",
+              "text-2xl text-main-color font-extrabold capitalize px-4 mt-4 text-center"
+            )}
+          >
+            {translate("delivey message", language)}{" "}
+          </p>
           <div className="mt-40 mb-10">
             <Button
               title={translate("continue", language)}
@@ -47,7 +55,7 @@ function OrderSummery() {
         src={language === "EN" ? Kashi : ArKashi}
         className={clsx(
           language === "EN" ? "right-16" : "right-2",
-          "-z-10 absolute -bottom-20 md:-bottom-0 md:top-44"
+          "-z-10 absolute -bottom-10 md:-bottom-0 md:top-44"
         )}
         alt=""
       />

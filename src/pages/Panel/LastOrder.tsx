@@ -35,13 +35,17 @@ const LastOrder = () => {
                 Address
               </th>
               <th scope="col" className="py-3 px-6">
-                Additional
+                Additional Request
               </th>
+
               <th scope="col" className="py-3 px-6">
                 Phone Number
               </th>
               <th scope="col" className="py-3 px-6">
                 Payment Method
+              </th>
+              <th scope="col" className="py-3 px-6">
+                <span>ُTotal Price</span>
               </th>
               <th scope="col" className="py-3 px-6">
                 <span>Order Number</span>
@@ -112,6 +116,7 @@ const LastOrder = () => {
                   <td className="py-4 px-6">{item.specialReq}</td>
                   <td className="py-4 px-6">{item.phoneNumber}</td>
                   <td className="py-4 px-6">{item.cashMethod}</td>
+                  <td className="py-4 px-6">{item.price}</td>
                   <td className="py-4 px-6">{item.orderNumber}</td>
                 </tr>
               ))}

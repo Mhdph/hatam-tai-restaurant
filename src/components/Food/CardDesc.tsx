@@ -14,7 +14,7 @@ import Bucket from "../Common/Bucket";
 import Loading from "../Coustom/Loading";
 import Topping from "./Topping";
 import YourChoise from "./YourChoise";
-const PF = "http://api.hammtimm.ir/images/";
+const PF = "https://api.hatimaltairestaurant.com/images/";
 
 function CardDesc({
   open,

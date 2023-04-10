@@ -9,7 +9,7 @@ function Topping(props: any) {
   const { name, price, quantity, food, choiceList } = props.product;
   const [check, setCheck] = React.useState(false);
   const totalprice = price;
-  const PF = "http://api.hammtimm.ir/images/";
+  const PF = "https://api.hatimaltairestaurant.com/images/";
   const dispatch = useDispatch();
   const language = localStorage.getItem("language");
 
