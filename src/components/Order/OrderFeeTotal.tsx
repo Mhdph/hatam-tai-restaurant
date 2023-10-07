@@ -54,7 +54,7 @@ function OrderFeeTotal() {
         {translate("total", language)}{" "}
       </p>
       <p className="text-base font-bold font-roboto text-main-color">
-        AED {totalPrice + +data.delivery + totalToppingPrice}.00
+        AED {totalPrice + totalToppingPrice}.00
       </p>
     </div>
   );

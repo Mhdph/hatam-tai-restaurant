@@ -32,8 +32,8 @@ function OrderSummery() {
           <hr className=" border-opacity-30 border-[0.1px] my-4 border-secondary-color" />
           <ToppingsSummery />
           <hr className=" border-opacity-30 border-[0.1px] my-4 border-secondary-color" />
-          <OrderFee />
-          <hr className=" border-opacity-30 border-[0.1px] my-4 border-secondary-color" />
+          {/* <OrderFee />
+          <hr className=" border-opacity-30 border-[0.1px] my-4 border-secondary-color" /> */}
           <OrderFeeTotal />
           <p
             className={clsx(

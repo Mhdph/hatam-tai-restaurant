@@ -60,14 +60,14 @@ function OrderFee() {
           AED {totalPrice + totalToppingPrice}.00
         </p>
       </div>
-      <div className="flex justify-between">
+      {/* <div className="flex justify-between">
         <p className="text-base text-[#4E3C11] font-normal capitalize">
           {translate("delivery fee", language)}
         </p>
         <p className="text-base font-roboto text-[#4E3C11] font-normal">
           AED {+data.delivery}.00
         </p>
-      </div>
+      </div> */}
     </div>
   );
 }
