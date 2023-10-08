@@ -28,8 +28,8 @@ function Login() {
   };
 
   return (
-    <div className="h-screen mt-60">
-      <div className="px-[600px]">
+    <div className="h-screen flex justify-center items-center  ">
+      <div className="w-full ">
         <Header title="Login" />
         <div className="flex px-6 card-food pb-6 pt-10 flex-col gap-8">
           <Input
