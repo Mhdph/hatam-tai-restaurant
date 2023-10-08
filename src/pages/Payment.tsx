@@ -100,7 +100,7 @@ function Payment() {
   };
 
   if (isLoading) return <Loading />;
-  const price = totalPrice + +data.delivery + totalToppingPrice;
+  const price = totalPrice + totalToppingPrice;
   return (
     <div className="h-screen md:h-screen">
       <Arrowback />
